@@ -13,7 +13,7 @@ import { CursosComponent } from './cursos/cursos.component';
   declarations: [
     AppComponent,
     FooterComponent,
-    CursosComponent
+    CursosComponent,
   ],
   imports: [
     BrowserModule,
