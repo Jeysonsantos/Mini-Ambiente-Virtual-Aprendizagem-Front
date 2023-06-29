@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 interface Curso {
   id: number;
   id_professor: number;
@@ -53,4 +53,7 @@ export class CursosComponent {
     const professor = this.nomeProfessores.find((prof) => prof.id === idProfessor);
     return professor ? professor.nome : 'Professor não encontrado';
   }
+
+  constructor(private router: Router) { }
+  
 }

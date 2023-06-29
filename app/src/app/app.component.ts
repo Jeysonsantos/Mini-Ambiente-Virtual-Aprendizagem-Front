@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './auth/auth-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+constructor(private router:Router,public auth:AuthService) { }
+
+  home() {
+    window.location.href = '/home';
+    this.router.navigate(['/home']);
+
+  }
 }
+
+

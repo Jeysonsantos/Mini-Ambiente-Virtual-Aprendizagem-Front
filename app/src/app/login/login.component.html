@@ -1,0 +1,34 @@
+<div class="login-box">
+    <div class="mainDiv">
+    <div>
+        <mat-toolbar style="background-color: #CE0000; color: #ffffff">
+            <mat-toolbar-row>
+            <span>Central de Autenticação </span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </div>
+    <div class="login">
+    <mat-form-field appearance="outline">
+            <mat-label>CPF</mat-label>
+            <input matInput [(ngModel)]="username" placeholder="CPF">
+        </mat-form-field>
+        <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput type="password" [(ngModel)]="password" placeholder="Senha"> 
+        </mat-form-field>
+    </div>
+    </div>
+    <div class="baixo"> 
+        <a color="primary" href="https://sistemas.ufal.br/perfil/recuperar_senha" style="color: #CE0000; position: absolute; margin-left: -10px;">Esqueceu a senha?</a>
+        <button class = "buttom" mat-raised-button color="primary" (click) ="login()" style="background-color: #CE0000; position: absolute; margin-left: 150px;">Entrar</button>
+    </div>
+    </div>
+    <div *ngIf="invalidLogin" class="invalid-login-msg">
+        <p>Usuário e/ou senha inválido(s).</p>
+    </div>
+</div>
+
+
+  
+

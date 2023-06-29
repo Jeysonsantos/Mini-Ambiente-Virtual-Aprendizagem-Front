@@ -1,3 +1,4 @@
+<div *ngIf="auth.isAuthenticatedUser()">
 <mat-toolbar class="full-width" >
   <mat-toolbar-row class="barraufal__outer "> 
     <div class="barraufal__outer" style="margin-left: 0px; margin-right: 0px;">
@@ -12,10 +13,11 @@
 
   <mat-toolbar-row class="navbar-inner">
     <div class="container">
-      <a class="brand">Ambiente Virtual de Aprendizado</a>
+      <a (click)="home()" class="brand">Ambiente Virtual de Aprendizado</a>
     </div>
   </mat-toolbar-row>
   
 </mat-toolbar>
-<app-cursos></app-cursos>
-<app-footer></app-footer>
+</div>
+
+<router-outlet></router-outlet>
