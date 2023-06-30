@@ -25,6 +25,7 @@ export class LoginComponent {
   login(): void {
     this.authService.login(this.username, this.password);
     if (this.authService.isAuthenticatedUser()) {
+      this.isAuthenticated = true;
       this.router.navigate(['/home']);
     } else {
       this.invalidLogin = true;
