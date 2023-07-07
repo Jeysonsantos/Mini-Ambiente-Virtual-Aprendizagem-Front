@@ -12,7 +12,7 @@ export class AdminGuard implements CanActivate {
     if (this.authService.isAdmin()) {
       return true;
     } else {
-      this.router.navigate(['/acesso-negado']); // Rota para página de acesso negado
+      this.router.navigate(['/acesso-negado']);
       return false;
     }
   }

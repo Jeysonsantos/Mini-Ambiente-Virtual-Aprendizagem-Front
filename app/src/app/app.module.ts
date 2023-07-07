@@ -22,6 +22,14 @@ import { AdminAlunosComponent } from './componentes_admin/admin-alunos/admin-alu
 import { AdminProfessoresComponent } from './componentes_admin/admin-professores/admin-professores.component';
 import { AdminCursosComponent } from './componentes_admin/admin-cursos/admin-cursos.component'; 
 import { MatCardModule } from '@angular/material/card';
+import { AdminMenuComponent } from './componentes_admin/admin-menu/admin-menu.component';
+import { AdminAlunoDialogComponent } from './componentes_admin/admin-alunos/admin-aluno-dialog/admin-aluno-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatListModule } from '@angular/material/list';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +43,8 @@ import { MatCardModule } from '@angular/material/card';
     AdminAlunosComponent,
     AdminProfessoresComponent,
     AdminCursosComponent,
+    AdminMenuComponent,
+    AdminAlunoDialogComponent,
 
     
   ],
@@ -49,7 +59,11 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatButtonModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule,
+    MatListModule,
+    ReactiveFormsModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

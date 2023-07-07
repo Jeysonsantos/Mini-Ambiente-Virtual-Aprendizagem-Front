@@ -1,0 +1,22 @@
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+  }
+  
+  .form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  
+  .form-field {
+    width: 100%;
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+  

@@ -1,0 +1,48 @@
+<mat-dialog-content class="dialog-content">
+    <form (ngSubmit)="submitForm()" #form="ngForm">
+      <mat-form-field class="form-field">
+        <mat-label>Nome</mat-label>
+        <input matInput name="nome" [(ngModel)]="aluno.nome" required #nome="ngModel">
+        <mat-error *ngIf="nome.touched && nome.invalid">
+          O nome é obrigatório.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Matrícula</mat-label>
+        <input matInput name="matricula" [(ngModel)]="aluno.matricula" required maxlength="8" #matricula="ngModel">
+        <mat-error *ngIf="matricula.touched && matricula.invalid">
+          A matrícula deve ter exatamente 8 caracteres.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>CPF</mat-label>
+        <input matInput name="cpf" [(ngModel)]="aluno.cpf" required maxlength="11" #cpf="ngModel">
+        <mat-error *ngIf="cpf.touched && cpf.invalid">
+          O CPF deve ter exatamente 11 caracteres.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>RG</mat-label>
+        <input matInput name="rg" [(ngModel)]="aluno.rg" required maxlength="8" #rg="ngModel">
+        <mat-error *ngIf="rg.touched && rg.invalid">
+          O RG deve ter exatamente 8 caracteres.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <mat-label>Telefone</mat-label>
+        <input matInput name="telefone" [(ngModel)]="aluno.telefone" required maxlength="11" #telefone="ngModel">
+        <mat-error *ngIf="telefone.touched && telefone.invalid">
+          O telefone deve ter exatamente 11 caracteres.
+        </mat-error>
+      </mat-form-field>
+      <!-- Outros campos do formulário -->
+    </form>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-button mat-dialog-close>CANCELAR</button>
+    <button mat-button color="primary" [disabled]="!form.valid" (click)="submitForm()">
+      {{ dialogData.mode === 'adicionar' ? 'ADICIONAR' : 'SALVAR' }}
+    </button>
+  </mat-dialog-actions>
+  
