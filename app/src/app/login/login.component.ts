@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  username: string = '';
-  password: string = '';
+  username: string = 'admin';
+  password: string = 'admin';
   isAuthenticated: boolean = false;
   invalidLogin: boolean = false;
 
@@ -18,7 +18,15 @@ export class LoginComponent {
   ngOnInit(): void {
     if (this.authService.isAuthenticatedUser()) {
       this.isAuthenticated = true;
-        this.router.navigate(['/home']);
+      const userType = this.authService.getUserType();
+
+      if (userType === 'admin') {
+        this.router.navigate(['/admin']);
+      } else if (userType === 'professor') {
+        this.router.navigate(['/professor']);
+      } else if (userType === 'aluno') {
+        this.router.navigate(['/aluno']);
+      }
     }
   }
 
@@ -26,7 +34,16 @@ export class LoginComponent {
     this.authService.login(this.username, this.password);
     if (this.authService.isAuthenticatedUser()) {
       this.isAuthenticated = true;
-      this.router.navigate(['/home']);
+      const userType = this.authService.getUserType();
+
+      if (userType === 'admin') {
+        this.router.navigate(['/admin']);
+      } else if (userType === 'professor') {
+        this.router.navigate(['/professor']);
+      } else if (userType === 'aluno') {
+        this.router.navigate(['/aluno']);
+      }
+
     } else {
       this.invalidLogin = true;
       setTimeout(() => {

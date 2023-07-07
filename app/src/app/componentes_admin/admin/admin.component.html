@@ -1,0 +1,33 @@
+<div class="main">
+<div class="usuario_">
+    <mat-icon class="icon_perfil">account_circle</mat-icon>
+    <h2 class="user_name">{{userName}}</h2>
+</div>
+<div class="admin-dashboard">
+  <div class="admin-card admin-alunos" (click)="navigateToAlunos()">
+    <div class="card-icon">
+      <mat-icon>people</mat-icon>
+    </div>
+    <h2 class="card-title">Alunos</h2>
+  </div>
+  <div class="admin-card admin-disciplinas" (click)="navigateToCursos()">
+    <div class="card-icon">
+      <mat-icon>book</mat-icon>
+    </div>
+    <h2 class="card-title">Disciplinas</h2>
+  </div>
+  <div class="admin-card admin-professores" (click)="navigateToProfessores()">
+    <div class="card-icon">
+      <mat-icon>school</mat-icon>
+    </div>
+    <h2 class="card-title">Professores</h2>
+  </div>
+</div>
+
+  
+  
+  
+  
+
+</div>
+<app-footer class="footer"></app-footer>

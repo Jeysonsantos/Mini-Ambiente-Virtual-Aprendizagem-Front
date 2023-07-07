@@ -13,8 +13,6 @@ export class AppComponent {
 constructor(private router:Router,public auth:AuthService) { }
 
   home() {
-    window.location.href = '/home';
-    this.router.navigate(['/home']);
 
   }
 }

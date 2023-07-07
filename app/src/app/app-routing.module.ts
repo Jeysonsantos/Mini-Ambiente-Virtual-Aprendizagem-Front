@@ -1,15 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CursosComponent } from './cursos/cursos.component';
-import { CursoDetalhesComponent } from './curso-detalhes/curso-detalhes.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth/authguard';
+import { AdminComponent } from './componentes_admin/admin/admin.component';
+import { AlunoComponent } from './componentes_aluno/aluno/aluno.component';
+import { UserRoleGuard } from './auth/UserRoleGuard';
+import { AdminAlunosComponent } from './componentes_admin/admin-alunos/admin-alunos.component';
+import { AdminGuard } from './auth/Adminguard';
+import { AdminCursosComponent } from './componentes_admin/admin-cursos/admin-cursos.component';
+import { AdminProfessoresComponent } from './componentes_admin/admin-professores/admin-professores.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: CursosComponent, canActivate: [AuthGuard] },
-  { path: 'curso/:id', component: CursoDetalhesComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: 'login', component: LoginComponent},
+  { path: 'home', component: AlunoComponent, canActivate: [UserRoleGuard] },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
+  { path: 'aluno', component: AlunoComponent, canActivate: [AuthGuard]},
+  { path: 'professor', component: AlunoComponent, canActivate: [AuthGuard]},
+  { path: 'admin/alunos', component: AdminAlunosComponent, canActivate: [AdminGuard] },
+  { path: 'admin/cursos', component: AdminCursosComponent, canActivate: [AdminGuard] },
+  { path: 'admin/professores', component: AdminProfessoresComponent, canActivate: [AdminGuard] },
+
 ];
 
 @NgModule({
