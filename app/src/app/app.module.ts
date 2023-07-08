@@ -1,3 +1,4 @@
+import { FormatoPipe } from './componentes_admin/admin-alunos/admin-aluno-dialog/formatoPipe';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -45,6 +46,7 @@ import { MatTableModule } from '@angular/material/table';
     AdminCursosComponent,
     AdminMenuComponent,
     AdminAlunoDialogComponent,
+    FormatoPipe
 
     
   ],
@@ -64,6 +66,13 @@ import { MatTableModule } from '@angular/material/table';
     MatListModule,
     ReactiveFormsModule,
     MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatListModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

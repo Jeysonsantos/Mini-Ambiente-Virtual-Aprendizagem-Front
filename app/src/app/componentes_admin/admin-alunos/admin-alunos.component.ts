@@ -29,7 +29,7 @@ export class AdminAlunosComponent {
 
   get filteredAlunos(): Aluno[] {
     return this.alunos.filter(aluno =>
-      aluno.nome.toLowerCase().includes(this.searchText.toLowerCase())
+      aluno.matricula.includes(this.searchText)
     );
   }
 
@@ -53,7 +53,7 @@ export class AdminAlunosComponent {
   filterAlunos(): void {
     const filterValue = this.searchText.toLowerCase().trim();
     const filteredAlunos = this.alunos.filter(aluno =>
-      aluno.nome.toLowerCase().includes(filterValue)
+      aluno.matricula.includes(filterValue)
     );
   }
 }

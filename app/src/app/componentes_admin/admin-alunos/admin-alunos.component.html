@@ -11,7 +11,7 @@
         </button>
         <mat-form-field appearance="fill" class="search-field">
             <mat-label>Pesquisar</mat-label>
-            <input matInput placeholder="Digite o nome do aluno" [(ngModel)]="searchText" (keyup)="filterAlunos()">
+            <input matInput placeholder="Digite a matricula do aluno" [(ngModel)]="searchText" (keyup)="filterAlunos()">
             <button mat-button matSuffix mat-icon-button aria-label="Limpar" *ngIf="searchText" (click)="clearSearchText()">
               <mat-icon>clear</mat-icon>
             </button>
