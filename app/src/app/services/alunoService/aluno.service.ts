@@ -5,14 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AlunoService {
-  url = 'http://localhost:8080/aluno';
-  constructor(private HttpClient:HttpClient) { }
+  private apiUrl = 'http://localhost:8080'; 
 
-  salvarAluno(aluno: any) {
-    return this.HttpClient.post(this.url + "/create", aluno);
-  }
+  constructor(private http: HttpClient) {}
 
-  obterAlunos() {
-    return this.HttpClient.get(this.url + "/all");
-  }
 }

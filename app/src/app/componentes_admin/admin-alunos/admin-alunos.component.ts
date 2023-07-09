@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminAlunoDialogComponent } from './admin-aluno-dialog/admin-aluno-dialog.component';
+import { AdminAlunoService } from 'src/app/services/adminService/adminAlunoService/admin-aluno.service';
 interface Aluno {
   id: number;
   nome: string;
@@ -16,20 +17,30 @@ interface Aluno {
   styleUrls: ['./admin-alunos.component.scss']
 })
 export class AdminAlunosComponent {
-  alunos: Aluno[] = [
-    { id: 1, nome: 'João', matricula: '2021001', cpf: '12345678910', rg: '123456789', telefone: '123456789', email: ''},
-    { id: 2, nome: 'Maria', matricula: '2021002', cpf: '12345348910', rg: '124256789', telefone: '124256789', email: ''},
-    { id: 3, nome: 'Pedro', matricula: '2021003', cpf: '12345678910', rg: '123456789', telefone: '123456789', email: ''},
-  ];
+  alunos: Aluno[] = [];
   displayedColumns: string[] = ['nome', 'matricula'];
 
   searchText: string = '';
 
-  constructor(private dialog: MatDialog) {}
-
+  constructor(private dialog: MatDialog, private AdminalunoService:AdminAlunoService) {}
+  ngOnInit(): void {
+    this.carregarAlunos();
+  }
+  
   get filteredAlunos(): Aluno[] {
     return this.alunos.filter(aluno =>
       aluno.matricula.includes(this.searchText)
+    );
+  }
+
+  carregarAlunos(): void {
+    this.AdminalunoService.getAlunos().subscribe(
+      (alunos:any) => {
+        this.alunos = alunos;
+      },
+      (error) => {
+        console.error('Erro ao carregar alunos:', error);
+      }
     );
   }
 

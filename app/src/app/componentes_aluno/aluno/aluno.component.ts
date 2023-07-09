@@ -1,4 +1,3 @@
-import { AlunoService } from './aluno.service';
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth-service.service';
 
@@ -12,7 +11,7 @@ export class AlunoComponent {
   id_usuario: number = 0;
   userName: string = '';
 
-  constructor(private authService: AuthService, private AlunoService: AlunoService) { 
+  constructor(private authService: AuthService) { 
     this.userType = this.authService.getUserType();
     this.id_usuario = this.authService.getIdUsuario();
     this.userName = this.authService.getUserName();
