@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth/auth-service.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
+  nome: string = '';
+  
+  constructor(private AuthService:AuthService) {
+    this.nome = this.AuthService.getUserName();
+  }
 
 }

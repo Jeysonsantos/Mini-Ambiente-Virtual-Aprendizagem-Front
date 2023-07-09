@@ -41,3 +41,36 @@
   .mat-header-cell {
     padding: 8px 16px;
   }
+  .alunos-container {
+    display: flex;
+    height: 350px;
+    overflow-y: auto;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .main {
+    margin: 16px;
+  }
+  
+  .options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .no-alunos-message {
+    text-align: center;
+    margin-top: 16px;
+  }
+  
+  .table-container {
+    height: 100%;
+  }
+  
+  .alunos-table {
+    width: 100%;
+  }
+
+  

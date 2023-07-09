@@ -39,7 +39,7 @@ interface Aluno {
       @Inject(MAT_DIALOG_DATA) public dialogData: any,
       private AdminalunoService: AdminAlunoService,
       private formBuilder: FormBuilder,
-      private snackBar: MatSnackBar
+      private snackBar: MatSnackBar,
     ) {
       this.cpfFormatado = ''
       this.form = this.formBuilder.group({
@@ -82,17 +82,10 @@ interface Aluno {
                 this.snackBar.open('O telefone já existe.', 'Fechar', { duration: 3000 });
                 return;
               }
-    
+              this.aluno = this.form.value;
               this.AdminalunoService.salvarAluno(this.aluno).subscribe(
                 response => {
-                  this.dialogRef.close();
-    
-                  this.AdminalunoService.getAlunos().subscribe(
-                    alunos => {
-                      this.dialogData.atualizarLista(alunos);
-                    },
-                    error => {}
-                  );
+                  this.dialogRef.close('success');
                 },
                 error => {}
               );

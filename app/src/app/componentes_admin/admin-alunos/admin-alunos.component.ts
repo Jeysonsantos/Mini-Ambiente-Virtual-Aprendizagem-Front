@@ -45,18 +45,31 @@ export class AdminAlunosComponent {
   }
 
   adicionarAluno(): void {
-    this.dialog.open(AdminAlunoDialogComponent, {
+    const dialogRef = this.dialog.open(AdminAlunoDialogComponent, {
       width: '400px',
       data: { mode: 'adicionar' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'success') {
+        this.carregarAlunos();
+      }
     });
   }
 
   editarAluno(id: number): void {
-    this.dialog.open(AdminAlunoDialogComponent, {
+    const dialogRef = this.dialog.open(AdminAlunoDialogComponent, {
       width: '400px',
       data: { mode: 'editar', alunoId: id }
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'success') {
+        this.carregarAlunos();
+      }
+    });
   }
+  
   clearSearchText(): void {
     this.searchText = '';
     this.filterAlunos();
@@ -67,4 +80,5 @@ export class AdminAlunosComponent {
       aluno.matricula.includes(filterValue)
     );
   }
+  
 }

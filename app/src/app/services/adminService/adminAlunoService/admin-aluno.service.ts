@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 interface Aluno {
@@ -15,9 +15,15 @@ interface Aluno {
 })
 export class AdminAlunoService {
 
-  private apiUrl = 'http://localhost:8080/admin'; 
+  apiUrl = 'http://localhost:8080/admin'; 
 
   constructor(private http: HttpClient) {}
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
   verificarMatriculaExistente(matricula: string): Observable<boolean> {
     const url = `${this.apiUrl}/aluno/checkMatriculaExists/${matricula}`;
@@ -43,9 +49,8 @@ export class AdminAlunoService {
     return this.http.get<boolean>(url);
   }
 
-  salvarAluno(aluno: Aluno): Observable<any> {
-    const url = `${this.apiUrl}/aluno/create`;
-    return this.http.post<any>(url, aluno);
+  salvarAluno(aluno: any) {
+    return this.http.post(this.apiUrl + "/aluno/create", aluno);
   }
 
   getAlunos() {
