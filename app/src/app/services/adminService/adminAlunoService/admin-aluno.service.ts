@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 interface Aluno {
-  id: number;
+  id_aluno: number;
   nome: string;
   cpf: string;
   rg: string;
@@ -49,12 +49,19 @@ export class AdminAlunoService {
     return this.http.get<boolean>(url);
   }
 
-  salvarAluno(aluno: any) {
+  salvarAluno(aluno: Aluno) {
     return this.http.post(this.apiUrl + "/aluno/create", aluno);
+  }
+
+  editarAluno(aluno: Aluno) {
+    return this.http.put(this.apiUrl + "/aluno/update", aluno);
   }
 
   getAlunos() {
     const url = `${this.apiUrl}/aluno/all`;
-    return this.http.get<any>(url);
+    return this.http.get<Aluno[]>(url);
+  }
+  excluirAluno(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/aluno/delete/${id}`);
   }
 }

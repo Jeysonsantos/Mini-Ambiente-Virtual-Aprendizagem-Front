@@ -9,11 +9,4 @@ import { AuthService } from './auth/auth-service.service';
 })
 export class AppComponent {
   title = 'app';
-  userName: string = '';
-  id_usuario: number = 0;
-  
-  constructor(private router: Router, public authService: AuthService) { 
-    this.userName = this.authService.getUserName();
-    this.id_usuario = this.authService.getIdUsuario();
-  }
 }

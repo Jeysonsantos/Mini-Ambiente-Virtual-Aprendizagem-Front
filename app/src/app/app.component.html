@@ -1,21 +1,3 @@
-<div *ngIf="authService.isAuthenticatedUser()">
-<mat-toolbar class="full-width" >
-  <mat-toolbar-row class="barraufal__outer "> 
-    <div class="barraufal__outer" style="margin-left: 0px; margin-right: 0px;">
-      <div class="barraufal__main barraufal__container">
-          <img class="barraufal__brasao" src="https://barra.ufal.br/b4ca49816f4d96ad0c46.png" alt="Universidade Federal de Alagoas">
-          <a class="barraufal__name" href="http://www.ufal.br" target="_parent">
-              <span class="barraufal__completo">Universidade Federal de Alagoas</span>
-          </a>
-      </div>
-  </div>
-  </mat-toolbar-row>
-
-  <mat-toolbar-row class="navbar-inner">
-    <div class="container">
-      <a class="brand">Ambiente Virtual de Aprendizado</a>
-    </div>
-  </mat-toolbar-row>
-</mat-toolbar>
-</div>
+<app-header></app-header>
 <router-outlet></router-outlet>
+<app-footer></app-footer>

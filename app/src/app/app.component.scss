@@ -1,61 +1,8 @@
-.barraufal__outer {
-    background-color: #4a4e59;
-    font-family: "barraufal", Arial, Helvetica, sans-serif;
-    position: relative;
-    margin-top: -15px;
-}
-
-.navbar-inner {
-    background: #ad2316;
-    margin-top: -20px;
-    margin-bottom: -35px;
-}
-.brand {
-    color: #fff;
-    text-shadow: none;
-    font-size: 20px;
-    margin-left: 220px;
-}
-
-.barraufal__outer a {
-    background-color: none;
-    color: #fff;
-    text-decoration: none;
-    font-size: 100%;
-    font-family: "barraufal", Arial, Helvetica, sans-serif;
-    margin-bottom: -30px;
-    display: flex;
-}
-
-.barraufal__container {
-    display: flex;
-    align-items: center;
-
-}
-  
-.barraufal__brasao {
-    margin-right: 10px;
-    margin-left: 220px;
-    margin-bottom: -30px;
-}
-
-.example-spacer {
-    flex: 1 1 auto;
-}
-
-.full-width {
+.footer {
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-  
-.container{
-    margin-bottom: -19px;
-}
+    height: 50px;
+    background-color: #f2f2f2;
 
-.right-content {
-    display: flex;
-    align-items: center;
-}
+  }

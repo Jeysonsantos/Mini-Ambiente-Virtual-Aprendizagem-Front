@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
-import { FooterComponent } from './componentes_aluno/footer/footer.component';
+import { FooterComponent } from './footer/footer.component';
 import { CursosComponent } from './componentes_aluno/cursos/cursos.component';
 import { CursoDetalhesComponent } from './componentes_aluno/curso-detalhes/curso-detalhes.component';
 import { LoginComponent } from './login/login.component';
@@ -30,7 +30,10 @@ import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { HeaderComponent } from './header/header.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatRippleModule } from '@angular/material/core';
+import { AdminAlunoExcluirDialogComponent } from './componentes_admin/admin-alunos/admin-aluno-excluir-dialog/admin-aluno-excluir-dialog/admin-aluno-excluir-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AdminMenuComponent,
     AdminAlunoDialogComponent,
     FormatoPipe,
-
+    HeaderComponent,
+    AdminAlunoExcluirDialogComponent,
     
   ],
   imports: [
@@ -74,7 +78,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCardModule,
     MatListModule,
     MatToolbarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule,
+    MatIconModule,
+    MatRippleModule 
     
   ],
   providers: [],

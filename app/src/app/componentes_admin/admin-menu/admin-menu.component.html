@@ -1,5 +1,11 @@
-<div class="usuario_">
+<div class="usuario_" [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (click)="menuTrigger.openMenu()" matRipple>
     <mat-icon class="icon_perfil">account_circle</mat-icon>
     <h2 class="user_name">{{userName}}</h2>
 </div>
-
+  
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="opcao1()">Opção 1</button>
+    <button mat-menu-item (click)="Desconectar()">Desconectar</button>
+    <!-- Adicione mais opções de menu conforme necessário -->
+  </mat-menu>
+  

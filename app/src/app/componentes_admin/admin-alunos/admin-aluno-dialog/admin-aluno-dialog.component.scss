@@ -5,9 +5,15 @@
   }
   
   .form {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
+  max-width: 1500px; /* Ajuste o valor conforme necessário */
+  margin: 0 auto;
+  border: 1px solid #ccc; /* Adicione uma borda para melhor visualização */
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  
+  grid-gap: 10px;
+
   }
   
   .form-field {

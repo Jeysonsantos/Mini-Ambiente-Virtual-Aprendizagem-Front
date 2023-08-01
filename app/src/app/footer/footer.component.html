@@ -1,4 +1,4 @@
-<footer class="page-footer">
+<footer class="page-footer" *ngIf="authService.isAuthenticatedUser()">
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-4">
@@ -6,13 +6,13 @@
             <div class="block-footer-content">
               <div class="photo-container">
                 <div class="myprofileitem picture">
-                  <a href="https://ava.ufal.br/user/profile.php?id=65056">
+                  <a (click)="home()">
                     <img src="https://ava.ufal.br/theme/image.php/ufal/core/1672489475/u/f1" class="profilepicture defaultuserpic" width="100" height="100" alt="Imagem" title="Imagem">
                   </a>
                 </div>
               </div>
               <div class="profile-info">
-                <h5 class="myprofileitem fullname">{{nome}}</h5>
+                <h5 class="myprofileitem fullname">{{this.authService.getUserName()}}</h5>
                 <div class="myprofileitem country">País: BR</div>
                 <div class="myprofileitem email">
                   <a href="mailto:%6a%73%6es@ic%2e%75f%61%6c%2e%62r">email@.com.br</a>

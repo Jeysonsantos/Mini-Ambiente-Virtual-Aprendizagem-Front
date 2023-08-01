@@ -10,7 +10,17 @@
 
 .usuario_ {
     display: flex;
-    flex-direction: column;
     align-items: center;
     margin-top: 35px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .icon_perfil {
+    margin-right: 10px; /* Adicionar uma margem à direita para separar o ícone do nome */
+    vertical-align: middle; /* Alinhar verticalmente o ícone */
+    /* Ajustar o estilo do ícone para garantir que ele esteja alinhado corretamente */
+    display: inline-block;
+    height: 40px; /* Ajuste a altura conforme necessário */
+    width: 24px; /* Ajuste a largura conforme necessário */
   }

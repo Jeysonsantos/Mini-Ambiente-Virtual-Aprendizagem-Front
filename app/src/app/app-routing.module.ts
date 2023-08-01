@@ -12,6 +12,7 @@ import { AdminProfessoresComponent } from './componentes_admin/admin-professores
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
+  { path: 'acesso-negado', component: LoginComponent },
   { path: 'home', component: AlunoComponent, canActivate: [UserRoleGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},

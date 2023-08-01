@@ -27,6 +27,8 @@ export class LoginComponent {
       } else if (userType === 'aluno') {
         this.router.navigate(['/aluno']);
       }
+    }else{
+      this.isAuthenticated = false;
     }
   }
 

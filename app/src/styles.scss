@@ -2,3 +2,20 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.tela-branca {
+    background-color: #ffffff; /* Fundo branco para a tela */
+    padding: 20px; /* Espaçamento interno para destacar o conteúdo */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra para destacar a tela */
+    border-radius: 8px; /* Borda arredondada para a tela */
+
+  /* Limitar a largura máxima para manter o design responsivo */
+    max-width: 1000px;
+    margin: 0 auto;
+
+    /* Centralizar a tela verticalmente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+  }
