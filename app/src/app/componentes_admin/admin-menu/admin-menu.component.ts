@@ -18,17 +18,24 @@ export class AdminMenuComponent {
       this.userName = this.authService.getUserName();
       this.id_usuario = this.authService.getIdUsuario();
     }
-    opcao1() {
-      // Implemente a ação da opção 1
-      console.log('Opção 1 selecionada.');
+    home() {
+      this.Router.navigate(['/home']);
+    }
+    navigateToAlunos() {
+      this.Router.navigate(['/admin/alunos']);
+    }
 
+    navigateToCursos() {
+      this.Router.navigate(['/admin/cursos']);
+    }
+
+    navigateToProfessores() {
+      this.Router.navigate(['/admin/professores']);
     }
   
     Desconectar() {
-      
       this.authService.logout();
       this.Router.navigate(['/login']);
       console.log('Opção 2 selecionada.');
-
     }
 }

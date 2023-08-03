@@ -34,7 +34,8 @@ import { HeaderComponent } from './header/header.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRippleModule } from '@angular/material/core';
 import { AdminAlunoExcluirDialogComponent } from './componentes_admin/admin-alunos/admin-aluno-excluir-dialog/admin-aluno-excluir-dialog/admin-aluno-excluir-dialog.component';
-
+import { AdminProfessorDialogComponent } from './componentes_admin/admin-professores/admin-professor-dialog/admin-professor-dialog/admin-professor-dialog.component';
+import { AdminProfessorExcluirDialogComponent } from './componentes_admin/admin-professores/admin-professor-excluir-dialog/admin-professor-excluir-dialog/admin-professor-excluir-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +54,8 @@ import { AdminAlunoExcluirDialogComponent } from './componentes_admin/admin-alun
     FormatoPipe,
     HeaderComponent,
     AdminAlunoExcluirDialogComponent,
+    AdminProfessorDialogComponent,
+    AdminProfessorExcluirDialogComponent,
     
   ],
   imports: [
@@ -81,8 +84,8 @@ import { AdminAlunoExcluirDialogComponent } from './componentes_admin/admin-alun
     MatSnackBarModule,
     MatMenuModule,
     MatIconModule,
-    MatRippleModule 
-    
+    MatRippleModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

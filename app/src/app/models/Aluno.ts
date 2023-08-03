@@ -7,3 +7,4 @@ export interface Aluno {
     telefone: string;
     email: string;
   }
+

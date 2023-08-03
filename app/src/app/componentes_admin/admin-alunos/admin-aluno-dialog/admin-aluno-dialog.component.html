@@ -1,114 +1,126 @@
 <mat-dialog-content class="dialog-content">
+  <h1 mat-dialog-title class="dialog-title">{{ title }}</h1>
   <form [formGroup]="form">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <mat-form-field class="form-field">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome">
+          <mat-error *ngIf="form.get('nome')?.hasError('required')">
+            O nome é obrigatório.
+          </mat-error>
+          <mat-error *ngIf="form.get('nome')?.hasError('maxlength')">
+            O nome deve ter no máximo 100 caracteres.
+          </mat-error>
+          <mat-error *ngIf="form.get('nome')?.hasError('pattern')">
+            O nome deve conter apenas letras.
+          </mat-error>
+          <mat-error *ngIf="form.get('nome')?.hasError('minlength')">
+            O nome deve ter no mínimo 5 caracteres.
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-    <mat-form-field class="form-field">
-      <mat-label>Nome</mat-label>
-      <input matInput formControlName="nome">
-      <mat-error *ngIf="form.get('nome')?.hasError('required')">
-        O nome é obrigatório.
-      </mat-error>
-      <mat-error *ngIf="form.get('nome')?.hasError('maxlength')">
-        O nome deve ter no máximo 100 caracteres.
-      </mat-error>
-      <mat-error *ngIf="form.get('nome')?.hasError('pattern')">
-        O nome deve conter apenas letras.
-      </mat-error>
-      <mat-error *ngIf="form.get('nome')?.hasError('minlength')">
-        O nome deve ter no mínimo 5 caracteres.
-      </mat-error>
-    </mat-form-field>
+      <div class="form-group col-md-4">
+        <mat-form-field class="form-field">
+          <mat-label>CPF</mat-label>
+          <input matInput formControlName="cpf">
+          <mat-error *ngIf="form.get('cpf')?.hasError('required')">
+            O CPF é obrigatório.
+          </mat-error>
+          <mat-error *ngIf="form.get('cpf')?.hasError('maxlength')">
+            O CPF deve ter no máximo 11 caracteres.
+          </mat-error>
+          <mat-error *ngIf="form.get('cpf')?.hasError('pattern')">
+            O CPF deve conter apenas números.
+          </mat-error>
+          <mat-error *ngIf="form.get('cpf')?.hasError('minlength')">
+            O CPF deve ter no mínimo 11 caracteres.
+          </mat-error>
+        </mat-form-field>   
+      </div> 
+      <div class="form-group col-md-4">
+        <mat-form-field class="form-field">
+          <mat-label>RG</mat-label>
+          <input matInput formControlName="rg">
+          <mat-error *ngIf="form.get('rg')?.hasError('required')">
+            O RG é obrigatório.
+          </mat-error>
+          <mat-error *ngIf="form.get('rg')?.hasError('maxlength')">
+            O RG deve ter no máximo 12 caracteres.
+          </mat-error>
+          <mat-error *ngIf="form.get('rg')?.hasError('pattern')">
+            O RG deve conter apenas números.
+          </mat-error>
+          <mat-error *ngIf="form.get('rg')?.hasError('minlength')">
+            O RG deve ter no mínimo 4 caracteres.
+          </mat-error>
 
-    <mat-form-field class="form-field">
-      <mat-label>CPF</mat-label>
-      <input matInput formControlName="cpf">
-      <mat-error *ngIf="form.get('cpf')?.hasError('required')">
-        O CPF é obrigatório.
-      </mat-error>
-      <mat-error *ngIf="form.get('cpf')?.hasError('maxlength')">
-        O CPF deve ter no máximo 11 caracteres.
-      </mat-error>
-      <mat-error *ngIf="form.get('cpf')?.hasError('pattern')">
-        O CPF deve conter apenas números.
-      </mat-error>
-      <mat-error *ngIf="form.get('cpf')?.hasError('minlength')">
-        O CPF deve ter no mínimo 11 caracteres.
-      </mat-error>
-    </mat-form-field>    
+        </mat-form-field>
+      </div>
+    </div>
 
-    <mat-form-field class="form-field">
-      <mat-label>RG</mat-label>
-      <input matInput formControlName="rg">
-      <mat-error *ngIf="form.get('rg')?.hasError('required')">
-        O RG é obrigatório.
-      </mat-error>
-      <mat-error *ngIf="form.get('rg')?.hasError('maxlength')">
-        O RG deve ter no máximo 8 caracteres.
-      </mat-error>
-      <mat-error *ngIf="form.get('rg')?.hasError('pattern')">
-        O RG deve conter apenas números.
-      </mat-error>
-      <mat-error *ngIf="form.get('rg')?.hasError('minlength')">
-        O RG deve ter no mínimo 8 caracteres.
-      </mat-error>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <mat-form-field class="form-field">
+          <mat-label>Matrícula</mat-label>
+          <input matInput formControlName="matricula">
+          <mat-error *ngIf="form.get('matricula')?.hasError('required')">
+            A matrícula é obrigatória.
+          </mat-error>
+          <mat-error *ngIf="form.get('matricula')?.hasError('maxlength')">
+            A matrícula deve ter no máximo 8 caracteres.
+          </mat-error>
+          <mat-error *ngIf="form.get('matricula')?.hasError('pattern')">
+            A matrícula deve conter apenas números.
+          </mat-error>
+          <mat-error *ngIf="form.get('matricula')?.hasError('minlength')">
+            A matrícula deve ter no mínimo 8 caracteres.
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-    </mat-form-field>
+      <div class="form-group col-md-4">
+        <mat-form-field class="form-field">
+          <mat-label>Telefone</mat-label>
+          <input matInput formControlName="telefone">
+          <mat-error *ngIf="form.get('telefone')?.hasError('required')">
+            O telefone é obrigatório.
+          </mat-error>
+          <mat-error *ngIf="form.get('telefone')?.hasError('maxlength')">
+            O telefone deve ter no máximo 15 caracteres.
+          </mat-error>
+          <mat-error *ngIf="form.get('telefone')?.hasError('pattern')">
+            O telefone deve conter apenas números.
+          </mat-error>
+          <mat-error *ngIf="form.get('telefone')?.hasError('minlength')">
+            O telefone deve ter no mínimo 8 caracteres.
+          </mat-error>
+          <mat-error *ngIf="form.get('telefone')?.hasError('telefoneInvalido')">
+            O telefone deve ser válido.
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-    <mat-form-field class="form-field">
-      <mat-label>Matrícula</mat-label>
-      <input matInput formControlName="matricula">
-      <mat-error *ngIf="form.get('matricula')?.hasError('required')">
-        A matrícula é obrigatória.
-      </mat-error>
-      <mat-error *ngIf="form.get('matricula')?.hasError('maxlength')">
-        A matrícula deve ter no máximo 8 caracteres.
-      </mat-error>
-      <mat-error *ngIf="form.get('matricula')?.hasError('pattern')">
-        A matrícula deve conter apenas números.
-      </mat-error>
-      <mat-error *ngIf="form.get('matricula')?.hasError('minlength')">
-        A matrícula deve ter no mínimo 8 caracteres.
-      </mat-error>
-    </mat-form-field>
-
-
-    <mat-form-field class="form-field">
-      <mat-label>Telefone</mat-label>
-      <input matInput formControlName="telefone">
-      <mat-error *ngIf="form.get('telefone')?.hasError('required')">
-        O telefone é obrigatório.
-      </mat-error>
-      <mat-error *ngIf="form.get('telefone')?.hasError('maxlength')">
-        O telefone deve ter no máximo 11 caracteres.
-      </mat-error>
-      <mat-error *ngIf="form.get('telefone')?.hasError('pattern')">
-        O telefone deve conter apenas números.
-      </mat-error>
-      <mat-error *ngIf="form.get('telefone')?.hasError('minlength')">
-        O telefone deve ter no mínimo 11 caracteres.
-      </mat-error>
-      <mat-error *ngIf="form.get('telefone')?.hasError('telefoneInvalido')">
-        O telefone deve ser válido.
-      </mat-error>
-    </mat-form-field>
-
-
-    <mat-form-field class="form-field">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email">
-      <mat-error *ngIf="form.get('email')?.hasError('required')">
-        O email é obrigatório.
-      </mat-error>
-      <mat-error *ngIf="form.get('email')?.hasError('email')">
-        O email deve ser válido.
-      </mat-error>
-      <mat-error *ngIf="form.get('email')?.hasError('maxlength')">
-        O email deve ter no máximo 50 caracteres.
-      </mat-error>
-      <mat-error *ngIf="form.get('email')?.hasError('minlength')">
-        O email deve ter no mínimo 8 caracteres.
-      </mat-error>
-    </mat-form-field>
-
+      <div class="form-group col-md-4">
+        <mat-form-field class="form-field">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+          <mat-error *ngIf="form.get('email')?.hasError('required')">
+            O email é obrigatório.
+          </mat-error>
+          <mat-error *ngIf="form.get('email')?.hasError('email')">
+            O email deve ser válido.
+          </mat-error>
+          <mat-error *ngIf="form.get('email')?.hasError('maxlength')">
+            O email deve ter no máximo 50 caracteres.
+          </mat-error>
+          <mat-error *ngIf="form.get('email')?.hasError('minlength')">
+            O email deve ter no mínimo 8 caracteres.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
 
   </form>
 </mat-dialog-content>

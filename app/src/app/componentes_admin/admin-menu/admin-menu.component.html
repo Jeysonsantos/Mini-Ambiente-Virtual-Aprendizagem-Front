@@ -4,8 +4,12 @@
 </div>
   
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="opcao1()">Opção 1</button>
+    <button mat-menu-item (click)="home()">Home</button>
+    <button mat-menu-item (click)="navigateToAlunos()">Alunos</button>
+    <button mat-menu-item (click)="navigateToProfessores()">Professores</button>
+    <button mat-menu-item (click)="navigateToCursos()">Cursos</button>
     <button mat-menu-item (click)="Desconectar()">Desconectar</button>
+
     <!-- Adicione mais opções de menu conforme necessário -->
   </mat-menu>
   

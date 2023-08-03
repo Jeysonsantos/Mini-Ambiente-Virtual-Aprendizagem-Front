@@ -5,6 +5,9 @@ import { AdminAlunoService } from 'src/app/services/adminService/adminAlunoServi
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Aluno } from 'src/app/models/Aluno';
 import { AdminAlunoExcluirDialogComponent } from './admin-aluno-excluir-dialog/admin-aluno-excluir-dialog/admin-aluno-excluir-dialog.component';
+import { FormControl } from '@angular/forms';
+import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
+import { includes } from 'lodash';
 
 
 @Component({
@@ -15,26 +18,36 @@ import { AdminAlunoExcluirDialogComponent } from './admin-aluno-excluir-dialog/a
 export class AdminAlunosComponent {
   alunos: Aluno[] = [];
   displayedColumns: string[] = ['nome', 'matricula','cpf','acoes'];
-
+  alunos_amostra: Aluno[] = [];
+  termoBusca: string; 
   searchText: string = '';
+  filtrar: FormControl = new FormControl('');
+  private unsubscribe$: Subject<void> = new Subject<void>()
 
-  constructor(private dialog: MatDialog, private AdminalunoService:AdminAlunoService,private snackBar: MatSnackBar) {}
+  constructor(private dialog: MatDialog, private AdminalunoService:AdminAlunoService,private snackBar: MatSnackBar) {this.termoBusca = '';}
   ngOnInit(): void {
-    this.carregarAlunos();
-  }
-  
-  get filteredAlunos(): Aluno[] {
-    return this.alunos.filter(aluno =>
-      aluno.matricula.includes(this.searchText)
+    this.AdminalunoService.getAlunos().subscribe(
+      (alunos:Aluno[]) => {
+        this.alunos_amostra = alunos.slice(0, 20);
+        console.log(this.alunos_amostra);
+      }
     );
+    this.carregarAlunos();
+
+    this.filtrar.valueChanges.pipe(
+      takeUntil(this.unsubscribe$),
+      debounceTime(500), // Atraso de 300 ms antes de executar a filtragem
+      distinctUntilChanged() // Evita filtragem repetida de termos iguais
+    ).subscribe((termo: string) => {
+      this.termoBusca = termo;
+      this.filtrar_Alunos();
+    });
   }
 
   carregarAlunos(): void {
     this.AdminalunoService.getAlunos().subscribe(
       (alunos:Aluno[]) => {
         this.alunos = alunos;
-        console.log(this.alunos);
-
       },
       (error) => {
         console.error('Erro ao carregar alunos:', error);
@@ -44,8 +57,8 @@ export class AdminAlunosComponent {
 
   adicionarAluno(): void {
     const dialogRef = this.dialog.open(AdminAlunoDialogComponent, {
-      width: '500px',
-      data: { mode: 'adicionar', aluno: {} as Aluno },
+      width: '1000px',
+      data: { mode: 'adicionar', aluno: {} as Aluno, title: 'Adicionar Aluno' },
     });
     dialogRef.afterClosed().subscribe((aluno: Aluno) => {
       if (aluno) {
@@ -64,8 +77,8 @@ export class AdminAlunosComponent {
 
   editarAluno(aluno:Aluno): void {
     const dialogRef = this.dialog.open(AdminAlunoDialogComponent, {
-      width: '500px',
-      data: { mode: 'editar', aluno: { ...aluno} }
+      width: '1000px',
+      data: { mode: 'editar', aluno: { ...aluno}, title: 'Editar Aluno' }
     });
 
     dialogRef.afterClosed().subscribe((aluno: Aluno) => {
@@ -106,16 +119,40 @@ export class AdminAlunosComponent {
     });
   }
   
+  filtrar_Alunos(): void {
+    const termoBuscaLowerCase = this.termoBusca.toLowerCase();
   
-  clearSearchText(): void {
-    this.searchText = '';
-    this.filterAlunos();
+    if (this.termoBusca.trim() !== '') {
+      this.alunos_amostra = this.alunos.filter((aluno) => {
+        return this.filtrarPorPalavrasChave(aluno, termoBuscaLowerCase);
+      }).slice(0, 20);
+    } else {
+      this.alunos_amostra = this.alunos.slice(0, 20);
+    }
+  }    
+  
+  private filtrarPorPalavrasChave(aluno: Aluno, termoBusca: string): boolean {
+    const palavrasChave = termoBusca.split(' ');
+  
+    return palavrasChave.every((palavra) => {
+      return (
+        includes(aluno.matricula.toLowerCase(), palavra) ||
+        includes(aluno.cpf.toLowerCase(), palavra)
+      );
+
+    });
   }
-  filterAlunos(): void {
-    const filterValue = this.searchText.toLowerCase().trim();
-    const filteredAlunos = this.alunos.filter(aluno =>
-      aluno.matricula.includes(filterValue)
-    );
+
+  formatarCPF(cpf: string): string {
+    if (!cpf) {
+      return '';
+    }
+
+    // Remover caracteres não numéricos do CPF (caso haja)
+    cpf = cpf.replace(/\D/g, '');
+
+    // Aplicar a formatação desejada "xxx.xxx.xxx-xx"
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
   }
   
 }

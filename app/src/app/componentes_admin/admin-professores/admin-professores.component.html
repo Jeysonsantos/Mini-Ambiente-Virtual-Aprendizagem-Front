@@ -1,0 +1,59 @@
+<div>
+    <mat-card class="main">
+      <mat-card-header>
+        <mat-card-title>Lista de Professores</mat-card-title>
+        <mat-card-subtitle>Opções: Pesquisar, Adicionar, Editar e Excluir</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="options">
+          <button mat-raised-button color="primary" (click)="adicionarProfessor()">
+            <mat-icon>add</mat-icon> Adicionar Professor
+          </button>
+          <mat-form-field appearance="fill" class="search-field">
+            <mat-label>Pesquisar</mat-label>
+            <input matInput placeholder="Digite a Código/CPF do professor" [formControl]="filtrar">
+          </mat-form-field>
+        </div>
+        <div *ngIf="professores_amostra.length === 0" class="no-alunos-message">
+          Nenhum professor encontrado.
+        </div>
+        <mat-card class="main">
+        <div class="table-container" class="alunos-container">
+          <table mat-table [dataSource]="professores_amostra" class="alunos-table">
+  
+            <ng-container matColumnDef="nome">
+              <th mat-header-cell *matHeaderCellDef>Nome</th>
+              <td mat-cell *matCellDef="let professor">{{ professor.nome }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="cpf">
+              <th mat-header-cell *matHeaderCellDef>CPF</th>
+              <td mat-cell *matCellDef="let professor">{{ formatarCPF(professor.cpf) }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="codigo">
+              <th mat-header-cell *matHeaderCellDef>Código</th>
+              <td mat-cell *matCellDef="let professor">{{ professor.codigo }}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="acoes">
+              <th mat-header-cell *matHeaderCellDef>Ações</th>
+              <td mat-cell *matCellDef="let professor">
+                <button mat-icon-button (click)="editarProfessor(professor)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+  
+                <button mat-icon-button (click)="excluirProfessor(professor)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+        </mat-card>
+      </mat-card-content>
+    </mat-card>
+  </div>
