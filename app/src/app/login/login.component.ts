@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth/auth-service.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -10,47 +11,37 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   username: string = 'admin';
   password: string = 'admin';
-  isAuthenticated: boolean = false;
   invalidLogin: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) {}
 
-  ngOnInit(): void {
-    if (this.authService.isAuthenticatedUser()) {
-      this.isAuthenticated = true;
-      const userType = this.authService.getUserType();
+  async login(): Promise<void> {
+    try {
+      const loggedIn = await this.authService.login(this.username, this.password);
 
-      if (userType === 'admin') {
-        this.router.navigate(['/admin']);
-      } else if (userType === 'professor') {
-        this.router.navigate(['/professor']);
-      } else if (userType === 'aluno') {
-        this.router.navigate(['/aluno']);
+      if (loggedIn) {
+        const userType = this.authService.getUserType();
+        if (userType === 'Admin') {
+          this.router.navigate(['/admin']);
+        } else if (userType === 'professor') {
+          this.router.navigate(['/professor']);
+        } else if (userType === 'aluno') {
+          this.router.navigate(['/aluno']);
+        }
+      } else {
+        this.invalidLogin = true;
+        this.snackBar.open('Usuário ou senha inválidos!', 'Fechar', {
+          duration: 3000,
+          verticalPosition: 'top',
+        });
       }
-    }else{
-      this.isAuthenticated = false;
-    }
-  }
-
-  login(): void {
-    this.authService.login(this.username, this.password);
-    if (this.authService.isAuthenticatedUser()) {
-      this.isAuthenticated = true;
-      const userType = this.authService.getUserType();
-
-      if (userType === 'admin') {
-        this.router.navigate(['/admin']);
-      } else if (userType === 'professor') {
-        this.router.navigate(['/professor']);
-      } else if (userType === 'aluno') {
-        this.router.navigate(['/aluno']);
-      }
-
-    } else {
+    } catch (error) {
       this.invalidLogin = true;
-      setTimeout(() => {
-        this.invalidLogin = false;
-      }, 3000);
-    }
+      this.snackBar.open('Usuário ou senha inválidos!', 'Fechar', {
+        duration: 3000,
+        verticalPosition: 'top',
+      });
+      console.error('Erro ao fazer o login:', error);
     }
   }
+}

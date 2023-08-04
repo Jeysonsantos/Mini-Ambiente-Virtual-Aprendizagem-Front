@@ -9,4 +9,8 @@ export class AlunoService {
 
   constructor(private http: HttpClient) {}
 
+  getEmailById(id: number) {
+    return this.http.get(this.apiUrl + "/aluno/getEmailById/" + id);
+  }
+
 }
