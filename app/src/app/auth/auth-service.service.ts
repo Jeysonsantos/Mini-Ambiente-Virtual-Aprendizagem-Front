@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserDataServiceService } from '../services/adminService/userDataService/user-data-service.service';
 
 interface AutenticarUsuario {
   idUsuario: number;
@@ -10,13 +11,7 @@ interface AutenticarUsuario {
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthenticated: boolean = false;
-  private userType: string = '';
-  private id_usuario: number = 0;
-  private userName: string = '';
-  private email: string = '';
-
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private userDataService: UserDataServiceService) {
   }
 
   async login(usuario: string, senha: string): Promise<boolean> {
@@ -27,16 +22,11 @@ export class AuthService {
       }).toPromise();
 
       if (data) {
-        this.isAuthenticated = true;
-        this.userType = data.tipoUsuario;
-        this.id_usuario = data.idUsuario;
-        this.userName = data.nome;
+        this.userDataService.setUserData(true, data.tipoUsuario, data.idUsuario, data.nome);
         return true;
       } else {
-        this.isAuthenticated = false;
-        this.userType = '';
-        this.id_usuario = 0;
-        this.userName = '';
+        this.userDataService.setUserData(false, '', 0, '');
+        this.userDataService.setEmail('');
         return false;
       }
     } catch (error) {
@@ -46,33 +36,6 @@ export class AuthService {
   }
 
   logout(): void {
-    this.isAuthenticated = false;
-    this.userType = '';
-    this.id_usuario = 0;
-    this.userName = '';
-  }
-
-  isAuthenticatedUser(): boolean {
-    return this.isAuthenticated;
-  }
-
-  getUserType(): string {
-    return this.userType;
-  }
-
-  getIdUsuario(): number {
-    return this.id_usuario;
-  }
-
-  getUserName(): string {
-    return this.userName;
-  }
-
-  isAdmin(): boolean {
-    return this.userType === 'Admin';
-  }
-
-  getEmail(): string {
-    return this.email;
+    this.userDataService.setUserData(false, '', 0, '');
   }
 }

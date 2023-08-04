@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthService } from '../auth/auth-service.service';
+import { UserDataServiceService } from '../services/adminService/userDataService/user-data-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserRoleGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router,private userDataService:UserDataServiceService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const userType = this.authService.getUserType(); 
+    const userType = this.userDataService.UserType; 
 
     if (userType === 'Admin') {
       this.router.navigate(['/admin']);

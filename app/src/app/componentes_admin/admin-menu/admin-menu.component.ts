@@ -1,5 +1,6 @@
+import { UserDataServiceService } from 'src/app/services/adminService/userDataService/user-data-service.service';
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { AuthService } from 'src/app/auth/auth-service.service';
 
@@ -12,11 +13,11 @@ export class AdminMenuComponent {
   userType: string = '';
   userName: string = '';
   id_usuario: number = 0;
-  
-    constructor(private authService: AuthService, private Router: Router) { 
-      this.userType = this.authService.getUserType();
-      this.userName = this.authService.getUserName();
-      this.id_usuario = this.authService.getIdUsuario();
+  @ViewChild('menuTrigger') menuTrigger?: MatMenuTrigger;
+  @ViewChild('menuTriggerRef', { read: ElementRef }) menuTriggerRef?: ElementRef;
+
+    constructor(public userDataService: UserDataServiceService, private Router: Router, private authService: AuthService,private renderer: Renderer2) { 
+
     }
     home() {
       this.Router.navigate(['/home']);
@@ -37,5 +38,11 @@ export class AdminMenuComponent {
       this.authService.logout();
       this.Router.navigate(['/login']);
       console.log('Opção 2 selecionada.');
+    }
+
+    openMenu() {
+      if (this.menuTrigger) {
+        this.menuTrigger.openMenu();
+      }
     }
 }

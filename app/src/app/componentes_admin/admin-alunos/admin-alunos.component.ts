@@ -29,7 +29,6 @@ export class AdminAlunosComponent {
     this.AdminalunoService.getAlunos().subscribe(
       (alunos:Aluno[]) => {
         this.alunos_amostra = alunos.slice(0, 20);
-        console.log(this.alunos_amostra);
       }
     );
     this.carregarAlunos();

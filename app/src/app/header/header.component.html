@@ -1,4 +1,4 @@
-<div *ngIf="authService.isAuthenticatedUser()">
+<div *ngIf="userDataService.isAuthenticatedUser">
     <mat-toolbar class="full-width" >
       <mat-toolbar-row class="barraufal__outer "> 
         <div class="barraufal__outer" style="margin-left: 0px; margin-right: 0px;">
@@ -15,7 +15,7 @@
         <div class="container">
           <a class="brand" (click)="home()">Ambiente Virtual de Aprendizado</a>
         </div>
-        <app-admin-menu class = "brand2"></app-admin-menu>
+        <app-admin-menu class = "brand2" *ngIf="this.userDataService.UserType === 'Admin'"></app-admin-menu>
       </mat-toolbar-row>
     </mat-toolbar>
 </div>

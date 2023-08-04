@@ -1,4 +1,4 @@
-<footer class="page-footer" *ngIf="authService.isAuthenticatedUser()">
+<footer class="page-footer" *ngIf="userDataService.isAuthenticatedUser">
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-4">
@@ -12,10 +12,10 @@
                 </div>
               </div>
               <div class="profile-info">
-                <h5 class="myprofileitem fullname">{{this.authService.getUserName()}}</h5>
+                <h5 class="myprofileitem fullname">{{this.userDataService.UserName}}</h5>
                 <div class="myprofileitem country">País: BR</div>
                 <div class="myprofileitem email">
-                  <a href="mailto:%6a%73%6es@ic%2e%75f%61%6c%2e%62r">{{email}}</a>
+                  <a href="mailto:%6a%73%6es@ic%2e%75f%61%6c%2e%62r">{{this.userDataService.Email}}</a>
                 </div>
               </div>
             </div>

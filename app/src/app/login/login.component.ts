@@ -1,3 +1,4 @@
+import { UserDataServiceService } from './../services/adminService/userDataService/user-data-service.service';
 import { Component } from '@angular/core';
 import { AuthService } from '../auth/auth-service.service';
 import { Router } from '@angular/router';
@@ -13,14 +14,15 @@ export class LoginComponent {
   password: string = 'admin';
   invalidLogin: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) {}
+  constructor(public authService: AuthService, private router: Router, private snackBar: MatSnackBar,private userDataService:UserDataServiceService) {}
 
   async login(): Promise<void> {
     try {
       const loggedIn = await this.authService.login(this.username, this.password);
 
       if (loggedIn) {
-        const userType = this.authService.getUserType();
+        const userType = this.userDataService.UserType;
+        console.log(userType);
         if (userType === 'Admin') {
           this.router.navigate(['/admin']);
         } else if (userType === 'professor') {

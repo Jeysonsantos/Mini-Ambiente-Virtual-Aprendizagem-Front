@@ -30,7 +30,6 @@ export class AdminProfessoresComponent {
     this.AdminprofessorService.getProfessores().subscribe(
       (professores:Professor[]) => {
         this.professores_amostra = professores.slice(0, 20);
-        console.log(this.professores_amostra);
       }
     );
     this.carregarProfessores();

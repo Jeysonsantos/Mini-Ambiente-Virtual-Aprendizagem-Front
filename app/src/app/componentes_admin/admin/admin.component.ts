@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth-service.service';
+import { UserDataServiceService } from 'src/app/services/adminService/userDataService/user-data-service.service';
 
 @Component({
   selector: 'app-admin',
@@ -12,10 +13,10 @@ export class AdminComponent {
   userName: string = '';
   id_usuario: number = 0;
   
-    constructor(private authService: AuthService, private router: Router) { 
-      this.userType = this.authService.getUserType();
-      this.userName = this.authService.getUserName();
-      this.id_usuario = this.authService.getIdUsuario();
+    constructor(private userDataService: UserDataServiceService, private router: Router) { 
+      this.userType = this.userDataService.UserType;
+      this.userName = this.userDataService.UserName
+      this.id_usuario = this.userDataService.idUsuario;
     }
   navigateToAlunos(): void {
     this.router.navigate(['/admin/alunos']);

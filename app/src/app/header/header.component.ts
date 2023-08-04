@@ -1,19 +1,25 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth/auth-service.service';
+import { UserDataServiceService } from '../services/adminService/userDataService/user-data-service.service';
+
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent{
   id_usuario: number = 0;
-  
-  constructor(private router: Router, public authService: AuthService) { 
-    this.id_usuario = this.authService.getIdUsuario();
+
+  constructor(private router: Router,public userDataService:UserDataServiceService) { 
+  }
+
+  NgOnInit(): void {
+    this.id_usuario = this.userDataService.idUsuario;
+
   }
   home(): void {
     this.router.navigate(['/home']);
   }
+
 }
