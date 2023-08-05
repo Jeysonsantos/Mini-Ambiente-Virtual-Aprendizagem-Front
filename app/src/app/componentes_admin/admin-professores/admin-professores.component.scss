@@ -71,5 +71,10 @@
   .alunos-table {
     width: 100%;
   }
+  .fixed-header {
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Adicione um z-index para garantir que o cabeçalho fixo fique acima do conteúdo rolável */
+  }
 
   
