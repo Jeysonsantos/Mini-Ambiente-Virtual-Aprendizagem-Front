@@ -22,7 +22,6 @@ export class AdminAlunoExcluirDialogComponent {
   }
 
   cancelarExclusao(): void {
-    // Caso a exclusão seja cancelada, você pode simplesmente fechar o dialog e retornar false no método afterClosed()
     this.dialogRef.close(false);
   }
 

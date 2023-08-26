@@ -36,8 +36,8 @@ export class AdminProfessoresComponent {
 
     this.filtrar.valueChanges.pipe(
       takeUntil(this.unsubscribe$),
-      debounceTime(500), // Atraso de 300 ms antes de executar a filtragem
-      distinctUntilChanged() // Evita filtragem repetida de termos iguais
+      debounceTime(500),
+      distinctUntilChanged()
     ).subscribe((termo: string) => {
       this.termoBusca = termo;
       this.filtrar_Professores();
@@ -101,7 +101,7 @@ export class AdminProfessoresComponent {
   excluirProfessor(professor: Professor): void {
     const dialogRef = this.dialog.open(AdminProfessorExcluirDialogComponent, {
       width: '300px',
-      data: { mode: 'excluir', aluno: { ...professor } },
+      data: { mode: 'excluir', professor: { ...professor } },
     });
 
     dialogRef.afterClosed().subscribe((confirmado: boolean) => {

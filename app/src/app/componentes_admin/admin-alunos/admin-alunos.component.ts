@@ -35,8 +35,8 @@ export class AdminAlunosComponent {
 
     this.filtrar.valueChanges.pipe(
       takeUntil(this.unsubscribe$),
-      debounceTime(500), // Atraso de 300 ms antes de executar a filtragem
-      distinctUntilChanged() // Evita filtragem repetida de termos iguais
+      debounceTime(500),
+      distinctUntilChanged()
     ).subscribe((termo: string) => {
       this.termoBusca = termo;
       this.filtrar_Alunos();

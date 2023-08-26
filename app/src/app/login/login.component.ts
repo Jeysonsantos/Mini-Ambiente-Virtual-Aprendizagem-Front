@@ -14,10 +14,12 @@ export class LoginComponent {
   password: string = 'admin';
   invalidLogin: boolean = false;
 
-  constructor(public authService: AuthService, private router: Router, private snackBar: MatSnackBar,private userDataService:UserDataServiceService) {}
+  constructor(public authService: AuthService, private router: Router, private snackBar: MatSnackBar,private userDataService:UserDataServiceService) {
+  }
 
   async login(): Promise<void> {
     try {
+      this.username = this.removerPontoeTracoeEspacovazio(this.username);
       const loggedIn = await this.authService.login(this.username, this.password);
 
       if (loggedIn) {
@@ -45,5 +47,9 @@ export class LoginComponent {
       });
       console.error('Erro ao fazer o login:', error);
     }
+  }
+
+  removerPontoeTracoeEspacovazio(texto: string): string {
+    return texto.replace(/\.|-|\s/g, '');
   }
 }
