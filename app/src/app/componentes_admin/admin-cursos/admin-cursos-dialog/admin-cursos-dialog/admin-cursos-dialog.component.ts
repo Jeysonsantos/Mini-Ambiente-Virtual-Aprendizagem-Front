@@ -1,3 +1,4 @@
+import { AdminProfessorService } from './../../../../services/adminService/adminProfService/admin-professor.service';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -5,6 +6,7 @@ import { AdminCursosComponent } from '../../admin-cursos.component';
 import { Disciplina } from 'src/app/models/Disciplina';
 import { AdminDisciServiceService } from 'src/app/services/adminService/adminDisciService/admin-disci-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Professor } from 'src/app/models/Professor';
 
 @Component({
   selector: 'app-admin-cursos-dialog',
@@ -12,6 +14,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./admin-cursos-dialog.component.scss']
 })
 export class AdminCursosDialogComponent {
+  professores: Professor[] = [];
+  searchText: string = '';
+  selectedProfessor: String | null = null;
 
   form: FormGroup;
   title: string;
@@ -19,10 +24,15 @@ export class AdminCursosDialogComponent {
     private dialogRef: MatDialogRef<AdminCursosComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData: { mode: string; disciplina: Disciplina; title: string; },
     private AdmindisciplinaService: AdminDisciServiceService,
+    private AdminProfessorService: AdminProfessorService,
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
   ) {
     this.title = dialogData.title;
+    console.log(this.dialogData.disciplina)
+    if(this.dialogData.disciplina.id_professor){
+      this.selectedProfessor = this.dialogData.disciplina.id_professor.nome;
+    }
     this.form = this.formBuilder.group({
       id_disciplina : [this.dialogData.disciplina.id_disciplina],
       id_professor : [this.dialogData.disciplina.id_professor],
@@ -30,7 +40,20 @@ export class AdminCursosDialogComponent {
       codigo: [this.dialogData.disciplina.codigo, [Validators.required, Validators.maxLength(7), Validators.minLength(5)]],
       carga_horaria: [this.dialogData.disciplina.carga_horaria, [Validators.required, Validators.maxLength(3), Validators.minLength(2), Validators.pattern("^[0-9]*$")]],
       ementa_pdf: [null],
+      periodo: [this.dialogData.disciplina.periodo, [Validators.required, Validators.maxLength(6), Validators.minLength(6), Validators.pattern("[0-9]{4}.[0-9]{1}")]],
+
     });
+  }
+
+  ngOnInit(): void {
+    this.AdminProfessorService.getProfessores().subscribe(
+      (professores:Professor[]) => {
+        professores.sort((a, b) => (a.nome > b.nome) ? 1 : -1);
+        this.professores = professores;
+      },
+      (error) => {
+      }
+    );
   }
 
   submitForm(): void {
@@ -38,6 +61,7 @@ export class AdminCursosDialogComponent {
       return;
     }
     const codigo = this.form.get('codigo')?.value;
+    console.log(this.form.value)
   
     this.AdmindisciplinaService.verificarCodigoExistente(codigo).subscribe(codigoExistente => {
       if (codigoExistente && this.dialogData.disciplina.codigo != codigo) {
@@ -69,6 +93,5 @@ export class AdminCursosDialogComponent {
     }
 
   }
-
 
 }

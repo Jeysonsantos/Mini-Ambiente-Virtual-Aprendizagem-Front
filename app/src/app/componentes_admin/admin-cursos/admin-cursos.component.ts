@@ -31,6 +31,7 @@ export class AdminCursosComponent {
       }
     );
     this.carregarDisciplinas();
+    
 
     this.filtrar.valueChanges.pipe(
       takeUntil(this.unsubscribe$),
@@ -46,6 +47,7 @@ export class AdminCursosComponent {
     this.AdminDisciService.getDisciplinas().subscribe( 
       (disciplinas:Disciplina[]) => {
         this.disciplinas = disciplinas;
+        console.log(this.disciplinas)
       },
       (error) => {
         console.error('Erro ao carregar disciplinas:', error);
@@ -59,8 +61,8 @@ export class AdminCursosComponent {
       data: { mode: 'adicionar', disciplina: {} as Disciplina, title: 'Adicionar Disciplina' },
     });
     dialogRef.afterClosed().subscribe((disciplina: Disciplina) => {
-      console.log(disciplina)
       if (disciplina) {
+        console.log(disciplina)
         this.AdminDisciService.salvarDisciplina(disciplina).subscribe( 
           (disciplinaSalvo: any) => {
             this.snackBar.open('Disciplina salva com sucesso.', 'Fechar', { duration: 3000 });

@@ -24,6 +24,7 @@ export class AdminDisciServiceService {
   }
 
   salvarDisciplina(disciplina: Disciplina) {
+    console.log(disciplina)
     return this.http.post(this.apiUrl + "/disciplina/create", disciplina);
   }
 
