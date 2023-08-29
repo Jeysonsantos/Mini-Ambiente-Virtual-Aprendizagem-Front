@@ -36,6 +36,9 @@ import { MatRippleModule } from '@angular/material/core';
 import { AdminAlunoExcluirDialogComponent } from './componentes_admin/admin-alunos/admin-aluno-excluir-dialog/admin-aluno-excluir-dialog/admin-aluno-excluir-dialog.component';
 import { AdminProfessorDialogComponent } from './componentes_admin/admin-professores/admin-professor-dialog/admin-professor-dialog/admin-professor-dialog.component';
 import { AdminProfessorExcluirDialogComponent } from './componentes_admin/admin-professores/admin-professor-excluir-dialog/admin-professor-excluir-dialog/admin-professor-excluir-dialog.component';
+import { AdminCursosDialogComponent } from './componentes_admin/admin-cursos/admin-cursos-dialog/admin-cursos-dialog/admin-cursos-dialog.component';
+import { AdminCursosExcluirDialogComponent } from './componentes_admin/admin-cursos/admin-cursos-excluir-dialog/admin-cursos-excluir-dialog/admin-cursos-excluir-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +59,8 @@ import { AdminProfessorExcluirDialogComponent } from './componentes_admin/admin-
     AdminAlunoExcluirDialogComponent,
     AdminProfessorDialogComponent,
     AdminProfessorExcluirDialogComponent,
+    AdminCursosDialogComponent,
+    AdminCursosExcluirDialogComponent,
     
   ],
   imports: [

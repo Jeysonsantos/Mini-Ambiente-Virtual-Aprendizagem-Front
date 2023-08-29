@@ -60,11 +60,13 @@ export class AdminAlunosComponent {
       data: { mode: 'adicionar', aluno: {} as Aluno, title: 'Adicionar Aluno' },
     });
     dialogRef.afterClosed().subscribe((aluno: Aluno) => {
+      console.log(aluno)
       if (aluno) {
         this.AdminalunoService.salvarAluno(aluno).subscribe(
           (alunoSalvo: any) => {
             this.snackBar.open('Aluno salvo com sucesso.', 'Fechar', { duration: 3000 });
-            this.alunos.push(alunoSalvo)
+            this.ngOnInit();
+            
           },
           (error) => {
             console.error('Erro ao salvar aluno:', error);
@@ -81,6 +83,7 @@ export class AdminAlunosComponent {
     });
 
     dialogRef.afterClosed().subscribe((aluno: Aluno) => {
+      console.log(aluno)
       if (aluno) {
         const index = this.alunos.findIndex((a) => a.id_aluno === aluno.id_aluno);
         if(index!==-1){
@@ -89,7 +92,7 @@ export class AdminAlunosComponent {
             (alunoEditado: any) => {
               this.snackBar.open('Aluno editado com sucesso.', 'Fechar', { duration: 3000 });
               this.alunos[index] = alunoEditado;
-            
+              this.ngOnInit();
             });
         }
       }
@@ -107,7 +110,7 @@ export class AdminAlunosComponent {
         this.AdminalunoService.excluirAluno(aluno.id_aluno).subscribe(
           () => {
             this.snackBar.open('Aluno excluído com sucesso.', 'Fechar', { duration: 3000 });
-            this.carregarAlunos();
+            this.ngOnInit();
           },
           (error) => {
             console.error('Erro ao excluir aluno:', error);
@@ -153,5 +156,7 @@ export class AdminAlunosComponent {
     // Aplicar a formatação desejada "xxx.xxx.xxx-xx"
     return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
   }
+
+
   
 }

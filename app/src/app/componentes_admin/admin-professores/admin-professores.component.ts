@@ -66,7 +66,7 @@ export class AdminProfessoresComponent {
         this.AdminprofessorService.salvarProfessor(professor).subscribe(
           (professorSalvo: any) => {
             this.snackBar.open('Professor salvo com sucesso.', 'Fechar', { duration: 3000 });
-            this.professores.push(professorSalvo)
+            this.ngOnInit();
           },
           (error) => {
             console.error('Erro ao salvar professor:', error);
@@ -91,6 +91,7 @@ export class AdminProfessoresComponent {
             (professorEditado: any) => {
               this.snackBar.open('Professor editado com sucesso.', 'Fechar', { duration: 3000 });
               this.professores[index] = professorEditado;
+              this.ngOnInit();
             
             });
         }
@@ -109,7 +110,7 @@ export class AdminProfessoresComponent {
         this.AdminprofessorService.excluirProfessor(professor.id_professor).subscribe(
           () => {
             this.snackBar.open('Professor excluído com sucesso.', 'Fechar', { duration: 3000 });
-            this.carregarProfessores();
+            this.ngOnInit();
           },
           (error) => {
             console.error('Erro ao excluir professor:', error);

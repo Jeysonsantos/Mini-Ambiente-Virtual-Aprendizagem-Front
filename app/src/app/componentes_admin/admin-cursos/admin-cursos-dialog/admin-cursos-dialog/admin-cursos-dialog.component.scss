@@ -1,0 +1,77 @@
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+  }
+  .dialog-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .form-field {
+    width: 100%;
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+
+  /* Definir a classe para criar as linhas */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -8px; /* Adicione espaço negativo para compensar o espaço extra nas bordas */
+}
+
+/* Definir a classe para criar as colunas */
+.form-group {
+  flex: 1;
+  padding: 19px; /* Adicione espaçamento interno entre os campos */
+}
+
+/* Ocupar toda a largura da coluna em telas menores */
+@media (max-width: 767px) {
+  .form-group {
+    flex-basis: 100%;
+  }
+}
+
+/* Estilize o rótulo do campo de arquivo */
+.custom-file-label {
+    cursor: pointer;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  
+  /* Estilize o campo de entrada de arquivo */
+  .custom-file-input {
+    display: none; /* Esconda o campo de entrada de arquivo padrão */
+  }
+  
+  /* Estilize o rótulo do campo de entrada de arquivo quando o arquivo é selecionado */
+  .custom-file-input + .custom-file-label::before {
+    content: 'Escolha um arquivo PDF'; /* Texto personalizado antes do campo de arquivo */
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Estilize o campo de entrada de arquivo quando o arquivo é selecionado */
+  .custom-file-input:focus + .custom-file-label::before {
+    border-color: #007bff; /* Borda quando o campo está em foco */
+  }
+
+  .selected-file {
+    margin-top: 8px; /* Adicione espaço superior para separar do campo de upload */
+    font-size: 14px; /* Tamanho da fonte */
+    color: #333; /* Cor do texto */
+  }
+  
+  

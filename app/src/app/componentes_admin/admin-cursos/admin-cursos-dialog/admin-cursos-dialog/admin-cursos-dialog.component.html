@@ -1,0 +1,81 @@
+<mat-dialog-content class="dialog-content">
+    <h1 mat-dialog-title class="dialog-title">{{ title }}</h1>
+    <form [formGroup]="form">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <mat-form-field class="form-field">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome">
+            <mat-error *ngIf="form.get('nome')?.hasError('required')">
+              O nome é obrigatório.
+            </mat-error>
+            <mat-error *ngIf="form.get('nome')?.hasError('maxlength')">
+              O nome deve ter no máximo 100 caracteres.
+            </mat-error>
+            <mat-error *ngIf="form.get('nome')?.hasError('minlength')">
+              O nome deve ter no mínimo 5 caracteres.
+            </mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="form-group col-md-4">
+          <mat-form-field class="form-field">
+            <mat-label>Código</mat-label>
+            <input matInput formControlName="codigo">
+            <mat-error *ngIf="form.get('codigo')?.hasError('required')">
+              O Código é obrigatório.
+            </mat-error>
+            <mat-error *ngIf="form.get('codigo')?.hasError('maxlength')">
+                O Código deve ter no máximo 7 caracteres.
+            </mat-error>
+            <mat-error *ngIf="form.get('codigo')?.hasError('minlength')">
+                O Código deve ter no mínimo 5 caracteres.
+            </mat-error>
+          </mat-form-field>   
+        </div> 
+
+        <div class="form-group col-md-4">
+          <mat-form-field class="form-field">
+            <mat-label>Carga Horária</mat-label>
+            <input matInput formControlName="carga_horaria">
+            <mat-error *ngIf="form.get('carga_horaria')?.hasError('required')">
+              A Carga Horária é obrigatória.
+            </mat-error>
+            <mat-error *ngIf="form.get('carga_horaria')?.hasError('maxlength')">
+             A Carga Horária deve ter no máximo 3 caracteres.
+            </mat-error>
+            <mat-error *ngIf="form.get('carga_horaria')?.hasError('pattern')">
+            A Carga Horária deve conter apenas números.
+            </mat-error>
+            <mat-error *ngIf="form.get('carga_horaria')?.hasError('minlength')">
+            A Carga Horária deve ter no mínimo 2 caracteres.
+            </mat-error>
+  
+          </mat-form-field>
+        </div>
+      </div>
+  
+      <div class="form-group col-md-4">
+        <label for="ementaPdf" class="custom-file-label">Ementa (PDF)</label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="ementaPdf" (change)="onFileSelected($event)" accept=".pdf">
+        </div>
+        <div *ngIf="selectedFileName" class="selected-file">
+            Arquivo selecionado: {{ selectedFileName }}
+            </div>
+      </div>
+
+      
+      
+      
+  
+    </form>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-button mat-dialog-close>CANCELAR</button>
+    <button mat-button color="primary" [disabled]="form.invalid" (click)="submitForm()">
+      {{ dialogData.mode === 'adicionar' ? 'ADICIONAR' : 'SALVAR' }}
+    </button>
+  </mat-dialog-actions>
+  
