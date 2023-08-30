@@ -37,7 +37,7 @@ export class AdminCursosDialogComponent {
       id_disciplina : [this.dialogData.disciplina.id_disciplina],
       id_professor : [this.dialogData.disciplina.id_professor],
       nome: [this.dialogData.disciplina.nome, [Validators.required, Validators.maxLength(255), Validators.minLength(3)]],
-      codigo: [this.dialogData.disciplina.codigo, [Validators.required, Validators.maxLength(7), Validators.minLength(5)]],
+      codigo: [this.dialogData.disciplina.codigo, [Validators.required, Validators.maxLength(20), Validators.minLength(5)]],
       carga_horaria: [this.dialogData.disciplina.carga_horaria, [Validators.required, Validators.maxLength(3), Validators.minLength(2), Validators.pattern("^[0-9]*$")]],
       ementa_pdf: [null],
       periodo: [this.dialogData.disciplina.periodo, [Validators.required, Validators.maxLength(6), Validators.minLength(6), Validators.pattern("[0-9]{4}.[0-9]{1}")]],

@@ -11,10 +11,11 @@ export class ProfCursosService {
 
   constructor(private http: HttpClient) {}
 
-  getCursos() {
-    const url = `${this.apiUrl}/disciplina/all`;
+  getCursosByProfessorId(professorId: number) {
+    const url = `${this.apiUrl}/disciplina/allByProfessor/${professorId}`;
     return this.http.get<Disciplina[]>(url);
   }
+  
 
   editarDisciplina(disciplina: Disciplina) {
     return this.http.put(this.apiUrl + "/disciplina/update", disciplina);

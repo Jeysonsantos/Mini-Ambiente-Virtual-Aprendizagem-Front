@@ -26,7 +26,7 @@
               O Código é obrigatório.
             </mat-error>
             <mat-error *ngIf="form.get('codigo')?.hasError('maxlength')">
-                O Código deve ter no máximo 7 caracteres.
+                O Código deve ter no máximo 20 caracteres.
             </mat-error>
             <mat-error *ngIf="form.get('codigo')?.hasError('minlength')">
                 O Código deve ter no mínimo 5 caracteres.

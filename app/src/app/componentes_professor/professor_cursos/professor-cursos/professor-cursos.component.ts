@@ -12,11 +12,30 @@ import { ProfCursosService } from 'src/app/services/professorService/profCursosS
 export class ProfessorCursosComponent {
   cursos: Disciplina[] = [];
   professor: Professor | undefined;
+  id_usuario: number = 0;
 
-  constructor(private profCursosService:ProfCursosService,private userDataService: UserDataServiceService) {}
+  constructor(private profCursosService:ProfCursosService,private userDataService: UserDataServiceService) {
+    this.id_usuario = this.userDataService.idUsuario;
+  }
 
   ngOnInit(): void {
-    this.profCursosService.getCursos().subscribe((cursos: any) => {
+    this.profCursosService.getCursosByProfessorId(this.id_usuario).subscribe((cursos: any) => {
+      ///deixa tudo maiusculo
+      cursos.forEach((curso: any) => {
+        curso.nome = curso.nome.toUpperCase();
+        curso.id_professor.nome = curso.id_professor.nome.toUpperCase();
+        curso.codigo = curso.codigo.toUpperCase();
+      });
+      ///ordenar por periodo maior para o menor
+      cursos.sort((a: any, b: any) => {
+        if (a.periodo > b.periodo) {
+          return -1;
+        }
+        if (a.periodo < b.periodo) {
+          return 1;
+        }
+        return 0;
+      });
       this.cursos = cursos;
     });
   }
