@@ -9,6 +9,7 @@ import { AdminAlunosComponent } from './componentes_admin/admin-alunos/admin-alu
 import { AdminGuard } from './auth/Adminguard';
 import { AdminCursosComponent } from './componentes_admin/admin-cursos/admin-cursos.component';
 import { AdminProfessoresComponent } from './componentes_admin/admin-professores/admin-professores.component';
+import { ProfessorComponent } from './componentes_professor/professor/professor.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -17,7 +18,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
   { path: 'aluno', component: AlunoComponent, canActivate: [AuthGuard]},
-  { path: 'professor', component: AlunoComponent, canActivate: [AuthGuard]},
+  { path: 'professor', component: ProfessorComponent, canActivate: [AuthGuard]},
   { path: 'admin/alunos', component: AdminAlunosComponent, canActivate: [AdminGuard] },
   { path: 'admin/cursos', component: AdminCursosComponent, canActivate: [AdminGuard] },
   { path: 'admin/professores', component: AdminProfessoresComponent, canActivate: [AdminGuard] },

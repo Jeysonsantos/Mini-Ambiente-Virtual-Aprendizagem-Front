@@ -38,6 +38,8 @@ import { AdminProfessorDialogComponent } from './componentes_admin/admin-profess
 import { AdminProfessorExcluirDialogComponent } from './componentes_admin/admin-professores/admin-professor-excluir-dialog/admin-professor-excluir-dialog/admin-professor-excluir-dialog.component';
 import { AdminCursosDialogComponent } from './componentes_admin/admin-cursos/admin-cursos-dialog/admin-cursos-dialog/admin-cursos-dialog.component';
 import { AdminCursosExcluirDialogComponent } from './componentes_admin/admin-cursos/admin-cursos-excluir-dialog/admin-cursos-excluir-dialog/admin-cursos-excluir-dialog.component';
+import { ProfessorMenuComponent } from './componentes_professor/professor_menu/professor-menu/professor-menu.component';
+import { ProfessorCursosComponent } from './componentes_professor/professor_cursos/professor-cursos/professor-cursos.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { AdminCursosExcluirDialogComponent } from './componentes_admin/admin-cur
     AdminProfessorExcluirDialogComponent,
     AdminCursosDialogComponent,
     AdminCursosExcluirDialogComponent,
+    ProfessorMenuComponent,
+    ProfessorCursosComponent,
     
   ],
   imports: [

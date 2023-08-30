@@ -140,7 +140,8 @@ export class AdminProfessoresComponent {
     return palavrasChave.every((palavra) => {
       return (
         includes(professor.codigo.toLowerCase(), palavra) ||
-        includes(professor.cpf.toLowerCase(), palavra)
+        includes(professor.cpf.toLowerCase(), palavra) ||
+        includes(professor.nome.toLowerCase(), palavra)
       );
 
     });

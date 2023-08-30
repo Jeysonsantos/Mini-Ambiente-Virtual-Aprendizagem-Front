@@ -10,7 +10,6 @@ export class UserDataServiceService {
   private userType: string = '';
   private id_usuario: number = 0;
   private userName: string = '';
-  private email: string = '';
 
   constructor(private AlunoService:AlunoService) {}
 
@@ -24,10 +23,6 @@ export class UserDataServiceService {
     this.userType = userType;
     this.id_usuario = id_usuario;
     this.userName = userName;
-  }
-
-  setEmail(email: string): void {
-    this.email = email;
   }
 
   get isAuthenticatedUser(): boolean {
@@ -46,8 +41,4 @@ export class UserDataServiceService {
     return this.userName;
   }
 
-  get Email(): string {
-    return this.email;
-  }
-  
 }

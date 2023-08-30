@@ -16,6 +16,8 @@
           <a class="brand" (click)="home()">Ambiente Virtual de Aprendizado</a>
         </div>
         <app-admin-menu class = "brand2" *ngIf="this.userDataService.UserType === 'Admin'"></app-admin-menu>
+        <app-professor-menu class = "brand2" *ngIf="this.userDataService.UserType === 'professor'"></app-professor-menu>
+        <!-- <app-aluno-menu class = "brand2" *ngIf="this.userDataService.UserType === 'aluno'"></app-aluno-menu> -->
       </mat-toolbar-row>
     </mat-toolbar>
 </div>

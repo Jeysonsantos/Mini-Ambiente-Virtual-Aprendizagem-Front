@@ -10,8 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  username: string = 'admin';
-  password: string = 'admin';
+  username: string = '264.310.987-22';
+  password: string = '26422';
   invalidLogin: boolean = false;
 
   constructor(public authService: AuthService, private router: Router, private snackBar: MatSnackBar,private userDataService:UserDataServiceService) {

@@ -16,7 +16,6 @@ export class AlunoComponent {
   ngOnInit(): void {
     this.AlunoService.getAlunoById(this.userDataServiceService.idUsuario).subscribe((aluno: any) => {
       this.aluno = aluno;
-      this.userDataServiceService.setEmail(aluno.email);
     }
     );
   }

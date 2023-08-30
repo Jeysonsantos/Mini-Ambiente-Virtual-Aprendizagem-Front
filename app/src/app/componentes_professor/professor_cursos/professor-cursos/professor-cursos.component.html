@@ -1,0 +1,18 @@
+<div class = "cursos"> 
+    <h1 class = "titulo">Meus cursos</h1>
+    <div class="container" *ngFor="let curso of cursos">
+        <div class="table1" >
+            <div class="info">
+                <h3 class="coursename">
+                    <a [routerLink]="['/curso', curso.id_professor]">{{ curso.nome }} - {{ curso.codigo }} - {{curso.carga_horaria }}h</a>
+                </h3>
+            </div>
+            <div class="content" id="yui_3_17_2_1_1687909000771_89">
+                <ul class="teachers" id="yui_3_17_2_1_1687909000771_94">
+                    <li id="yui_3_17_2_1_1687909000771_93">Professor: <a href="https://ava.ufal.br/user/view.php?id=52221&amp;course=1">{{curso.id_professor.nome}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

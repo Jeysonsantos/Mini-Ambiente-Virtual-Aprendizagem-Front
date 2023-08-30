@@ -26,7 +26,6 @@ export class AuthService {
         return true;
       } else {
         this.userDataService.setUserData(false, '', 0, '');
-        this.userDataService.setEmail('');
         return false;
       }
     } catch (error) {
