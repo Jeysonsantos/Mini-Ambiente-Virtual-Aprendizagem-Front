@@ -73,7 +73,7 @@
     font-family: inherit;
     font-weight: 500;
     text-rendering: optimizelegibility;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 1;
     color: #ad2316;
     display: block;
@@ -81,6 +81,7 @@
     padding-left: 21px;
     background-position: left .2em;
     text-decoration: none;
+    background-image: url(https://ava.ufal.br/theme/image.php/ufal/core/1691592122/i/course);
 }
 .info a:hover{
     color: #ad2316;
@@ -120,3 +121,11 @@
     color: #ad2316;
     text-decoration: underline;
 }
+
+.gray-bg {
+    background-color: #f2f2f2a1; /* Escolha a cor cinza que você deseja */
+    height: 100%;
+    width: 50%;
+  }
+  
+  

@@ -10,6 +10,7 @@ import { AdminGuard } from './auth/Adminguard';
 import { AdminCursosComponent } from './componentes_admin/admin-cursos/admin-cursos.component';
 import { AdminProfessoresComponent } from './componentes_admin/admin-professores/admin-professores.component';
 import { ProfessorComponent } from './componentes_professor/professor/professor.component';
+import { ProfessorCursoDetalhesComponent } from './componentes_professor/professor_curso_detalhes/professor-curso-detalhes/professor-curso-detalhes.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -22,7 +23,7 @@ const routes: Routes = [
   { path: 'admin/alunos', component: AdminAlunosComponent, canActivate: [AdminGuard] },
   { path: 'admin/cursos', component: AdminCursosComponent, canActivate: [AdminGuard] },
   { path: 'admin/professores', component: AdminProfessoresComponent, canActivate: [AdminGuard] },
-
+  { path: 'professor/curso/:id_disciplina', component: ProfessorCursoDetalhesComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

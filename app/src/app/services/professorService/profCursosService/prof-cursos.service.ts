@@ -19,6 +19,11 @@ export class ProfCursosService {
 
   editarDisciplina(disciplina: Disciplina) {
     return this.http.put(this.apiUrl + "/disciplina/update", disciplina);
+  } // não esta sendo usado ainda
+
+  getDisciplinaById(disciplinaId: number) {
+    const url = `${this.apiUrl}/disciplina/${disciplinaId}`;
+    return this.http.get<Disciplina>(url);
   }
 
 }
