@@ -41,6 +41,7 @@ import { AdminCursosExcluirDialogComponent } from './componentes_admin/admin-cur
 import { ProfessorMenuComponent } from './componentes_professor/professor_menu/professor-menu/professor-menu.component';
 import { ProfessorCursosComponent } from './componentes_professor/professor_cursos/professor-cursos/professor-cursos.component';
 import { ProfessorCursoDetalhesComponent } from './componentes_professor/professor_curso_detalhes/professor-curso-detalhes/professor-curso-detalhes.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { ProfessorCursoDetalhesComponent } from './componentes_professor/profess
     MatMenuModule,
     MatIconModule,
     MatRippleModule,
+    MatRadioModule 
 
   ],
   providers: [],

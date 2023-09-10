@@ -1,0 +1,303 @@
+.forum-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .postagem {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .postagem-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .autor {
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .data {
+    color: #888;
+  }
+  
+  .conteudo {
+    font-size: 15px;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: vertical;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Adicione mais estilos conforme necessário */
+  .forum-background {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333;
+  }
+  
+  .forum-background h1 {
+    -webkit-text-size-adjust: 100%;
+    margin: 10px 0;
+    font-family: inherit;
+    font-weight: 700;
+    color: inherit;
+    text-rendering: optimizelegibility;
+    line-height: 40px;
+    font-size: 32px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+  .container {
+    justify-content: left;
+    align-items: center;
+    margin: 0 50px;
+    margin-top: 30px;
+    margin-left: 200px;
+    -webkit-text-size-adjust: 100%;
+    max-width: 800px; /* Defina a largura máxima desejada */
+  }
+  
+
+  .table_menor{
+    margin: 0;
+    -webkit-text-size-adjust: 100%;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    padding: 5px;
+    border: none;
+    border-radius: 0;
+    border-left: 4px solid #7a180f;
+    height: 100%;
+    width: 50%;
+
+  }
+
+  .table_menor a{
+    -webkit-text-size-adjust: 100%;
+    font-family: inherit;
+    font-weight: 200;
+    text-rendering: optimizelegibility;
+    font-size: 15px;
+    line-height: 1;
+    color: #ad2316;
+    background-repeat: no-repeat;
+    padding-left: 21px;
+    background-position: left .1em;
+    text-decoration: none;   
+}
+.table_menor h2{
+  font-size: 15px;
+}
+.table_menor a:hover{
+    color: #ad2316;
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+.table{
+  margin: 0;
+  -webkit-text-size-adjust: 100%;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  list-style: none;
+  white-space: normal;
+  text-shadow: none;
+  font-size: inherit;
+  line-height: 20px;
+  color: inherit;
+  font-weight: 400;
+  line-height: inherit;
+  padding: 5px;
+  border-left: 2px solid #FC0000;
+  margin-bottom: 30px;
+  border: 0.0625rem solid #dadce0;
+  border-radius: 0.5rem;
+}
+
+.table_atividade{
+  margin: 0;
+  -webkit-text-size-adjust: 100%;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  list-style: none;
+  white-space: normal;
+  text-shadow: none;
+  font-size: inherit;
+  line-height: 20px;
+  color: inherit;
+  font-weight: 400;
+  margin-bottom: 15px;
+  line-height: inherit;
+  padding: 5px;
+  border-left: 2px solid #FC0000;
+  border-bottom: 2px solid #333;
+  margin-bottom: 40px;
+  cursor: pointer;
+  border: 0.0625rem solid #dadce0;
+  border-radius: 0.5rem;
+}
+
+.table_atividade:hover {
+  background-color: #f2f2f2; /* Cor de fundo de destaque */
+  color: #ad2316; /* Cor do texto ao passar o mouse */
+  cursor: pointer; /* Alterar o cursor para indicar que a tabela é clicável */
+}
+
+
+.anexos {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.anexos a{
+  display: block;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #ad2316;
+  font-weight: bold;
+  max-width: 200px;
+  transition: background-color 0.3s ease; /* Efeito de transição suave na mudança de cor de fundo */
+  list-style: disc outside;
+  position: relative; /* Importante para posicionar o ponto */
+  &:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+}
+
+
+/* Estilos para links dentro de .anexos a */
+.anexos a a {
+  font-weight: normal;
+}
+
+.autor {
+  display: flex; /* Torna o contêiner flexível */
+  align-items: center; /* Alinha verticalmente ao centro */
+}
+
+.icon_perfil {
+  /* Estilos para o ícone */
+  font-size: 24px; /* Ajuste o tamanho do ícone conforme necessário */
+  margin-right: 5px; /* Espaçamento à direita do ícone */
+}
+
+.autor-text {
+  /* Estilos para o texto do autor */
+  font-size: 14px; /* Ajuste o tamanho do texto conforme necessário */
+}
+
+.table p{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+/* Estilos para a tabela expandida */
+.table-expanded {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+/* Estilo para o textarea */
+textarea.escreva {
+  width: 90%;
+  height: 100px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none; /* Impede o redimensionamento do textarea */
+  margin-bottom: 10px; /* Espaçamento inferior */
+}
+
+/* Estilo para o grupo de botões de rádio */
+.mat-radio-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Estilo para os botões de rádio */
+.mat-radio-button {
+  margin-right: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Estilo para os botões "Fechar" e "Postar" */
+.botoes {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Estilo para os botões individuais */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px; /* Espaçamento entre os botões */
+}
+
+button:last-child {
+  margin-right: 0; /* Remove o espaçamento do último botão */
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para o ícone do perfil */
+.icon_perfil {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.botao-desativado {
+  background-color: #ccc; /* Define a cor de fundo cinza */
+  color: #666; /* Define a cor do texto cinza mais escura */
+  cursor: not-allowed; /* Define o cursor como "não permitido" */
+  &:hover {
+    background-color: #ccc; /* Mantém a cor de fundo cinza */
+    color: #666; /* Mantém a cor do texto cinza mais escura */
+  }
+}

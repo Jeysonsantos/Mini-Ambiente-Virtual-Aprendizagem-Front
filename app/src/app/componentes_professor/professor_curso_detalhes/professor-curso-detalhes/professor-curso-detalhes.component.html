@@ -1,2 +1,76 @@
-<p>professor-curso-detalhes works!</p>
 
+<div class="container">
+
+    <div class="forum-background">
+        <h1>{{disciplina.periodo}} - {{ disciplina.nome }} - {{disciplina.codigo}}</h1>
+    </div>
+
+    <div class="table_menor"><h2><a (click)="home()">Pagina inicial</a> -> {{disciplina.nome}}</h2></div>
+  
+    <!-- Lista de Postagens -->
+      <div class="table" (click)="expandInput = true" *ngIf="!expandInput">
+        <p class="autor"><mat-icon class="icon_perfil">account_circle</mat-icon>Escreva algo para sua turma</p>
+      </div>
+      
+      <div class="table-expanded" *ngIf="expandInput">
+        <!-- Conteúdo expandido com formulário -->
+        <form [formGroup]="form" (ngSubmit)="postar()" #postagemForm="ngForm">
+          <div class="form-group">
+            <label for="conteudo">Escreva algo</label>
+            <textarea
+              class="form-control escreva"
+              formControlName="conteudo"
+              id="conteudo"
+              placeholder="Escreva algo"
+            ></textarea>
+          </div>
+      
+          <div class="form-group">
+            <mat-radio-group formControlName="tipo">
+              <mat-radio-button value="atividade">Atividade</mat-radio-button>
+              <mat-radio-button value="informacao">Informação</mat-radio-button>
+            </mat-radio-group>
+          </div>
+      
+          <!-- Adicione aqui os ícones para inserir arquivo do drive ou link do drive -->
+      
+          <div class="botoes">
+            <button type="button" (click)="expandInput = false">Fechar</button>
+            <button type="submit" [disabled]="form.invalid" [class.botao-desativado]="form.invalid">Postar</button>
+          </div>
+          
+        </form>
+      </div>
+      
+    
+      <div *ngFor="let postagem of postagens">
+        <div class="table" *ngIf="postagem.tipo === 'informativo'">
+        <div class="postagem-info">
+          
+          <span class="autor"><mat-icon class="icon_perfil">account_circle</mat-icon>{{ postagem.autor }}</span>
+          <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
+        </div>
+        <div class="conteudo">{{ postagem.conteudo }}</div>
+
+        <div class="anexos">
+          <div *ngFor="let anexo of postagem.anexos">
+            <a href="{{ anexo.url }}" target="_blank">{{ anexo.descricao }}</a>
+          </div>
+        </div>
+      </div>
+      <div class="table_atividade" *ngIf="postagem.tipo === 'atividade'">
+        <div class="postagem-info" (click)="abrir_atividade(postagem.atividade.id_atividade)">
+          <span class="autor">
+            <mat-icon class="icon-book">book</mat-icon>
+            {{ postagem.autor }} postou uma nova atividade:
+            {{ postagem.atividade.descricao_atividade.slice(0, 25) }}
+            {{ postagem.atividade.descricao_atividade.length > 25 ? '...' : '' }}
+          </span>
+          <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
+        </div>
+        <span class="data">Entregar até {{ postagem.atividade.data_entrega | date: 'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+    </div>
+  </div>
+  
+  
