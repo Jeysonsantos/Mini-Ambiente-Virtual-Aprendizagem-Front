@@ -143,6 +143,10 @@
   border-radius: 0.5rem;
 }
 
+.table p{
+  cursor: pointer;
+}
+
 .table_atividade{
   margin: 0;
   -webkit-text-size-adjust: 100%;
@@ -299,5 +303,39 @@ button:hover {
   &:hover {
     background-color: #ccc; /* Mantém a cor de fundo cinza */
     color: #666; /* Mantém a cor do texto cinza mais escura */
+  }
+}
+
+.butao_link{
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  font: inherit;
+  font-size: 24px;
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  fill: currentColor;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  overflow: visible;
+  --mdc-ripple-fg-translate-end: 0;
+  --mdc-ripple-fg-translate-start: 0;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  will-change: transform,opacity;
+  z-index: 0;
+  color: rgb(25,103,210);
+  --mdc-ripple-fg-size: 28px;
+  --mdc-ripple-fg-scale: 1.7142857142857142;
+  --mdc-ripple-left: 10px;
+  --mdc-ripple-top: 10px;
+  &:hover{
+    background-color: #912b2b41;
   }
 }

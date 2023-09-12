@@ -1,76 +1,106 @@
-
 <div class="container">
 
-    <div class="forum-background">
-        <h1>{{disciplina.periodo}} - {{ disciplina.nome }} - {{disciplina.codigo}}</h1>
-    </div>
+  <div class="forum-background">
+    <h1>{{disciplina.periodo}} - {{ disciplina.nome }} - {{disciplina.codigo}}</h1>
+  </div>
 
-    <div class="table_menor"><h2><a (click)="home()">Pagina inicial</a> -> {{disciplina.nome}}</h2></div>
-  
-    <!-- Lista de Postagens -->
-      <div class="table" (click)="expandInput = true" *ngIf="!expandInput">
-        <p class="autor"><mat-icon class="icon_perfil">account_circle</mat-icon>Escreva algo para sua turma</p>
-      </div>
-      
-      <div class="table-expanded" *ngIf="expandInput">
-        <!-- Conteúdo expandido com formulário -->
-        <form [formGroup]="form" (ngSubmit)="postar()" #postagemForm="ngForm">
-          <div class="form-group">
-            <label for="conteudo">Escreva algo</label>
-            <textarea
-              class="form-control escreva"
-              formControlName="conteudo"
-              id="conteudo"
-              placeholder="Escreva algo"
-            ></textarea>
-          </div>
-      
-          <div class="form-group">
-            <mat-radio-group formControlName="tipo">
-              <mat-radio-button value="atividade">Atividade</mat-radio-button>
-              <mat-radio-button value="informacao">Informação</mat-radio-button>
-            </mat-radio-group>
-          </div>
-      
-          <!-- Adicione aqui os ícones para inserir arquivo do drive ou link do drive -->
-      
-          <div class="botoes">
-            <button type="button" (click)="expandInput = false">Fechar</button>
-            <button type="submit" [disabled]="form.invalid" [class.botao-desativado]="form.invalid">Postar</button>
-          </div>
-          
-        </form>
-      </div>
-      
-    
-      <div *ngFor="let postagem of postagens">
-        <div class="table" *ngIf="postagem.tipo === 'informativo'">
-        <div class="postagem-info">
-          
-          <span class="autor"><mat-icon class="icon_perfil">account_circle</mat-icon>{{ postagem.autor }}</span>
-          <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
-        </div>
-        <div class="conteudo">{{ postagem.conteudo }}</div>
+  <div class="table_menor">
+    <h2><a (click)="home()">Pagina inicial</a> -> {{disciplina.nome}}</h2>
+  </div>
 
-        <div class="anexos">
-          <div *ngFor="let anexo of postagem.anexos">
-            <a href="{{ anexo.url }}" target="_blank">{{ anexo.descricao }}</a>
+  <!-- Lista de Postagens -->
+  <div class="table" (click)="expandInput = true" *ngIf="!expandInput">
+    <p class="autor"><mat-icon class="icon_perfil">account_circle</mat-icon>Escreva algo para sua turma</p>
+  </div>
+
+  <div class="table-expanded" *ngIf="expandInput">
+    <!-- Conteúdo expandido com formulário -->
+    <form [formGroup]="form" (ngSubmit)="criarPostagem()" #postagemForm="ngForm">
+      <div class="form-group">
+        <label for="conteudo">Escreva algo</label>
+        <textarea class="form-control escreva" formControlName="conteudo" id="conteudo"
+          placeholder="Escreva algo"></textarea>
+      </div>
+
+      <div class="form-group">
+        <mat-radio-group formControlName="tipo">
+          <mat-radio-button value="atividade">Atividade</mat-radio-button>
+          <mat-radio-button value="informacao">Informação</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="form-group" *ngIf="form.get('tipo')?.value === 'atividade'">
+        <label for="data_entrega">Data de entrega</label>
+        <div class="input-group date">
+          <input type="datetime-local" class="form-control" formControlName="data_entrega" id="data_entrega">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <i class="far fa-calendar-alt"></i> <!-- Ícone do calendário -->
+            </span>
           </div>
         </div>
       </div>
-      <div class="table_atividade" *ngIf="postagem.tipo === 'atividade'">
-        <div class="postagem-info" (click)="abrir_atividade(postagem.atividade.id_atividade)">
-          <span class="autor">
-            <mat-icon class="icon-book">book</mat-icon>
-            {{ postagem.autor }} postou uma nova atividade:
-            {{ postagem.atividade.descricao_atividade.slice(0, 25) }}
-            {{ postagem.atividade.descricao_atividade.length > 25 ? '...' : '' }}
+      
+
+
+      <!-- Adicione aqui os ícones para inserir arquivo do drive ou link do drive -->
+      <!--<button class="butao_drive"><span><svg enable-background="new 0 0 24 24" focusable="false" height="24" viewBox="0 0 24 24" width="24"><rect fill="none" height="24" width="24"></rect><path d="M14.35,2.5h-4.7c-0.71,0-1.37,0.38-1.73,0.99L1.58,14.4c-0.36,0.62-0.36,1.38-0.01,2l2.35,4.09c0.36,0.62,1.02,1,1.73,1 h12.68c0.72,0,1.38-0.38,1.73-1l2.35-4.09c0.36-0.62,0.35-1.38-0.01-2L16.08,3.49C15.72,2.88,15.06,2.5,14.35,2.5z M18.34,19.5H5.66 l-2.35-4.09L9.65,4.5h4.7l6.34,10.91L18.34,19.5z M12.9,7.75h-1.8l-4.58,7.98L7.25,17h9.5l0.73-1.27L12.9,7.75z M9.25,15L12,10.2 l2.75,4.8H9.25z"></path></svg></span></button>-->
+
+      <form #fileForm="ngForm">
+        <!-- Elemento de ícone para anexar arquivo -->
+        <button class="butao_link" type="button" (click)="anexarArquivo()">
+          <span>
+            <svg focusable="false" width="24" height="24" viewBox="0 0 24 24">
+              <path
+                d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z">
+              </path>
+            </svg>
           </span>
-          <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
-        </div>
-        <span class="data">Entregar até {{ postagem.atividade.data_entrega | date: 'dd/MM/yyyy HH:mm' }}</span>
+        </button>
+      
+        <!-- Input de arquivo oculto -->
+        <input type="file" style="display: none" (change)="onFileSelected($event)" accept=".pdf, .jpg, .jpeg, .png">
+      
+        <!-- Nome do arquivo selecionado -->
+        <span>{{ selectedFileName }}</span>
+      </form>
+      
+
+      <div class="botoes">
+        <button type="button" (click)="expandInput = false">Fechar</button>
+        <button type="submit" [disabled]="form.invalid" [class.botao-desativado]="form.invalid">Postar</button>
       </div>
+
+    </form>
+  </div>
+
+
+  <div *ngFor="let postagem of postagens">
+    <div class="table" *ngIf="postagem.tipo === 'informativo'">
+      <div class="postagem-info">
+
+        <span class="autor"><mat-icon class="icon_perfil">account_circle</mat-icon>{{ postagem.autor }}</span>
+        <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+      <div class="conteudo">{{ postagem.conteudo }}</div>
+
+      <div class="anexos">
+        <div *ngFor="let anexo of postagem.anexos">
+          <a href="{{ anexo.url }}" target="_blank">{{ anexo.descricao }}</a>
+        </div>
+      </div>
+    </div>
+    <div class="table_atividade" *ngIf="postagem.tipo === 'atividade'">
+      <div class="postagem-info" (click)="abrir_atividade(postagem.atividade.id_atividade)">
+        <span class="autor">
+          <mat-icon class="icon-book">book</mat-icon>
+          {{ postagem.autor }} postou uma nova atividade:
+          {{ postagem.atividade.descricao_atividade.slice(0, 25) }}
+          {{ postagem.atividade.descricao_atividade.length > 25 ? '...' : '' }}
+        </span>
+        <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+      <span class="data">Entregar até {{ postagem.atividade.data_entrega | date: 'dd/MM/yyyy HH:mm' }}</span>
     </div>
   </div>
-  
-  
+</div>

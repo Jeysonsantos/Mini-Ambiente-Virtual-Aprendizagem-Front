@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Disciplina } from 'src/app/models/Disciplina';
 import { Postagem } from 'src/app/models/Postagem';
 
@@ -16,7 +17,6 @@ export class ProfCursosService {
     const url = `${this.apiUrl}/disciplina/allByProfessor/${professorId}`;
     return this.http.get<Disciplina[]>(url);
   }
-  
 
   editarDisciplina(disciplina: Disciplina) {
     return this.http.put(this.apiUrl + "/disciplina/update", disciplina);
@@ -34,6 +34,15 @@ export class ProfCursosService {
 
   criarPostagem(disciplinaId: number, formData: FormData) {
     const url = `${this.apiUrl}/disciplina/${disciplinaId}/postagens/create`;
+    return this.http.post(url, formData);
+  }
+
+  uploadFile(file: File, disciplinaId:number,postagemId:number): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const url = `${this.apiUrl}/disciplina/${disciplinaId}/postagens/${postagemId}/upload`;
+
     return this.http.post(url, formData);
   }
   

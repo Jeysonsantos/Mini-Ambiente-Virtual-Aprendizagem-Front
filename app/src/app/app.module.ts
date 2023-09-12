@@ -32,7 +32,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HeaderComponent } from './header/header.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { AdminAlunoExcluirDialogComponent } from './componentes_admin/admin-alunos/admin-aluno-excluir-dialog/admin-aluno-excluir-dialog/admin-aluno-excluir-dialog.component';
 import { AdminProfessorDialogComponent } from './componentes_admin/admin-professores/admin-professor-dialog/admin-professor-dialog/admin-professor-dialog.component';
 import { AdminProfessorExcluirDialogComponent } from './componentes_admin/admin-professores/admin-professor-excluir-dialog/admin-professor-excluir-dialog/admin-professor-excluir-dialog.component';
@@ -42,6 +42,7 @@ import { ProfessorMenuComponent } from './componentes_professor/professor_menu/p
 import { ProfessorCursosComponent } from './componentes_professor/professor_cursos/professor-cursos/professor-cursos.component';
 import { ProfessorCursoDetalhesComponent } from './componentes_professor/professor_curso_detalhes/professor-curso-detalhes/professor-curso-detalhes.component';
 import { MatRadioModule } from '@angular/material/radio';
+
 
 @NgModule({
   declarations: [
@@ -97,8 +98,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatMenuModule,
     MatIconModule,
     MatRippleModule,
-    MatRadioModule 
-
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

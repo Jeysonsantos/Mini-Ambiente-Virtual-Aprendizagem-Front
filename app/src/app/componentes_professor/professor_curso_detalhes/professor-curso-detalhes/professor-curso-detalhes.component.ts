@@ -18,13 +18,21 @@ export class ProfessorCursoDetalhesComponent {
   postagens: Postagem[] = [];
   novaPostagem: string = '';
   arquivoSelecionado: File | null = null;
+  selectedFileName: string | undefined;
+
 
   form: FormGroup;
 
   constructor(private route: ActivatedRoute, private ProfCursosService: ProfCursosService, private Router: Router, private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
+      id_postagem: new FormControl(''),
       conteudo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(5000),]),
-      tipo: new FormControl('atividade',Validators.required),
+      tipo: new FormControl('informacao',Validators.required),
+      anexos: new FormControl(''),
+      data: new Date(),
+      atividade: new FormControl(''),
+      disciplina: this.disciplina,
+      data_entrega: new FormControl(''),
     });
     
     // Postagem de teste
@@ -59,7 +67,8 @@ export class ProfessorCursoDetalhesComponent {
           {
             id_anexo: 1,
             descricao: 'Exemplo de PDF da atividadede teste',
-            url: 'https://drive.google.com/file/d/1d4LIxXziXbCHDNrOH6KizHmiPx2n1HFB/view?usp=sharing'
+            url: 'https://drive.google.com/file/d/1d4LIxXziXbCHDNrOH6KizHmiPx2n1HFB/view?usp=sharing',
+            arquivo: new Blob()
           },
         ]
       },
@@ -68,7 +77,8 @@ export class ProfessorCursoDetalhesComponent {
         {
           id_anexo: 1,
           descricao: 'Exemplo de PDF de teste',
-          url: 'https://drive.google.com/file/d/1d4LIxXziXbCHDNrOH6KizHmiPx2n1HFB/view?usp=sharing'
+          url: 'https://drive.google.com/file/d/1d4LIxXziXbCHDNrOH6KizHmiPx2n1HFB/view?usp=sharing',
+          arquivo: new Blob()
         },
       ]
     },
@@ -103,7 +113,8 @@ export class ProfessorCursoDetalhesComponent {
             {
               id_anexo: 1,
               descricao: 'Exemplo de PDF da atividadede teste',
-              url: 'https://drive.google.com/file/d/1d4LIxXziXbCHDNrOH6KizHmiPx2n1HFB/view?usp=sharing'
+              url: 'https://drive.google.com/file/d/1d4LIxXziXbCHDNrOH6KizHmiPx2n1HFB/view?usp=sharing',
+              arquivo: new Blob()
             },
           ]
         },
@@ -112,7 +123,8 @@ export class ProfessorCursoDetalhesComponent {
           {
             id_anexo: 1,
             descricao: 'Exemplo de PDF de teste',
-            url: 'https://drive.google.com/file/d/1d4LIxXziXbCHDNrOH6KizHmiPx2n1HFB/view?usp=sharing'
+            url: 'https://drive.google.com/file/d/1d4LIxXziXbCHDNrOH6KizHmiPx2n1HFB/view?usp=sharing',
+            arquivo: new Blob()
           },
         ]
       }
@@ -135,16 +147,6 @@ export class ProfessorCursoDetalhesComponent {
     }
   }
 
-  postar() {
-    if (this.form.valid) {
-      const conteudo = this.form.value.conteudo;
-      const tipo = this.form.value.tipo;
-
-      console.log(conteudo, tipo);
-    }
-    console.log("entrou no postar");
-  }
-
   carregarPostagens(id_disciplina: number) {
     this.ProfCursosService.getPostagens(id_disciplina).subscribe(postagens => {
       this.postagens = postagens;
@@ -154,29 +156,68 @@ export class ProfessorCursoDetalhesComponent {
   }
 
   criarPostagem() {
-    // Enviar a nova postagem para o servidor, incluindo o arquivo, se houver
-    const formData = new FormData();
-    formData.append('conteudo', this.novaPostagem);
 
-    if (this.arquivoSelecionado) {
-      formData.append('anexo', this.arquivoSelecionado, this.arquivoSelecionado.name);
+    if(this.form.value.tipo == 'atividade'){
+      this.form.value.atividade = {
+        id_atividade: 0,
+        descricao_atividade: '',
+        data_postagem: new Date(),
+        data_entrega: this.form.value.data_entrega,
+        disciplina: this.disciplina,
+        anexos_atividade: []
+      }
     }
 
-    this.ProfCursosService.criarPostagem(this.disciplina!.id_disciplina, formData).subscribe(() => {
-      // Atualizar a lista de postagens
-      this.carregarPostagens(this.disciplina!.id_disciplina);
+    // Verificar se o formulário é válido
+    console.log(this.form.value);
+    console.log(this.arquivoSelecionado);
+    if (!this.form.valid) {
+    // Criar um objeto FormData para enviar os dados para o servidor
+    this.ProfCursosService.criarPostagem(this.disciplina.id_disciplina,this.form.value).subscribe(() => {
+
+      // Enviar o arquivo selecionado pelo usuário
+
+      if(this.arquivoSelecionado){
+      this.uploadFile();
+      }
 
       // Limpar o formulário
       this.novaPostagem = '';
       this.arquivoSelecionado = null;
+      this.carregarPostagens(this.disciplina!.id_disciplina);
     }
+    
     );
   }
+  }
+  anexarArquivo() {
+    const inputFile = document.querySelector('input[type="file"]') as HTMLInputElement;
+    inputFile?.click(); // Clique no input de arquivo oculto
+  }
+  
+  
 
   onFileSelected(event: any) {
     // Captura o arquivo selecionado pelo usuário
     this.arquivoSelecionado = event.target.files[0];
+    this.selectedFileName = this.arquivoSelecionado ? this.arquivoSelecionado.name : undefined;
   }
+
+  uploadFile() {
+  if (this.arquivoSelecionado) {
+    this.ProfCursosService.uploadFile(this.arquivoSelecionado, this.disciplina.id_disciplina,this.form.value.id_postagem).subscribe(
+      response => {
+        console.log('Resposta do servidor:', response);
+        // Lidar com a resposta do servidor aqui
+      },
+      error => {
+        console.error('Erro ao enviar arquivo:', error);
+        // Lidar com erros aqui
+      }
+    );
+  }
+}
+
 
   home() {
     this.Router.navigate(['/professor']);
