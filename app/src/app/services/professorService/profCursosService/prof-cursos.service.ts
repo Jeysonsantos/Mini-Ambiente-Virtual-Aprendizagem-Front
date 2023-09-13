@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Atividade } from 'src/app/models/Atividade';
 import { Disciplina } from 'src/app/models/Disciplina';
 import { Postagem } from 'src/app/models/Postagem';
 
@@ -32,21 +33,28 @@ export class ProfCursosService {
     return this.http.get<Postagem[]>(url);
   }
 
-  criarPostagem(disciplinaId: number, formData: FormData) {
+  criarPostagem(disciplinaId: number, formData: FormData): Observable<Postagem> {
     const url = `${this.apiUrl}/disciplina/${disciplinaId}/createPostagem`;
-    console.log(this.http.post(url, formData))
-    return this.http.post(url, formData);
+    return this.http.post<Postagem>(url, formData);
   }
 
-  uploadFile(file: FileList, disciplinaId:number,postagemId:number): Observable<any> {
+  criarAtividade(atividade:Atividade): Observable<Atividade> {
+    const url = `${this.apiUrl}/disciplina/postagens/atividade/create`;
+    return this.http.post<Atividade>(url, atividade);
+  }
+
+  uploadFile(file: FileList, id_atividade:number,id_postagem:number): Observable<any> {
     const formData = new FormData();
+    
 
     for(let i = 0; i < file.length; i++){
       formData.append('file', file[i]);
     }
+    console.log(formData);
 
-    const url = `${this.apiUrl}/disciplina/${disciplinaId}/postagens/${postagemId}/upload`;
+    const url = `${this.apiUrl}/disciplina/postagens/${id_postagem}/${id_atividade}/upload`;
 
+    console.log(url)
     return this.http.post(url, formData);
   }
   
