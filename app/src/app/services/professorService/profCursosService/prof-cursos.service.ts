@@ -33,13 +33,17 @@ export class ProfCursosService {
   }
 
   criarPostagem(disciplinaId: number, formData: FormData) {
-    const url = `${this.apiUrl}/disciplina/${disciplinaId}/postagens/create`;
+    const url = `${this.apiUrl}/disciplina/${disciplinaId}/createPostagem`;
+    console.log(this.http.post(url, formData))
     return this.http.post(url, formData);
   }
 
-  uploadFile(file: File, disciplinaId:number,postagemId:number): Observable<any> {
+  uploadFile(file: FileList, disciplinaId:number,postagemId:number): Observable<any> {
     const formData = new FormData();
-    formData.append('file', file);
+
+    for(let i = 0; i < file.length; i++){
+      formData.append('file', file[i]);
+    }
 
     const url = `${this.apiUrl}/disciplina/${disciplinaId}/postagens/${postagemId}/upload`;
 

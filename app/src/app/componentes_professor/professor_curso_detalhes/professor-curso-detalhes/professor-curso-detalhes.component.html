@@ -25,7 +25,7 @@
       <div class="form-group">
         <mat-radio-group formControlName="tipo">
           <mat-radio-button value="atividade">Atividade</mat-radio-button>
-          <mat-radio-button value="informacao">Informação</mat-radio-button>
+          <mat-radio-button value="informativo">Informativo</mat-radio-button>
         </mat-radio-group>
       </div>
 
@@ -58,14 +58,23 @@
           </span>
         </button>
       
-        <!-- Input de arquivo oculto -->
-        <input type="file" style="display: none" (change)="onFileSelected($event)" accept=".pdf, .jpg, .jpeg, .png">
+        <!-- Input de arquivo oculto com suporte a múltipla seleção -->
+        <input type="file" style="display: none" (change)="onFileSelected($event)" accept=".pdf, .jpg, .jpeg, .png" multiple>
       
-        <!-- Nome do arquivo selecionado -->
-        <span>{{ selectedFileName }}</span>
+        <!-- Lista de nomes de arquivos selecionados -->
+        <div *ngIf="selectedFileNames.length > 0">
+          <ul>
+            <li *ngFor="let fileName of selectedFileNames">
+              <span>
+                <i class="fa fa-file"> :</i>
+                {{ fileName }}
+              </span>
+              <button class="excluir-button" (click)="excluirArquivo(fileName)">X</button>
+            </li>
+          </ul>
+        </div>
       </form>
       
-
       <div class="botoes">
         <button type="button" (click)="expandInput = false">Fechar</button>
         <button type="submit" [disabled]="form.invalid" [class.botao-desativado]="form.invalid">Postar</button>
@@ -85,7 +94,7 @@
       <div class="conteudo">{{ postagem.conteudo }}</div>
 
       <div class="anexos">
-        <div *ngFor="let anexo of postagem.anexos">
+        <div *ngFor="let anexo of anexos">
           <a href="{{ anexo.url }}" target="_blank">{{ anexo.descricao }}</a>
         </div>
       </div>
