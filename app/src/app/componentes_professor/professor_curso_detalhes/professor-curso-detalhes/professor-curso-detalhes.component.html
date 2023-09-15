@@ -94,7 +94,7 @@
       <div class="conteudo">{{ postagem.conteudo }}</div>
 
       <div class="anexos">
-        <div *ngFor="let anexo of anexos">
+        <div *ngFor="let anexo of anexos_bypostagem(id_postagem)">
           <a href="{{ anexo.url }}" target="_blank">{{ anexo.descricao }}</a>
         </div>
       </div>
@@ -104,12 +104,12 @@
         <span class="autor">
           <mat-icon class="icon-book">book</mat-icon>
           {{ postagem.autor }} postou uma nova atividade:
-          {{ postagem.atividade.descricao_atividade.slice(0, 25) }}
-          {{ postagem.atividade.descricao_atividade.length > 25 ? '...' : '' }}
+          {{ postagem.conteudo.slice(0, 25) }}
+          {{ postagem.conteudo.length > 25 ? '...' : '' }}
         </span>
         <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
       </div>
-      <span class="data">Entregar até {{ postagem.atividade.data_entrega | date: 'dd/MM/yyyy HH:mm' }}</span>
+      <span class="data">Entregar até {{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
     </div>
   </div>
 </div>

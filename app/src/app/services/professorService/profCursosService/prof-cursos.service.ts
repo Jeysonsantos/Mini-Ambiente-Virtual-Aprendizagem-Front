@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { Atividade } from 'src/app/models/Atividade';
 import { Disciplina } from 'src/app/models/Disciplina';
 import { Postagem } from 'src/app/models/Postagem';
@@ -30,7 +30,7 @@ export class ProfCursosService {
 
   getPostagens(disciplinaId: number) {
     const url = `${this.apiUrl}/disciplina/${disciplinaId}/postagens`;
-    return this.http.get<Postagem[]>(url);
+    return this.http.get<Postagem[]>(url,);
   }
 
   criarPostagem(disciplinaId: number, formData: FormData): Observable<Postagem> {
@@ -43,21 +43,23 @@ export class ProfCursosService {
     return this.http.post<Atividade>(url, atividade);
   }
 
-  uploadFile(file: FileList, id_atividade:number,id_postagem:number): Observable<any> {
-    const formData = new FormData();
-    
-
-    for(let i = 0; i < file.length; i++){
-      formData.append('file', file[i]);
-    }
-    console.log(formData);
-
+  uploadFile(file: File, id_atividade: number, id_postagem: number): Observable<any> {
     const url = `${this.apiUrl}/disciplina/postagens/${id_postagem}/${id_atividade}/upload`;
-
-    console.log(url)
+    const formData = new FormData();
+    formData.append('file', file);
+    console.log(formData);
+    
+    this.http.post(url, formData).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );
     return this.http.post(url, formData);
   }
-  
 
+  getAnexosByPostagemId(id_postagem: number): Observable<any> {
+    const url = `${this.apiUrl}/disciplina/postagens/${id_postagem}/anexos`;
+    return this.http.get(url);
+  }
+  
 
 }

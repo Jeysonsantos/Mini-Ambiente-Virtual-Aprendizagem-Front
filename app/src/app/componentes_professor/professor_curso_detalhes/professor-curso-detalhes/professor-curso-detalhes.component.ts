@@ -23,6 +23,7 @@ export class ProfessorCursoDetalhesComponent {
   selectedFileNames: string[] = [];
   anexos: Anexo[] = [];
   id_atividade = 0;
+  id_postagem = 0;
 
   @Output() arquivoExcluido = new EventEmitter<string>();
 
@@ -48,10 +49,13 @@ export class ProfessorCursoDetalhesComponent {
 
       this.ProfCursosService.getDisciplinaById(id_disciplina).subscribe(disciplina => {
         this.disciplina = disciplina;
+        this.carregarPostagens(this.disciplina.id_disciplina);
+        
       }
       );
     });
-    //if (this.disciplina) {this.carregarPostagens(this.disciplina.id_disciplina);}
+    
+    
   }
 
   carregarPostagens(id_disciplina: number) {
@@ -73,9 +77,7 @@ export class ProfessorCursoDetalhesComponent {
       this.ProfCursosService.criarPostagem(this.disciplina!.id_disciplina, this.form.value).subscribe(
         response => {
 
-          const id_postagem = response.id_postagem;
-          console.log('Resposta do servidor:', id_postagem);
-
+          this.id_postagem = response.id_postagem;
           if (this.form.value.tipo == 'atividade') {
             const atividade:Atividade = {
               id_atividade: 0,
@@ -83,23 +85,26 @@ export class ProfessorCursoDetalhesComponent {
               data_postagem: new Date(),
               data_entrega: this.form.value.data_entrega,
               id_disciplina: this.disciplina.id_disciplina,
-              id_postagem: id_postagem,
+              id_postagem: this.id_postagem,
             }
             this.ProfCursosService.criarAtividade(atividade).subscribe(
               response => {
-                console.log('Resposta do servidor:', response);
                 this.id_atividade = response.id_atividade;
+                if (this.arquivosSelecionados) {
+                  this.uploadFile(this.id_postagem, this.id_atividade);
+                }
               },
               error => {
                 console.error('Erro ao criar atividade:', error);
                 // Lidar com erros aqui
               }
             );
+          }else{
+            if (this.arquivosSelecionados) {
+              this.uploadFile(this.id_postagem, this.id_atividade);
+            }
           }
-
-          if (this.arquivosSelecionados) {
-            this.uploadFile(id_postagem,this.id_atividade);
-          }else
+          
         },
         error => {
           console.error('Erro ao criar postagem:', error);
@@ -108,34 +113,49 @@ export class ProfessorCursoDetalhesComponent {
 
       );
     }
-    if (this.arquivosSelecionados) {
-      //this.uploadFile();
-    }
-
     // Limpar o formulário
-    this.novaPostagem = '';
-    this.arquivosSelecionados = null;
+    
     //this.carregarPostagens(this.disciplina!.id_disciplina);
   }
 
   uploadFile(id_postagem: number, id_atividade: number) {
     if (this.arquivosSelecionados) {
-      this.ProfCursosService.uploadFile(this.arquivosSelecionados, id_atividade, id_postagem).subscribe(
-        response => {
-          console.log('Resposta do servidor:', response);
-          // Lidar com a resposta do servidor aqui
-        },
-        error => {
-          console.error('Erro ao enviar arquivo:', error);
-          // Lidar com erros aqui
-        }
-      );
+      for(let i = 0; i < this.arquivosSelecionados.length; i++){
+        this.ProfCursosService.uploadFile(this.arquivosSelecionados[i], id_atividade, id_postagem).subscribe(
+          response => {
+            console.log(response);
+          },
+          error => {
+            console.error('Erro ao fazer upload do arquivo:', error);
+            // Lidar com erros aqui
+          }
+        );
+
+      }
+
     }
+    this.novaPostagem = '';
+    this.arquivosSelecionados = null;
   }
 
   anexarArquivo() {
     const inputFile = document.querySelector('input[type="file"]') as HTMLInputElement;
     inputFile?.click(); // Clique no input de arquivo oculto
+  }
+
+  anexos_bypostagem(id_postagem:number){
+    const anexos = new Array<Anexo>();
+    this.ProfCursosService.getAnexosByPostagemId(id_postagem).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.error('Erro ao carregar anexos:', error);
+        // Lidar com erros aqui
+      }
+    );
+    return anexos;
+
   }
 
 
