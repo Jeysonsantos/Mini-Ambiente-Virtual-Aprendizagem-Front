@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { get } from 'lodash';
 import { Observable, catchError } from 'rxjs';
+import { Aluno } from 'src/app/models/Aluno';
 import { Anexo } from 'src/app/models/Anexo';
 import { Atividade } from 'src/app/models/Atividade';
 import { Disciplina } from 'src/app/models/Disciplina';
@@ -56,6 +58,23 @@ export class ProfCursosService {
     console.log(this.http.get<Anexo[]>(url))
     return this.http.get<Anexo[]>(url);
     
+  }
+
+  vincular_alunos_curso(id_disciplina: number, alunos: Aluno[]): Observable<any> {
+    const url = `${this.apiUrl}/disciplina/${id_disciplina}/vincularAlunos`;
+    return this.http.post(url, alunos);
+  }
+
+  remover_aluno_curso(id_disciplina : number,id_aluno:number){
+    const url = `${this.apiUrl}/disciplina/${id_disciplina}/desvincularAluno/${id_aluno}`;
+    console.log(url, id_aluno, id_disciplina)
+    return this.http.delete(url);
+
+  }
+
+  getAlunosByDisciplinaId(id_disciplina: number): Observable<Aluno[]> {
+    const url = `${this.apiUrl}/disciplina/${id_disciplina}/alunos`;
+    return this.http.get<Aluno[]>(url);
   }
 
 }

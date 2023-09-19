@@ -1,0 +1,116 @@
+/* Estilize o container principal */
+.tela-branca {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    max-width : 1300px
+    
+  }
+  
+  /* Estilize o campo de pesquisa */
+  .search-container {
+    margin-bottom: 20px;
+  }
+  
+  /* Estilize a mensagem "Nenhum aluno encontrado" */
+  .no-alunos-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  /* Estilize o container que envolve os resultados e alunos selecionados */
+  .container {
+    display: flex;
+    justify-content: space-between; /* Distribua o espaço entre os contêineres */
+    width: 100%; /* Use todo o espaço disponível */
+    display: flex;
+    background-color: #f5f5f5; /* Cor de fundo da caixa */
+    border: 1px solid #ddd; /* Borda da caixa */
+    padding: 20px; /* Espaçamento interno da caixa */
+    border-radius: 5px; /* Borda arredondada da caixa */
+    width: 100%; /* Use todo o espaço disponível */
+    max-width: 1000px; /* Largura máxima da caixa */
+  }
+  /* Estilize o container dos resultados da pesquisa */
+  .results-container {
+    flex: 1; /* Expanda para ocupar o espaço disponível */
+    max-height: 400px; /* Altura máxima para a lista de resultados */
+    overflow-y: auto; /* Adicione uma barra de rolagem vertical quando necessário */
+    margin-right: 10px; /* Adicione um espaço à direita entre os contêineres */
+  }
+  
+  /* Estilize o container dos estudantes selecionados */
+  .selected-students-container {
+    flex: 1; /* Expanda para ocupar o espaço disponível */
+    max-height: 400px; /* Altura máxima para a lista de estudantes selecionados */
+    overflow-y: auto; /* Adicione uma barra de rolagem vertical quando necessário */
+    margin-left: 10px; /* Adicione um espaço à esquerda entre os contêineres */
+  }
+  
+  
+  .results-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .results-container li {
+    margin-bottom: 10px;
+  }
+  
+  .selected-students-container h2 {
+    margin-top: 20px;
+  }
+  
+  .selected-students-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .selected-students-container li {
+    margin-bottom: 10px;
+  }
+  
+  /* Estilize os botões */
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+  
+  /* Estilize os botões quando o mouse passar por cima */
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .cancel{
+    background-color: brown;
+
+  }
+  .results-container h2 {
+    position: sticky; /* Faça o título "fixo" */
+    top: 0; /* Posicione-o no topo do container */
+    background-color: #f5f5f5; /* Cor de fundo para destacar o título */
+    padding: 5px; /* Espaçamento interno para o título */
+    margin: 0; /* Remova margens para alinhamento correto */
+    z-index: 1; /* Coloque o título acima dos elementos da lista */
+}
+.selected-students-container h2{
+    position: sticky; /* Faça o título "fixo" */
+    top: 0; /* Posicione-o no topo do container */
+    background-color: #f5f5f5; /* Cor de fundo para destacar o título */
+    padding: 5px; /* Espaçamento interno para o título */
+    margin: 0; /* Remova margens para alinhamento correto */
+    z-index: 1; /* Coloque o título acima dos elementos da lista */
+}
+
+  

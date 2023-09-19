@@ -1,8 +1,17 @@
 <div class="container">
 
   <div class="forum-background">
-    <h1>{{disciplina.periodo}} - {{ disciplina.nome }} - {{disciplina.codigo}}</h1>
-  </div>
+    <h1>
+        {{disciplina.periodo}} - {{disciplina.nome}} - {{disciplina.codigo}}
+        <button class="add-student-button" (click)="abrir_add_alunos(disciplina.id_disciplina)">
+            Adicionar/Excluir Alunos
+        </button>
+      <button class="show-student-list-button" (click)="abrir_list_alunos(disciplina.id_disciplina)">
+        Lista de Alunos Matriculados
+      </button>
+    </h1>
+</div>
+
 
   <div class="table_menor">
     <h2><a (click)="home()">Pagina inicial</a> -> {{disciplina.nome}}</h2>
@@ -94,23 +103,26 @@
 
 
   <div *ngFor="let postagem of postagens">
-    <div class="table" *ngIf="postagem.tipo === 'informativo'">
-      <div class="postagem-info">
-
-        <span class="autor"><mat-icon class="icon_perfil">account_circle</mat-icon>{{ postagem.autor }}</span>
+    <div class="postagem" *ngIf="postagem.tipo === 'informativo'">
+      <div class="postagem-header">
+        <mat-icon class="icon_perfil">account_circle</mat-icon>
+        <span class="autor">{{ postagem.autor }}</span>
         <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
       </div>
-      <div class="conteudo">{{ postagem.conteudo }}</div>
-
-      <div class="anexos">
-        <div *ngFor="let anexo of anexos">
-          <div *ngIf="postagem.id_postagem === anexo.id_postagem">
-            <a [href]="getDownloadLink(anexo)" download="{{ anexo.nome }}">{{ anexo.nome }}</a>
-          </div>
-        </div>
+      <div class="postagem-conteudo">{{ postagem.conteudo }}</div>
+      <div *ngIf="tem_anexo(postagem.id_postagem)">
+      <div class="postagem-anexos" *ngIf="anexos && anexos.length > 0">
+        <ul>
+          <li *ngFor="let anexo of anexos">
+            <ng-container *ngIf="postagem.id_postagem === anexo.id_postagem">
+              <a [href]="getDownloadLink(anexo)" download="{{ anexo.nome }}"><mat-icon class="icon-download">cloud_download</mat-icon>{{ anexo.nome }}</a>
+            </ng-container>
+          </li>
+        </ul>
       </div>
-      
+      </div>
     </div>
+
 
     <div class="table_atividade" *ngIf="postagem.tipo === 'atividade'">
       <div class="postagem-info" (click)="abrir_atividade(postagem.atividade.id_atividade,postagem.disciplina.id_disciplina)">

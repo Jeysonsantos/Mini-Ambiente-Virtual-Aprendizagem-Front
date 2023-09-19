@@ -9,13 +9,6 @@
     margin-bottom: 20px;
   }
   
-  .postagem {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
   
   .postagem-info {
     display: flex;
@@ -26,10 +19,12 @@
   .autor {
     font-weight: bold;
     font-size: 16px;
+    
   }
   
   .data {
     color: #888;
+
   }
   
   .conteudo {
@@ -148,25 +143,11 @@
 }
 
 .table_atividade{
-  margin: 0;
-  -webkit-text-size-adjust: 100%;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  list-style: none;
-  white-space: normal;
-  text-shadow: none;
-  font-size: inherit;
-  line-height: 20px;
-  color: inherit;
-  font-weight: 400;
-  margin-bottom: 15px;
-  line-height: inherit;
-  padding: 5px;
-  border-left: 2px solid #FC0000;
-  border-bottom: 2px solid #333;
-  margin-bottom: 40px;
-  cursor: pointer;
-  border: 0.0625rem solid #dadce0;
-  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
 }
 
 .table_atividade:hover {
@@ -207,10 +188,7 @@
   font-weight: normal;
 }
 
-.autor {
-  display: flex; /* Torna o contêiner flexível */
-  align-items: center; /* Alinha verticalmente ao centro */
-}
+
 
 .icon_perfil {
   /* Estilos para o ícone */
@@ -306,11 +284,7 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* Estilo para o ícone do perfil */
-.icon_perfil {
-  font-size: 24px;
-  margin-right: 10px;
-}
+
 
 .botao-desativado {
   background-color: #ccc; /* Define a cor de fundo cinza */
@@ -354,4 +328,106 @@ button:hover {
   &:hover{
     background-color: #912b2b41;
   }
+}
+
+/* Estilos para todos os botões */
+.button {
+  padding: 5px 10px; /* Espaçamento interno */
+  border: none; /* Remove a borda */
+  cursor: pointer; /* Altera o cursor ao passar o mouse */
+  border-radius: 5px; /* Borda arredondada */
+  margin-left: 10px; /* Espaçamento à esquerda */
+  font-weight: bold; /* Torna o texto em negrito */
+  font-size: 16px; /* Tamanho do texto */
+}
+
+/* Estilos para o botão "Adicionar aluno" */
+.add-student-button {
+  background-color: #3498db; /* Cor de fundo azul */
+  color: #fff; /* Cor do texto branca */
+}
+
+/* Estilos para o botão "Remover" */
+.remove-discipline-button {
+  background-color: #e74c3c; /* Cor de fundo vermelha */
+  color: #fff; /* Cor do texto branca */
+  &:hover {
+    background-color: #c0392b; /* Cor de fundo vermelha mais escura */
+  }
+}
+
+/* Estilos para o botão "Mostrar Lista de Alunos Cadastrados" */
+.show-student-list-button {
+  background-color: #007bff; /* Cor de fundo azul */
+  color: #fff; /* Cor do texto branca */
+}
+
+/* Estilo geral para postagens */
+.postagem {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+/* Estilo para o cabeçalho da postagem */
+.postagem-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.icon_perfil {
+  font-size: 24px;
+  margin-right: 5px;
+  color: #3498db; /* Cor do ícone */
+}
+
+.autor {
+  font-weight: bold;
+}
+
+/* Estilo para o conteúdo da postagem */
+.postagem-conteudo {
+  margin-bottom: 10px;
+}
+
+/* Estilo para a seção de anexos */
+.postagem-anexos {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.postagem-anexos p {
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Estilo para a lista de anexos */
+.postagem-anexos ul {
+  list-style: none;
+  padding: 0;
+}
+
+.postagem-anexos li {
+  margin-bottom: 5px;
+}
+
+/* Estilo para links de download de anexos */
+.postagem-anexos a {
+  display: flex; /* Use o flexbox para alinhar verticalmente os elementos */
+  align-items: center; /* Alinhe verticalmente os elementos no centro */
+  color: #007bff; /* Cor do link de download */
+  text-decoration: none;
+}
+
+.icon-download {
+  margin-right: 5px; /* Espaçamento à direita do ícone */
+  font-size: 24px; /* Tamanho do ícone (ajuste conforme necessário) */
+}
+
+
+.postagem-anexos a:hover {
+  text-decoration: underline;
 }

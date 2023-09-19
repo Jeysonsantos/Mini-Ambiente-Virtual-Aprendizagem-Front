@@ -1,0 +1,52 @@
+<div class="tela-branca">
+  
+    <div class="container">
+      <!-- Container para os resultados da pesquisa -->
+      <div class="results-container">
+        <div class="search-container">
+            <mat-form-field appearance="fill">
+                <input matInput placeholder="Matrícula/CPF do aluno" [formControl]="filtrar">
+              </mat-form-field>
+          </div>
+        <h2>Alunos:</h2>
+        
+        <div *ngIf="alunos_amostra.length === 0" class="no-alunos-message">
+            Nenhum aluno encontrado.
+        </div>
+        <ul>
+          <li *ngFor="let student of alunos_amostra">
+            {{ student.nome }}
+            <button (click)="selectStudent(student)">Selecionar</button>
+          </li>
+        </ul>
+      </div>
+  
+      <!-- Container para os alunos selecionados -->
+      <div class="selected-students-container">
+        <h2>Alunos Selecionados:</h2>
+        <ul>
+          <li *ngFor="let student of selectedStudents">
+            {{ student.nome}}
+            <button (click)="removeSelectedStudent(student)">Remover</button>
+          </li>
+        </ul>
+        <button (click)="adicionar_alunos(selectedStudents)" *ngIf="selectedStudents.length > 0 ">ADICIONAR ALUNOS</button>
+      </div>
+
+      <div class="selected-students-container">
+        <h2>Alunos Matriculados:</h2>
+        <ul>
+          <li *ngFor="let student of matriculadosStudents">
+            {{ student.nome}}
+            <button (click)="removematriculadosStudents(student)">Remover</button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+    <div>
+    
+    <button (click)="cancelar()" class="cancel">SAIR</button>
+    </div>
+  </div>
+  

@@ -7,6 +7,8 @@ import { Postagem } from 'src/app/models/Postagem';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Atividade } from 'src/app/models/Atividade';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { ProfessorCursoAddAlunosDialogComponent } from '../professor_curso_add_alunos_dialog/professor-curso-add-alunos-dialog/professor-curso-add-alunos-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-professor-curso-detalhes',
@@ -32,7 +34,7 @@ export class ProfessorCursoDetalhesComponent {
 
   form: FormGroup;
 
-  constructor(private route: ActivatedRoute, private ProfCursosService: ProfCursosService, private Router: Router, private formBuilder: FormBuilder,private sanitizer: DomSanitizer) {
+  constructor(private dialog:MatDialog,private route: ActivatedRoute, private ProfCursosService: ProfCursosService, private Router: Router, private formBuilder: FormBuilder,private sanitizer: DomSanitizer) {
     this.form = this.formBuilder.group({
       id_postagem: new FormControl(''),
       autor: new FormControl(''),
@@ -202,8 +204,16 @@ export class ProfessorCursoDetalhesComponent {
       return this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
     }
   }
-  
-
+  tem_anexo(id_postagem: number): boolean{
+    let tem_anexo = false;
+    this.anexos.forEach(anexo => {
+      if(anexo.id_postagem == id_postagem){
+        tem_anexo = true;
+      }
+    });
+    return tem_anexo;
+  }
+    
   onFileSelected(event: any) {
     const files: FileList = event.target.files;
     for (let i = 0; i < files.length; i++) {
@@ -250,6 +260,22 @@ export class ProfessorCursoDetalhesComponent {
 
   toggleAgendamento() {
     this.exibirAgendamento = !this.exibirAgendamento;
+  }
+
+  abrir_add_alunos(id_disciplina:number){
+    const dialogRef = this.dialog.open(ProfessorCursoAddAlunosDialogComponent, {
+      width: '1200px',
+      data: { mode: 'adicionar', id_disciplina: id_disciplina, title: 'Adicionar Alunos' }
+    });
+
+  }
+
+  abrir_remove_alunos(id_disciplina:number){
+      
+  }
+
+  abrir_list_alunos(id_disciplina:number){
+
   }
 
 }
