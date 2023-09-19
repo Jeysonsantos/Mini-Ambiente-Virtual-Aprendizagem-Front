@@ -43,7 +43,7 @@ import { ProfessorCursosComponent } from './componentes_professor/professor_curs
 import { ProfessorCursoDetalhesComponent } from './componentes_professor/professor_curso_detalhes/professor-curso-detalhes/professor-curso-detalhes.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { NgxFileDropModule } from 'ngx-file-drop';
-
+import { ProfessorAtividadeDetalhesComponent } from './componentes_professor/professor_atividade_detalhes/professor-atividade-detalhes/professor-atividade-detalhes.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +70,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     ProfessorMenuComponent,
     ProfessorCursosComponent,
     ProfessorCursoDetalhesComponent,
+    ProfessorAtividadeDetalhesComponent,
     
   ],
   imports: [
@@ -100,7 +101,8 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     MatIconModule,
     MatRippleModule,
     MatRadioModule,
-    NgxFileDropModule
+    NgxFileDropModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

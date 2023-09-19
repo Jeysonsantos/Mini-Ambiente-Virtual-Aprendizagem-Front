@@ -28,6 +28,7 @@
           <mat-radio-button value="informativo">Informativo</mat-radio-button>
         </mat-radio-group>
       </div>
+      <button class="btn btn-success" (click)="toggleAgendamento()" >Agendar</button>
 
       <div class="form-group" *ngIf="form.get('tipo')?.value === 'atividade'">
         <label for="data_entrega">Data de entrega</label>
@@ -40,12 +41,19 @@
           </div>
         </div>
       </div>
+      <div class="form-group" *ngIf="exibirAgendamento">
+        <label for="data_agendamento">Agendar Publicação</label>
+        <div class="input-group date">
+          <input type="datetime-local" class="form-control" formControlName="data_agendamento" id="data_agendamento">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <i class="far fa-calendar-alt"></i>
+            </span>
+          </div>
+        </div>
+      </div>
       
-
-
-      <!-- Adicione aqui os ícones para inserir arquivo do drive ou link do drive -->
-      <!--<button class="butao_drive"><span><svg enable-background="new 0 0 24 24" focusable="false" height="24" viewBox="0 0 24 24" width="24"><rect fill="none" height="24" width="24"></rect><path d="M14.35,2.5h-4.7c-0.71,0-1.37,0.38-1.73,0.99L1.58,14.4c-0.36,0.62-0.36,1.38-0.01,2l2.35,4.09c0.36,0.62,1.02,1,1.73,1 h12.68c0.72,0,1.38-0.38,1.73-1l2.35-4.09c0.36-0.62,0.35-1.38-0.01-2L16.08,3.49C15.72,2.88,15.06,2.5,14.35,2.5z M18.34,19.5H5.66 l-2.35-4.09L9.65,4.5h4.7l6.34,10.91L18.34,19.5z M12.9,7.75h-1.8l-4.58,7.98L7.25,17h9.5l0.73-1.27L12.9,7.75z M9.25,15L12,10.2 l2.75,4.8H9.25z"></path></svg></span></button>-->
-
+    
       <form #fileForm="ngForm">
         <!-- Elemento de ícone para anexar arquivo -->
         <button class="butao_link" type="button" (click)="anexarArquivo()">
@@ -67,7 +75,7 @@
             <li *ngFor="let fileName of selectedFileNames">
               <span>
                 <i class="fa fa-file"> :</i>
-                {{ fileName }}
+                 {{ fileName }}
               </span>
               <button class="excluir-button" (click)="excluirArquivo(fileName)">X</button>
             </li>
@@ -78,6 +86,7 @@
       <div class="botoes">
         <button type="button" (click)="expandInput = false">Fechar</button>
         <button type="submit" [disabled]="form.invalid" [class.botao-desativado]="form.invalid">Postar</button>
+        
       </div>
 
     </form>
@@ -94,13 +103,17 @@
       <div class="conteudo">{{ postagem.conteudo }}</div>
 
       <div class="anexos">
-        <div *ngFor="let anexo of anexos_bypostagem(id_postagem)">
-          <a href="{{ anexo.url }}" target="_blank">{{ anexo.descricao }}</a>
+        <div *ngFor="let anexo of anexos">
+          <div *ngIf="postagem.id_postagem === anexo.id_postagem">
+            <a [href]="getDownloadLink(anexo)" download="{{ anexo.nome }}">{{ anexo.nome }}</a>
+          </div>
         </div>
       </div>
+      
     </div>
+
     <div class="table_atividade" *ngIf="postagem.tipo === 'atividade'">
-      <div class="postagem-info" (click)="abrir_atividade(postagem.atividade.id_atividade)">
+      <div class="postagem-info" (click)="abrir_atividade(postagem.atividade.id_atividade,postagem.disciplina.id_disciplina)">
         <span class="autor">
           <mat-icon class="icon-book">book</mat-icon>
           {{ postagem.autor }} postou uma nova atividade:

@@ -1,8 +1,9 @@
 export interface Anexo {
     id_anexo: number;
-    descricao : string;
+    nome : string;
     url: string;
-    arquivo: Promise<string | ArrayBuffer | null>;
+    dados: Blob;
+    tipo: string;
     id_postagem: number;
     id_atividade: number;
   }

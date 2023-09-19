@@ -11,6 +11,7 @@ import { AdminCursosComponent } from './componentes_admin/admin-cursos/admin-cur
 import { AdminProfessoresComponent } from './componentes_admin/admin-professores/admin-professores.component';
 import { ProfessorComponent } from './componentes_professor/professor/professor.component';
 import { ProfessorCursoDetalhesComponent } from './componentes_professor/professor_curso_detalhes/professor-curso-detalhes/professor-curso-detalhes.component';
+import { ProfessorAtividadeDetalhesComponent } from './componentes_professor/professor_atividade_detalhes/professor-atividade-detalhes/professor-atividade-detalhes.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'admin/cursos', component: AdminCursosComponent, canActivate: [AdminGuard] },
   { path: 'admin/professores', component: AdminProfessoresComponent, canActivate: [AdminGuard] },
   { path: 'professor/curso/:id_disciplina', component: ProfessorCursoDetalhesComponent, canActivate: [AuthGuard] },
+  { path: 'professor/curso/:id_disciplina/atividade/:id_atividade', component: ProfessorAtividadeDetalhesComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

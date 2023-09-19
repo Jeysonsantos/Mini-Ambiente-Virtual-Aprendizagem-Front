@@ -11,5 +11,6 @@ export interface Postagem {
   tipo: 'informativo' | 'atividade';
   atividade : Atividade;
   disciplina: Disciplina
+  anexos : Anexo[];
 }
 
