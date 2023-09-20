@@ -19,6 +19,7 @@
   .autor {
     font-weight: bold;
     font-size: 16px;
+
     
   }
   
@@ -385,6 +386,8 @@ button:hover {
 }
 
 .autor {
+  display: flex; /* Use o flexbox para alinhar verticalmente os elementos */
+  align-items: center;
   font-weight: bold;
 }
 
@@ -392,6 +395,23 @@ button:hover {
 .postagem-conteudo {
   margin-bottom: 10px;
 }
+.file-link {
+  display: flex;
+  align-items: center; /* Centraliza verticalmente os elementos */
+}
+/* Estilo para o ponto antes do nome do arquivo */
+.file-link .dot::before {
+  content: '\2022'; /* Código Unicode para um ponto (•) */
+  margin-right: 5px; /* Espaço entre o ponto e o nome do arquivo */
+  font-size: 20px; /* Tamanho do ponto */
+}
+
+
+/* Espaçamento entre o nome do arquivo e o ícone de download */
+.file-link a:first-child {
+  margin-right: 10px; /* Adapte conforme necessário */
+}
+
 
 /* Estilo para a seção de anexos */
 .postagem-anexos {
@@ -424,6 +444,7 @@ button:hover {
 
 .icon-download {
   margin-right: 5px; /* Espaçamento à direita do ícone */
+  margin-left: 10px;
   font-size: 24px; /* Tamanho do ícone (ajuste conforme necessário) */
 }
 

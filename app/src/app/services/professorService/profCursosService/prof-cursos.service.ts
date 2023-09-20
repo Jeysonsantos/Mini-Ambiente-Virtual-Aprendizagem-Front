@@ -55,7 +55,6 @@ export class ProfCursosService {
 
   getAnexosByDisciplinaId(id_disciplina: number): Observable<Anexo[]> {
     const url = `${this.apiUrl}/disciplina/${id_disciplina}/anexos`;
-    console.log(this.http.get<Anexo[]>(url))
     return this.http.get<Anexo[]>(url);
     
   }
@@ -67,7 +66,6 @@ export class ProfCursosService {
 
   remover_aluno_curso(id_disciplina : number,id_aluno:number){
     const url = `${this.apiUrl}/disciplina/${id_disciplina}/desvincularAluno/${id_aluno}`;
-    console.log(url, id_aluno, id_disciplina)
     return this.http.delete(url);
 
   }

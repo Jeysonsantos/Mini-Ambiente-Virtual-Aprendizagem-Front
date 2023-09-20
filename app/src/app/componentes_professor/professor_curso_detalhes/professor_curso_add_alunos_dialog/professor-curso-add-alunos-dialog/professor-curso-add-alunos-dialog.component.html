@@ -30,7 +30,7 @@
             <button (click)="removeSelectedStudent(student)">Remover</button>
           </li>
         </ul>
-        <button (click)="adicionar_alunos(selectedStudents)" *ngIf="selectedStudents.length > 0 ">ADICIONAR ALUNOS</button>
+        <button style="background-color: green;" (click)="adicionar_alunos(selectedStudents)" *ngIf="selectedStudents.length > 0 ">ADICIONAR ALUNOS</button>
       </div>
 
       <div class="selected-students-container">
@@ -38,7 +38,7 @@
         <ul>
           <li *ngFor="let student of matriculadosStudents">
             {{ student.nome}}
-            <button (click)="removematriculadosStudents(student)">Remover</button>
+            <button (click)="removematriculadosStudents(student)">Desmatricular</button>
           </li>
         </ul>
       </div>

@@ -42,7 +42,7 @@ export class ProfessorCursoAddAlunosDialogComponent {
     this.carregar_alunos_matriculados();
 
     this.filtrar.valueChanges.pipe(
-      debounceTime(3000),
+      debounceTime(1000),
       takeUntil(this.unsubscribe$),
       distinctUntilChanged()
     ).subscribe((termo: string) => {
@@ -119,7 +119,6 @@ export class ProfessorCursoAddAlunosDialogComponent {
   carregar_alunos_matriculados(){
     this.ProfCursosService.getAlunosByDisciplinaId(this.id_disciplina).subscribe(
       response => {
-        console.log(response)
         this.matriculadosStudents = response;
       },
       error => {
@@ -130,11 +129,10 @@ export class ProfessorCursoAddAlunosDialogComponent {
 
   removematriculadosStudents(student:Aluno){
     // confirmar com usuario se desejam remover o aluno
-    console.log(student.id_aluno)
       this.ProfCursosService.remover_aluno_curso(this.id_disciplina,student.id_aluno).subscribe(
         (response) => {
           if(response == true){
-            this.snackbar.open('Aluno removido com sucesso!', 'Fechar', { duration: 3000 });
+            this.snackbar.open('Aluno desmatriculado com sucesso!', 'Fechar', { duration: 3000 });
             this.matriculadosStudents = this.matriculadosStudents.filter(aluno => aluno.id_aluno != student.id_aluno);
             this.alunos_amostra.push(student);
           }
@@ -156,7 +154,7 @@ export class ProfessorCursoAddAlunosDialogComponent {
     this.ProfCursosService.vincular_alunos_curso(this.id_disciplina,lista_alunos).subscribe(
       (response) => {
         //Mensagem de sucesso usando snackbar
-        this.snackbar.open('Alunos adicionados com sucesso!', 'Fechar', { duration: 3000 });
+        this.snackbar.open('Alunos matriculados com sucesso!', 'Fechar', { duration: 3000 });
         this.carregar_alunos_matriculados();
         this.selectedStudents = [];
       },

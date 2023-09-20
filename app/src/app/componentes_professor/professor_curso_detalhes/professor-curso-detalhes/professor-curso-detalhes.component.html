@@ -3,12 +3,14 @@
   <div class="forum-background">
     <h1>
         {{disciplina.periodo}} - {{disciplina.nome}} - {{disciplina.codigo}}
+        <div>
         <button class="add-student-button" (click)="abrir_add_alunos(disciplina.id_disciplina)">
             Adicionar/Excluir Alunos
         </button>
       <button class="show-student-list-button" (click)="abrir_list_alunos(disciplina.id_disciplina)">
         Lista de Alunos Matriculados
       </button>
+    </div>
     </h1>
 </div>
 
@@ -33,12 +35,12 @@
 
       <div class="form-group">
         <mat-radio-group formControlName="tipo">
-          <mat-radio-button value="atividade">Atividade</mat-radio-button>
-          <mat-radio-button value="informativo">Informativo</mat-radio-button>
+          <p>Tipo : <mat-radio-button value="informativo">Informativo</mat-radio-button>
+            <mat-radio-button value="atividade">Atividade</mat-radio-button>
+            </p>
+          
         </mat-radio-group>
       </div>
-      <button class="btn btn-success" (click)="toggleAgendamento()" >Agendar</button>
-
       <div class="form-group" *ngIf="form.get('tipo')?.value === 'atividade'">
         <label for="data_entrega">Data de entrega</label>
         <div class="input-group date">
@@ -50,7 +52,15 @@
           </div>
         </div>
       </div>
-      <div class="form-group" *ngIf="exibirAgendamento">
+      <div class="form-group">
+        <mat-radio-group formControlName="postar">
+          <p>Postar : <mat-radio-button value="agora">Agora</mat-radio-button>
+            <mat-radio-button value="agendado">Agendado</mat-radio-button></p>
+        </mat-radio-group>
+      </div>
+
+  
+      <div class="form-group" *ngIf="form.get('postar')?.value === 'agendado'">
         <label for="data_agendamento">Agendar Publicação</label>
         <div class="input-group date">
           <input type="datetime-local" class="form-control" formControlName="data_agendamento" id="data_agendamento">
@@ -60,7 +70,11 @@
             </span>
           </div>
         </div>
+        <div *ngIf="form.get('data_agendamento')?.hasError('dataFutura')" class="text-danger">
+          A data deve ser futura.
+        </div>
       </div>
+      
       
     
       <form #fileForm="ngForm">
@@ -107,7 +121,6 @@
       <div class="postagem-header">
         <mat-icon class="icon_perfil">account_circle</mat-icon>
         <span class="autor">{{ postagem.autor }}</span>
-        <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
       </div>
       <div class="postagem-conteudo">{{ postagem.conteudo }}</div>
       <div *ngIf="tem_anexo(postagem.id_postagem)">
@@ -115,12 +128,22 @@
         <ul>
           <li *ngFor="let anexo of anexos">
             <ng-container *ngIf="postagem.id_postagem === anexo.id_postagem">
-              <a [href]="getDownloadLink(anexo)" download="{{ anexo.nome }}"><mat-icon class="icon-download">cloud_download</mat-icon>{{ anexo.nome }}</a>
+              <div class="file-link">
+                <span class="dot"></span>
+                <a [href]="anexo.url" target="_blank">{{ anexo.nome }}</a>
+                <a [href]="anexo.url" download="{{ anexo.nome }}">
+                  <mat-icon class="icon-download">cloud_download</mat-icon>
+                </a>
+              </div>
             </ng-container>
+            
+            
+            
           </li>
         </ul>
       </div>
       </div>
+      <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
     </div>
 
 
@@ -132,9 +155,9 @@
           {{ postagem.conteudo.slice(0, 25) }}
           {{ postagem.conteudo.length > 25 ? '...' : '' }}
         </span>
-        <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
+        <span class="data">Entregar até {{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
       </div>
-      <span class="data">Entregar até {{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
+      <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
     </div>
   </div>
 </div>

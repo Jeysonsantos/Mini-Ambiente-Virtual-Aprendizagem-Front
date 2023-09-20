@@ -4,7 +4,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Disciplina } from 'src/app/models/Disciplina';
 import { Postagem } from 'src/app/models/Postagem';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Atividade } from 'src/app/models/Atividade';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { ProfessorCursoAddAlunosDialogComponent } from '../professor_curso_add_alunos_dialog/professor-curso-add-alunos-dialog/professor-curso-add-alunos-dialog.component';
@@ -40,6 +40,7 @@ export class ProfessorCursoDetalhesComponent {
       autor: new FormControl(''),
       conteudo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(5000),]),
       tipo: new FormControl('informativo', Validators.required),
+      postar: new FormControl('agora',Validators.required),
       data: new Date(),
       data_agendamento: [''],
       disciplina: this.disciplina,
@@ -71,7 +72,6 @@ export class ProfessorCursoDetalhesComponent {
      
     });
   }
-  
 
   criarPostagem() {
     
@@ -82,9 +82,6 @@ export class ProfessorCursoDetalhesComponent {
     if(this.form.value.data_agendamento != ''){
       this.form.value.data = this.form.value.data_agendamento;
     }
-    console.log(this.form.value)
-  
-    console.log(this.arquivosSelecionados);
     if (this.form.valid) {
       this.ProfCursosService.criarPostagem(this.disciplina!.id_disciplina, this.form.value).subscribe(
         response => {
@@ -131,6 +128,7 @@ export class ProfessorCursoDetalhesComponent {
       autor: new FormControl(''),
       conteudo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(5000),]),
       tipo: new FormControl('informativo', Validators.required),
+      postar: new FormControl('agora',Validators.required),
       data: new Date(),
       data_agendamento: [''],
       disciplina: this.disciplina,
@@ -165,6 +163,11 @@ export class ProfessorCursoDetalhesComponent {
     this.ProfCursosService.getAnexosByDisciplinaId(id_disciplina).subscribe(
       response => {
         this.anexos = response;
+        //gerar o link de download para cada anexo
+        this.anexos.forEach(anexo => {
+          anexo.url = this.getDownloadLink(anexo);
+          anexo.dados = Blob as any;
+        });
       },
       error => {
         console.error('Erro ao carregar anexos:', error);
@@ -269,11 +272,6 @@ export class ProfessorCursoDetalhesComponent {
     });
 
   }
-
-  abrir_remove_alunos(id_disciplina:number){
-      
-  }
-
   abrir_list_alunos(id_disciplina:number){
 
   }
