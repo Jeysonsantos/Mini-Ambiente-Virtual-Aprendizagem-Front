@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { get } from 'lodash';
-import { Observable, catchError } from 'rxjs';
+import { Observable} from 'rxjs';
 import { Aluno } from 'src/app/models/Aluno';
 import { Anexo } from 'src/app/models/Anexo';
 import { Atividade } from 'src/app/models/Atividade';
 import { Disciplina } from 'src/app/models/Disciplina';
+import { DisciplinaAluno } from 'src/app/models/DisciplinaAluno';
 import { Postagem } from 'src/app/models/Postagem';
 
 @Injectable({
@@ -73,6 +73,11 @@ export class ProfCursosService {
   getAlunosByDisciplinaId(id_disciplina: number): Observable<Aluno[]> {
     const url = `${this.apiUrl}/disciplina/${id_disciplina}/alunos`;
     return this.http.get<Aluno[]>(url);
+  }
+
+  getAllDisciplinaAlunoByAluno_Id(id_aluno: number): Observable<DisciplinaAluno[]> {
+    const url = `${this.apiUrl}/disciplina/aluno/${id_aluno}`;
+    return this.http.get<DisciplinaAluno[]>(url);
   }
 
 }

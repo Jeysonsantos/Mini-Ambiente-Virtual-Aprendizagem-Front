@@ -12,6 +12,8 @@ import { AdminProfessoresComponent } from './componentes_admin/admin-professores
 import { ProfessorComponent } from './componentes_professor/professor/professor.component';
 import { ProfessorCursoDetalhesComponent } from './componentes_professor/professor_curso_detalhes/professor-curso-detalhes/professor-curso-detalhes.component';
 import { ProfessorAtividadeDetalhesComponent } from './componentes_professor/professor_atividade_detalhes/professor-atividade-detalhes/professor-atividade-detalhes.component';
+import { CursoDetalhesComponent } from './componentes_aluno/curso-detalhes/curso-detalhes.component';
+import { CursosComponent } from './componentes_aluno/cursos/cursos.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -19,13 +21,15 @@ const routes: Routes = [
   { path: 'home', component: AlunoComponent, canActivate: [UserRoleGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
-  { path: 'aluno', component: AlunoComponent, canActivate: [AuthGuard]},
-  { path: 'professor', component: ProfessorComponent, canActivate: [AuthGuard]},
   { path: 'admin/alunos', component: AdminAlunosComponent, canActivate: [AdminGuard] },
   { path: 'admin/cursos', component: AdminCursosComponent, canActivate: [AdminGuard] },
   { path: 'admin/professores', component: AdminProfessoresComponent, canActivate: [AdminGuard] },
+  { path: 'aluno', component: AlunoComponent, canActivate: [AuthGuard]},
+  { path: 'aluno/curso/:id_disciplina', component: CursoDetalhesComponent, canActivate: [AuthGuard] },
+  { path: 'professor', component: ProfessorComponent, canActivate: [AuthGuard]},
   { path: 'professor/curso/:id_disciplina', component: ProfessorCursoDetalhesComponent, canActivate: [AuthGuard] },
-  { path: 'professor/curso/:id_disciplina/atividade/:id_atividade', component: ProfessorAtividadeDetalhesComponent, canActivate: [AuthGuard] },
+  { path: 'professor/curso/:id_disciplina/atividade/:id_atividade', component: ProfessorAtividadeDetalhesComponent, canActivate: [AuthGuard] }
+  
 ];
 
 @NgModule({

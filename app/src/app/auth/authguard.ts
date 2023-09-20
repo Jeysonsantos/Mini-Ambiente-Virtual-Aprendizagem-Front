@@ -26,7 +26,10 @@ export class AuthGuard implements CanActivate {
     // Verifique se o usuário é um professor da disciplina com base no ID
     if (this.isUserProfessorOfDisciplina(tipo_usuario, disciplinaId,id_usuario)) {
       return true;
-    } else {
+    } else if(tipo_usuario === 'aluno'){
+      return true;
+    }
+    else {
       // Redirecione para uma página de acesso negado ou exiba uma mensagem de erro
       this.router.navigate(['/access-denied']);
       return false;

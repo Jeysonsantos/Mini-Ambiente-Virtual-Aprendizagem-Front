@@ -1,0 +1,490 @@
+.forum-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  
+  .postagem-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .autor {
+    font-weight: bold;
+    font-size: 16px;
+
+    
+  }
+  
+  .data {
+    color: #888;
+
+  }
+  
+  .conteudo {
+    font-size: 15px;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: vertical;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Adicione mais estilos conforme necessário */
+  .forum-background {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333;
+  }
+  
+  .forum-background h1 {
+    -webkit-text-size-adjust: 100%;
+    margin: 10px 0;
+    font-family: inherit;
+    font-weight: 700;
+    color: inherit;
+    text-rendering: optimizelegibility;
+    line-height: 40px;
+    font-size: 32px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+  .container {
+    justify-content: left;
+    align-items: center;
+    margin: 0 50px;
+    margin-top: 30px;
+    margin-left: 200px;
+    -webkit-text-size-adjust: 100%;
+    max-width: 800px; /* Defina a largura máxima desejada */
+  }
+  
+
+  .table_menor{
+    margin: 0;
+    -webkit-text-size-adjust: 100%;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    padding: 5px;
+    border: none;
+    border-radius: 0;
+    border-left: 4px solid #7a180f;
+    height: 100%;
+    width: 50%;
+
+  }
+
+  .table_menor a{
+    -webkit-text-size-adjust: 100%;
+    font-family: inherit;
+    font-weight: 200;
+    text-rendering: optimizelegibility;
+    font-size: 15px;
+    line-height: 1;
+    color: #ad2316;
+    background-repeat: no-repeat;
+    padding-left: 21px;
+    background-position: left .1em;
+    text-decoration: none;   
+}
+.table_menor h2{
+  font-size: 15px;
+}
+.table_menor a:hover{
+    color: #ad2316;
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+.table{
+  margin: 0;
+  -webkit-text-size-adjust: 100%;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  list-style: none;
+  white-space: normal;
+  text-shadow: none;
+  font-size: inherit;
+  line-height: 20px;
+  color: inherit;
+  font-weight: 400;
+  line-height: inherit;
+  padding: 5px;
+  border-left: 2px solid #FC0000;
+  margin-bottom: 30px;
+  border: 0.0625rem solid #dadce0;
+  border-radius: 0.5rem;
+}
+
+.table p{
+  cursor: pointer;
+}
+
+.table_atividade{
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+.table_atividade:hover {
+  background-color: #f2f2f2; /* Cor de fundo de destaque */
+  color: #ad2316; /* Cor do texto ao passar o mouse */
+  cursor: pointer; /* Alterar o cursor para indicar que a tabela é clicável */
+}
+
+
+.anexos {
+  margin-top: 10px;
+  padding-left: 20px;
+  border-left: 2px solid #FC0000;
+  margin-bottom: 20px;
+}
+
+.anexos a{
+  display: block;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #ad2316;
+  font-weight: bold;
+  max-width: 200px;
+  transition: background-color 0.3s ease; /* Efeito de transição suave na mudança de cor de fundo */
+  list-style: disc outside;
+  position: relative; /* Importante para posicionar o ponto */
+  &:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+}
+
+
+/* Estilos para links dentro de .anexos a */
+.anexos a a {
+  font-weight: normal;
+}
+
+
+
+.icon_perfil {
+  /* Estilos para o ícone */
+  font-size: 24px; /* Ajuste o tamanho do ícone conforme necessário */
+  margin-right: 5px; /* Espaçamento à direita do ícone */
+}
+
+.autor-text {
+  /* Estilos para o texto do autor */
+  font-size: 14px; /* Ajuste o tamanho do texto conforme necessário */
+}
+
+.table p{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+/* Estilos para a tabela expandida */
+.table-expanded {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+/* Estilo para o textarea */
+textarea.escreva {
+  width: 90%;
+  height: 100px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none; /* Impede o redimensionamento do textarea */
+  margin-bottom: 10px; /* Espaçamento inferior */
+}
+
+/* Estilo para o grupo de botões de rádio */
+.mat-radio-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Estilo para os botões de rádio */
+.mat-radio-button {
+  margin-right: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Estilo para os botões "Fechar" e "Postar" */
+.botoes {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Estilo para os botões individuais */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px; /* Espaçamento entre os botões */
+}
+
+button.excluir-button{
+  background-color: #ffffff;
+  color: rgb(167, 42, 42);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  &:hover{
+    background-color: #912b2b41;
+  }
+  
+}
+
+button:last-child {
+  margin-right: 0; /* Remove o espaçamento do último botão */
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+
+.botao-desativado {
+  background-color: #ccc; /* Define a cor de fundo cinza */
+  color: #666; /* Define a cor do texto cinza mais escura */
+  cursor: not-allowed; /* Define o cursor como "não permitido" */
+  &:hover {
+    background-color: #ccc; /* Mantém a cor de fundo cinza */
+    color: #666; /* Mantém a cor do texto cinza mais escura */
+  }
+}
+
+.butao_link{
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  font: inherit;
+  font-size: 24px;
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  fill: currentColor;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  overflow: visible;
+  --mdc-ripple-fg-translate-end: 0;
+  --mdc-ripple-fg-translate-start: 0;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  will-change: transform,opacity;
+  z-index: 0;
+  color: rgb(25,103,210);
+  --mdc-ripple-fg-size: 28px;
+  --mdc-ripple-fg-scale: 1.7142857142857142;
+  --mdc-ripple-left: 10px;
+  --mdc-ripple-top: 10px;
+  &:hover{
+    background-color: #912b2b41;
+  }
+}
+
+/* Estilos para todos os botões */
+.button {
+  padding: 5px 10px; /* Espaçamento interno */
+  border: none; /* Remove a borda */
+  cursor: pointer; /* Altera o cursor ao passar o mouse */
+  border-radius: 5px; /* Borda arredondada */
+  margin-left: 10px; /* Espaçamento à esquerda */
+  font-weight: bold; /* Torna o texto em negrito */
+  font-size: 16px; /* Tamanho do texto */
+}
+
+/* Estilos para o botão "Adicionar aluno" */
+.add-student-button {
+  background-color: #3498db; /* Cor de fundo azul */
+  color: #fff; /* Cor do texto branca */
+}
+
+/* Estilos para o botão "Remover" */
+.remove-discipline-button {
+  background-color: #e74c3c; /* Cor de fundo vermelha */
+  color: #fff; /* Cor do texto branca */
+  &:hover {
+    background-color: #c0392b; /* Cor de fundo vermelha mais escura */
+  }
+}
+
+/* Estilos para o botão "Mostrar Lista de Alunos Cadastrados" */
+.show-student-list-button {
+  background-color: #007bff; /* Cor de fundo azul */
+  color: #fff; /* Cor do texto branca */
+}
+
+/* Estilo geral para postagens */
+.postagem {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+/* Estilo para o cabeçalho da postagem */
+.postagem-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.icon_perfil {
+  font-size: 24px;
+  margin-right: 5px;
+  color: #3498db; /* Cor do ícone */
+}
+
+.autor {
+  display: flex; /* Use o flexbox para alinhar verticalmente os elementos */
+  align-items: center;
+  font-weight: bold;
+}
+
+/* Estilo para o conteúdo da postagem */
+.postagem-conteudo {
+  margin-bottom: 10px;
+}
+.file-link {
+  display: flex;
+  align-items: center; /* Centraliza verticalmente os elementos */
+}
+/* Estilo para o ponto antes do nome do arquivo */
+.file-link .dot::before {
+  content: '\2022'; /* Código Unicode para um ponto (•) */
+  margin-right: 5px; /* Espaço entre o ponto e o nome do arquivo */
+  font-size: 20px; /* Tamanho do ponto */
+}
+
+
+/* Espaçamento entre o nome do arquivo e o ícone de download */
+.file-link a:first-child {
+  margin-right: 10px; /* Adapte conforme necessário */
+}
+
+
+/* Estilo para a seção de anexos */
+.postagem-anexos {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.postagem-anexos p {
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Estilo para a lista de anexos */
+.postagem-anexos ul {
+  list-style: none;
+  padding: 0;
+}
+
+.postagem-anexos li {
+  margin-bottom: 5px;
+}
+
+/* Estilo para links de download de anexos */
+.postagem-anexos a {
+  display: flex; /* Use o flexbox para alinhar verticalmente os elementos */
+  align-items: center; /* Alinhe verticalmente os elementos no centro */
+  color: #007bff; /* Cor do link de download */
+  text-decoration: none;
+}
+
+.icon-download {
+  margin-right: 5px; /* Espaçamento à direita do ícone */
+  margin-left: 10px;
+  font-size: 24px; /* Tamanho do ícone (ajuste conforme necessário) */
+}
+
+
+.postagem-anexos a:hover {
+  text-decoration: underline;
+}
+
+/* Estilo para o círculo ao redor do ícone de download */
+.file-link .download-link {
+  position: relative;
+}
+
+.file-link .download-link .download-circle {
+  position: absolute;
+  width: 30px; /* Largura do círculo */
+  height: 30px; /* Altura do círculo */
+  border: 2px solid transparent;
+  border-radius: 50%; /* Torna o elemento um círculo */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease; /* Transição suave */
+  margin-left: 3px; /* Espaçamento à esquerda do círculo */
+}
+
+.file-link .download-link:hover .download-circle {
+  border-color: #007bff; /* Cor do círculo quando passar o mouse */
+  animation: pulse 1s infinite; /* Adiciona uma animação de pulsação */
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+

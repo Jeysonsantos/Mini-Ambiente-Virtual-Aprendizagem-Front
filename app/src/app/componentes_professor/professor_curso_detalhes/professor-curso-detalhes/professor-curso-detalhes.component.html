@@ -131,11 +131,13 @@
               <div class="file-link">
                 <span class="dot"></span>
                 <a [href]="anexo.url" target="_blank">{{ anexo.nome }}</a>
-                <a [href]="anexo.url" download="{{ anexo.nome }}">
+                <a [href]="anexo.url" download="{{ anexo.nome }}" class="download-link">
                   <mat-icon class="icon-download">cloud_download</mat-icon>
+                  <span class="download-circle"></span>
                 </a>
               </div>
             </ng-container>
+            
             
             
             

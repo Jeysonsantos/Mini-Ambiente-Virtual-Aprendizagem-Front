@@ -452,3 +452,39 @@ button:hover {
 .postagem-anexos a:hover {
   text-decoration: underline;
 }
+
+/* Estilo para o círculo ao redor do ícone de download */
+.file-link .download-link {
+  position: relative;
+}
+
+.file-link .download-link .download-circle {
+  position: absolute;
+  width: 30px; /* Largura do círculo */
+  height: 30px; /* Altura do círculo */
+  border: 2px solid transparent;
+  border-radius: 50%; /* Torna o elemento um círculo */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease; /* Transição suave */
+  margin-left: 3px; /* Espaçamento à esquerda do círculo */
+}
+
+.file-link .download-link:hover .download-circle {
+  border-color: #007bff; /* Cor do círculo quando passar o mouse */
+  animation: pulse 1s infinite; /* Adiciona uma animação de pulsação */
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
