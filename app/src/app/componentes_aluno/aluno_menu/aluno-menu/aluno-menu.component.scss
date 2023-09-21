@@ -1,0 +1,29 @@
+.main {
+    margin-top: 50px;
+    -webkit-text-size-adjust: 100%;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333;
+    
+}
+.usuario_ {
+    display: flex;
+    align-items: center;
+    margin-top: 35px;
+    overflow: hidden;
+  }
+  .type{
+    text-transform: uppercase;
+  }
+  .icon_perfil {
+    margin-right: 10px; /* Adicionar uma margem à direita para separar o ícone do nome */
+    vertical-align: middle; /* Alinhar verticalmente o ícone */
+    display: inline-block;
+    height: 40px; /* Ajuste a altura conforme necessário */
+    width: 24px; /* Ajuste a largura conforme necessário */
+  }
+  .usuario_.menu-open {
+    pointer-events: none; /* Disable pointer events to prevent mouseleave when moving to the menu */
+  }
+  

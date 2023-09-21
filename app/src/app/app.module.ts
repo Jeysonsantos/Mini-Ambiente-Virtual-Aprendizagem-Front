@@ -45,6 +45,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { ProfessorAtividadeDetalhesComponent } from './componentes_professor/professor_atividade_detalhes/professor-atividade-detalhes/professor-atividade-detalhes.component';
 import { ProfessorCursoAddAlunosDialogComponent } from './componentes_professor/professor_curso_detalhes/professor_curso_add_alunos_dialog/professor-curso-add-alunos-dialog/professor-curso-add-alunos-dialog.component';
+import { AlunoMenuComponent } from './componentes_aluno/aluno_menu/aluno-menu/aluno-menu.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { ProfessorCursoAddAlunosDialogComponent } from './componentes_professor/
     ProfessorCursoDetalhesComponent,
     ProfessorAtividadeDetalhesComponent,
     ProfessorCursoAddAlunosDialogComponent,
+    AlunoMenuComponent,
     
   ],
   imports: [

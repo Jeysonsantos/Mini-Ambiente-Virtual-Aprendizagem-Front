@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DisciplinaAluno } from './../../models/DisciplinaAluno';
 import { Component } from '@angular/core';
 import { Disciplina } from 'src/app/models/Disciplina';
@@ -17,7 +18,7 @@ export class CursosComponent {
   id_usuario: number = 0;
 
 
-  constructor(private profCursosService:ProfCursosService,private userDataService: UserDataServiceService) {
+  constructor(private profCursosService:ProfCursosService,private userDataService: UserDataServiceService,private snackbar:MatSnackBar) {
     this.id_usuario = this.userDataService.idUsuario;
   }
 

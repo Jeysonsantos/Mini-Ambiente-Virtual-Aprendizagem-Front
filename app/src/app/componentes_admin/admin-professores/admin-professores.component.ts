@@ -51,7 +51,7 @@ export class AdminProfessoresComponent {
         this.professores = professores;
       },
       (error) => {
-        console.error('Erro ao carregar professores:', error);
+        this.snackBar.open('Erro ao carregar professores.', 'Fechar', { duration: 3000 });
       }
     );
   }
@@ -69,7 +69,7 @@ export class AdminProfessoresComponent {
             this.ngOnInit();
           },
           (error) => {
-            console.error('Erro ao salvar professor:', error);
+            this.snackBar.open('Erro ao salvar professor.', 'Fechar', { duration: 3000 });
           }
         );
       }
@@ -113,7 +113,7 @@ export class AdminProfessoresComponent {
             this.ngOnInit();
           },
           (error) => {
-            console.error('Erro ao excluir professor:', error);
+            
             this.snackBar.open('Erro ao excluir professor.', 'Fechar', { duration: 3000 });
           }
         );

@@ -5,17 +5,16 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate {
+export class LoginGuard implements CanActivate {
   constructor(private userDataService: UserDataServiceService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.userDataService.isAuthenticatedUser && this.userDataService.UserType === 'Admin') {
+    if (this.userDataService.isAuthenticatedUser) {
+      this.router.navigate(['/home']);
       return true;
-    } else {
-      this.router.navigate(['/acesso-negado']);
-      return false;
+    } 
+    else {
+      return true;
     }
-  }
 }
-
-
+}

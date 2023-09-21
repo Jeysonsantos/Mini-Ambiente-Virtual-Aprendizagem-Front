@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { UserDataServiceService } from 'src/app/services/adminService/userDataService/user-data-service.service';
 import { Aluno } from 'src/app/models/Aluno';
 import { AlunoService } from 'src/app/services/alunoService/aluno.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-curso-detalhes',
@@ -37,7 +38,7 @@ export class CursoDetalhesComponent {
 
   form: FormGroup;
 
-  constructor(private route: ActivatedRoute, private ProfCursosService: ProfCursosService, private Router: Router, private formBuilder: FormBuilder,private sanitizer: DomSanitizer,private userDataServiceService: UserDataServiceService,private AlunoService:AlunoService) {
+  constructor(private route: ActivatedRoute, private ProfCursosService: ProfCursosService, private Router: Router, private formBuilder: FormBuilder,private sanitizer: DomSanitizer,private userDataServiceService: UserDataServiceService,private AlunoService:AlunoService,private snackbar:MatSnackBar) {
     this.form = this.formBuilder.group({
       id_postagem: new FormControl(''),
       autor: new FormControl(''),
@@ -99,8 +100,7 @@ export class CursoDetalhesComponent {
           }
         },
         error => {
-          console.error('Erro ao criar postagem:', error);
-          // Lidar com erros aqui
+          this.snackbar.open('Erro ao criar postagem.', 'Fechar', { duration: 3000 });
         }
 
       );
@@ -152,7 +152,7 @@ export class CursoDetalhesComponent {
         });
       },
       error => {
-        console.error('Erro ao carregar anexos:', error);
+        this.snackbar.open('Erro ao carregar anexos.', 'Fechar', { duration: 3000 });
       }
     );
 
@@ -217,13 +217,13 @@ export class CursoDetalhesComponent {
   }
 
   home() {
-    this.Router.navigate(['/professor']);
+    this.Router.navigate(['/aluno']);
   }
 
   abrir_atividade(id_atividade: number,id_disciplina: number) {
     console.log(id_atividade);
     console.log(id_disciplina)
-    this.Router.navigate(['/professor/curso/'+ id_disciplina + '/atividade/' + id_atividade]); // Ainda nao existe a rota nem o componente
+    this.Router.navigate(['/aluno/curso/'+ id_disciplina + '/atividade/' + id_atividade]); // Ainda nao existe a rota nem o componente
   }
 
 }

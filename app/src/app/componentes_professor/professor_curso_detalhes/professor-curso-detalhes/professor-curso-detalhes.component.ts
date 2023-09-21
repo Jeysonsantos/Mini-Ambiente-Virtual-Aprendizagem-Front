@@ -9,6 +9,7 @@ import { Atividade } from 'src/app/models/Atividade';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { ProfessorCursoAddAlunosDialogComponent } from '../professor_curso_add_alunos_dialog/professor-curso-add-alunos-dialog/professor-curso-add-alunos-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-professor-curso-detalhes',
@@ -34,7 +35,7 @@ export class ProfessorCursoDetalhesComponent {
 
   form: FormGroup;
 
-  constructor(private dialog:MatDialog,private route: ActivatedRoute, private ProfCursosService: ProfCursosService, private Router: Router, private formBuilder: FormBuilder,private sanitizer: DomSanitizer) {
+  constructor(private dialog:MatDialog,private route: ActivatedRoute, private ProfCursosService: ProfCursosService, private Router: Router, private formBuilder: FormBuilder,private sanitizer: DomSanitizer,private snackbar:MatSnackBar) {
     this.form = this.formBuilder.group({
       id_postagem: new FormControl(''),
       autor: new FormControl(''),
@@ -106,7 +107,7 @@ export class ProfessorCursoDetalhesComponent {
                 }
               },
               error => {
-                console.error('Erro ao criar atividade:', error);
+                this.snackbar.open('Erro ao criar atividade.', 'Fechar', { duration: 3000 });
               }
             );
           }else{
@@ -117,8 +118,8 @@ export class ProfessorCursoDetalhesComponent {
           
         },
         error => {
-          console.error('Erro ao criar postagem:', error);
-          // Lidar com erros aqui
+          this.snackbar.open('Erro ao criar postagem.', 'Fechar', { duration: 3000 });
+          
         }
 
       );
@@ -170,7 +171,8 @@ export class ProfessorCursoDetalhesComponent {
         });
       },
       error => {
-        console.error('Erro ao carregar anexos:', error);
+        this.snackbar.open('Erro ao carregar anexos.', 'Fechar', { duration: 3000 });
+        
       }
     );
 

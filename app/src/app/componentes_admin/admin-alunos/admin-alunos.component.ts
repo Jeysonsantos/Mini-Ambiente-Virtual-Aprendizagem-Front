@@ -49,7 +49,7 @@ export class AdminAlunosComponent {
         this.alunos = alunos;
       },
       (error) => {
-        console.error('Erro ao carregar alunos:', error);
+        this.snackBar.open('Erro ao carregar alunos.', 'Fechar', { duration: 3000 });
       }
     );
   }
@@ -60,7 +60,6 @@ export class AdminAlunosComponent {
       data: { mode: 'adicionar', aluno: {} as Aluno, title: 'Adicionar Aluno' },
     });
     dialogRef.afterClosed().subscribe((aluno: Aluno) => {
-      console.log(aluno)
       if (aluno) {
         this.AdminalunoService.salvarAluno(aluno).subscribe(
           (alunoSalvo: any) => {
@@ -69,7 +68,7 @@ export class AdminAlunosComponent {
             
           },
           (error) => {
-            console.error('Erro ao salvar aluno:', error);
+            this.snackBar.open('Erro ao salvar aluno.', 'Fechar', { duration: 3000 });
           }
         );
       }
@@ -83,7 +82,6 @@ export class AdminAlunosComponent {
     });
 
     dialogRef.afterClosed().subscribe((aluno: Aluno) => {
-      console.log(aluno)
       if (aluno) {
         const index = this.alunos.findIndex((a) => a.id_aluno === aluno.id_aluno);
         if(index!==-1){
@@ -113,7 +111,6 @@ export class AdminAlunosComponent {
             this.ngOnInit();
           },
           (error) => {
-            console.error('Erro ao excluir aluno:', error);
             this.snackBar.open('Erro ao excluir aluno.', 'Fechar', { duration: 3000 });
           }
         );

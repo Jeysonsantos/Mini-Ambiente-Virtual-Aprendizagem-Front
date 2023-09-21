@@ -122,7 +122,7 @@ export class ProfessorCursoAddAlunosDialogComponent {
         this.matriculadosStudents = response;
       },
       error => {
-        console.error('Erro ao carregar alunos:', error);
+        this.snackbar.open('Erro ao carregar alunos matriculados!', 'Fechar', { duration: 3000 });
       }
     );
   }
@@ -138,7 +138,7 @@ export class ProfessorCursoAddAlunosDialogComponent {
           }
         },
         (error) => {
-          console.log(error)
+          this.snackbar.open('Erro ao desmatricular aluno!', 'Fechar', { duration: 3000 });
         }
       );
       
@@ -161,6 +161,9 @@ export class ProfessorCursoAddAlunosDialogComponent {
       (error) => {
         if(error.status == 500){
           this.snackbar.open('Aluno já existente!', 'Fechar', { duration: 3000 });
+        }
+        else{
+          this.snackbar.open('Erro ao matricular alunos!', 'Fechar', { duration: 3000 });
         }
       }
     );

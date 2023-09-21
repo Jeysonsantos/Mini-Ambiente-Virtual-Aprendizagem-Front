@@ -5,17 +5,15 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate {
+export class AlunoGuard implements CanActivate {
   constructor(private userDataService: UserDataServiceService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.userDataService.isAuthenticatedUser && this.userDataService.UserType === 'Admin') {
+    if (this.userDataService.isAuthenticatedUser && this.userDataService.UserType === 'aluno') {
       return true;
     } else {
-      this.router.navigate(['/acesso-negado']);
+      this.router.navigate(['/home']);
       return false;
     }
   }
 }
-
-

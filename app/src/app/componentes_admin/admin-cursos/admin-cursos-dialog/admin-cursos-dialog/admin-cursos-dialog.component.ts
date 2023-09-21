@@ -52,6 +52,7 @@ export class AdminCursosDialogComponent {
         this.professores = professores;
       },
       (error) => {
+        this.snackBar.open('Erro ao carregar professores.', 'Fechar', { duration: 3000 });
       }
     );
   }
@@ -61,7 +62,6 @@ export class AdminCursosDialogComponent {
       return;
     }
     const codigo = this.form.get('codigo')?.value;
-    console.log(this.form.value)
   
     this.AdmindisciplinaService.verificarCodigoExistente(codigo).subscribe(codigoExistente => {
       if (codigoExistente && this.dialogData.disciplina.codigo != codigo) {
@@ -81,7 +81,6 @@ export class AdminCursosDialogComponent {
         // Você pode acessar informações sobre o arquivo, como nome, tamanho, tipo, etc.
         this.form.get('ementa_pdf')?.setValue(this.selectedFile);
         this.selectedFileName = this.selectedFile.name;
-        console.log('Arquivo selecionado:', this.selectedFile);
       }else{
         this.snackBar.open('O arquivo deve ser do tipo PDF.', 'Fechar', { duration: 3000 });
         return;

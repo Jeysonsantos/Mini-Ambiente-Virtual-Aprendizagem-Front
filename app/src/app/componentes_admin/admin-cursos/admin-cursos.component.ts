@@ -47,10 +47,9 @@ export class AdminCursosComponent {
     this.AdminDisciService.getDisciplinas().subscribe( 
       (disciplinas:Disciplina[]) => {
         this.disciplinas = disciplinas;
-        console.log(this.disciplinas)
       },
       (error) => {
-        console.error('Erro ao carregar disciplinas:', error);
+        this.snackBar.open('Erro ao carregar disciplinas.', 'Fechar', { duration: 3000 });
       }
     );
   }
@@ -62,7 +61,6 @@ export class AdminCursosComponent {
     });
     dialogRef.afterClosed().subscribe((disciplina: Disciplina) => {
       if (disciplina) {
-        console.log(disciplina)
         this.AdminDisciService.salvarDisciplina(disciplina).subscribe( 
           (disciplinaSalvo: any) => {
             this.snackBar.open('Disciplina salva com sucesso.', 'Fechar', { duration: 3000 });
@@ -70,7 +68,7 @@ export class AdminCursosComponent {
             
           },
           (error) => {
-            console.error('Erro ao salvar disciplina:', error);
+            this.snackBar.open('Erro ao salvar disciplina.', 'Fechar', { duration: 3000 });
           }
         );
       }
@@ -84,7 +82,6 @@ export class AdminCursosComponent {
     });
 
     dialogRef.afterClosed().subscribe((disciplina: Disciplina) => {
-      console.log(disciplina)
       if (disciplina) {
         const index = this.disciplinas.findIndex((a) => a.id_disciplina === disciplina.id_disciplina);
         if(index!==-1){
@@ -114,7 +111,6 @@ export class AdminCursosComponent {
             this.ngOnInit();
           },
           (error) => {
-            console.error('Erro ao excluir disciplina:', error);
             this.snackBar.open('Erro ao excluir disciplina.', 'Fechar', { duration: 3000 });
           }
         );
