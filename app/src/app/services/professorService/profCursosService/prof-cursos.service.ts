@@ -79,5 +79,4 @@ export class ProfCursosService {
     const url = `${this.apiUrl}/disciplina/aluno/${id_aluno}`;
     return this.http.get<DisciplinaAluno[]>(url);
   }
-
 }

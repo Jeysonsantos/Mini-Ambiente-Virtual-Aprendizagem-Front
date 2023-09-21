@@ -55,25 +55,42 @@ export class CursoDetalhesComponent {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const id_disciplina = params['id_disciplina'];
-
-      this.ProfCursosService.getDisciplinaById(id_disciplina).subscribe(disciplina => {
-        this.disciplina = disciplina;
-        this.carregarPostagens(id_disciplina);
-        this.carregarAnexos(id_disciplina);
-        
-      }
-      );
+      this.carregarDados(id_disciplina);
+  
+      // Defina um intervalo de atualização a cada 5 segundos (5000 milissegundos)
+      setInterval(() => {
+        this.carregarDados(id_disciplina);
+      }, 5000);
     });
-
+  
     this.AlunoService.getAlunoById(this.userDataServiceService.idUsuario).subscribe((aluno: any) => {
       this.aluno = aluno;
     }
     );
   }
 
+  carregarDados(id_disciplina: number) {
+    this.ProfCursosService.getDisciplinaById(id_disciplina).subscribe(disciplina => {
+      this.disciplina = disciplina;
+      this.carregarPostagens(id_disciplina);
+      this.carregarAnexos(id_disciplina);
+    });
+  }
+
   carregarPostagens(id_disciplina: number) {
     this.ProfCursosService.getPostagens(id_disciplina).subscribe(postagens => {
-      this.postagens = postagens;
+      // Filtrar apenas as postagens cujo horário de postagem é menor que o horário atual
+      const postagensFiltradas = postagens.filter(postagem => new Date(postagem.data).getTime() < new Date().getTime());
+  
+      // Adicionar as postagens filtradas à lista, evitando duplicatas
+      for (const postagem of postagensFiltradas) {
+        const postagemExistente = this.postagens.find(p => p.id_postagem === postagem.id_postagem);
+  
+        if (!postagemExistente) {
+          this.postagens.push(postagem);
+        }
+      }
+  
       // ordernar por data de postagem
       this.postagens.sort((a, b) => {
         return new Date(b.data).getTime() - new Date(a.data).getTime();
