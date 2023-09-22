@@ -35,7 +35,7 @@
 
       <div class="form-group">
         <mat-radio-group formControlName="tipo">
-          <p>Tipo : <mat-radio-button value="informativo">Informativo</mat-radio-button>
+          <p>Tipo : <mat-radio-button (click)="set_data_entrega_agora()" value="informativo">Informativo</mat-radio-button>
             <mat-radio-button value="atividade">Atividade</mat-radio-button>
             </p>
           
@@ -138,9 +138,6 @@
               </div>
             </ng-container>
             
-            
-            
-            
           </li>
         </ul>
       </div>
@@ -149,15 +146,15 @@
     </div>
 
 
-    <div class="table_atividade" *ngIf="postagem.tipo === 'atividade'">
-      <div class="postagem-info" (click)="abrir_atividade(postagem.atividade.id_atividade,postagem.disciplina.id_disciplina)">
+    <div (click)="abrir_atividade(postagem.id_postagem,postagem.disciplina.id_disciplina)" class="table_atividade" *ngIf="postagem.tipo === 'atividade'">
+      <div class="postagem-info">
         <span class="autor">
           <mat-icon class="icon-book">book</mat-icon>
           {{ postagem.autor }} postou uma nova atividade:
           {{ postagem.conteudo.slice(0, 25) }}
           {{ postagem.conteudo.length > 25 ? '...' : '' }}
         </span>
-        <span class="data">Entregar até {{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
+        <span class="data">Entregar até {{ postagem.data_entrega | date: 'dd/MM/yyyy HH:mm' }}</span>
       </div>
       <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
     </div>

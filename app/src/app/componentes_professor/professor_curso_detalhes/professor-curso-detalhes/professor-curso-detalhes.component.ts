@@ -45,7 +45,7 @@ export class ProfessorCursoDetalhesComponent {
       data: new Date(),
       data_agendamento: [''],
       disciplina: this.disciplina,
-      data_entrega: new FormControl(''),
+      data_entrega: new FormControl('')
     });
   }
 
@@ -87,12 +87,12 @@ export class ProfessorCursoDetalhesComponent {
       this.ProfCursosService.criarPostagem(this.disciplina!.id_disciplina, this.form.value).subscribe(
         response => {
           this.id_postagem = response.id_postagem;
-          if (this.form.value.tipo == 'atividade') {
+          if (response.tipo == 'atividade') {
             const atividade:Atividade = {
               id_atividade: 0,
-              descricao_atividade: this.form.value.conteudo,
-              data_postagem: this.form.value.data,
-              data_entrega: this.form.value.data_entrega,
+              descricao_atividade: response.conteudo,
+              data_postagem: response.data,
+              data_entrega: response.data_entrega,
               id_disciplina: this.disciplina.id_disciplina,
               id_postagem: this.id_postagem,
               
@@ -133,7 +133,7 @@ export class ProfessorCursoDetalhesComponent {
       data: new Date(),
       data_agendamento: [''],
       disciplina: this.disciplina,
-      data_entrega: new FormControl(''),
+      data_entrega: new FormControl('',Validators.required),
     });
     this.expandInput = false;
     this.selectedFileNames = [];
@@ -157,14 +157,14 @@ export class ProfessorCursoDetalhesComponent {
 
   anexarArquivo() {
     const inputFile = document.querySelector('input[type="file"]') as HTMLInputElement;
-    inputFile?.click(); // Clique no input de arquivo oculto
+    inputFile?.click();
   }
 
   carregarAnexos(id_disciplina: number){
     this.ProfCursosService.getAnexosByDisciplinaId(id_disciplina).subscribe(
       response => {
         this.anexos = response;
-        //gerar o link de download para cada anexo
+        
         this.anexos.forEach(anexo => {
           anexo.url = this.getDownloadLink(anexo);
           anexo.dados = Blob as any;
@@ -229,10 +229,8 @@ export class ProfessorCursoDetalhesComponent {
   }
 
   excluirArquivo(fileName: string) {
-    // Remova o arquivo da lista de nomes de arquivos selecionados
     this.selectedFileNames = this.selectedFileNames.filter((name) => name !== fileName);
 
-    // Emita um evento personalizado para notificar a exclusão
     this.arquivoExcluido.emit(fileName);
   }
 
@@ -240,10 +238,29 @@ export class ProfessorCursoDetalhesComponent {
     this.Router.navigate(['/professor']);
   }
 
-  abrir_atividade(id_atividade: number,id_disciplina: number) {
-    console.log(id_atividade);
-    console.log(id_disciplina)
-    this.Router.navigate(['/professor/curso/'+ id_disciplina + '/atividade/' + id_atividade]); // Ainda nao existe a rota nem o componente
+  abrir_atividade(id_postagem: number,id_disciplina: number) {
+    this.ProfCursosService.getAtividadeByPostagemId(id_postagem).subscribe(
+      
+      response => {
+        console.log(response)
+        this.Router.navigate(['/professor/curso/'+ id_disciplina + '/atividade/' + response.id_atividade]);
+      },
+      error => {
+        this.snackbar.open('Erro ao abrir atividade.', 'Fechar', { duration: 3000 });
+      }
+    );
+  }
+
+  getDataEntregaAtividade(){
+    this.ProfCursosService.getAtividadeByPostagemId(this.id_postagem).subscribe(
+      response => {
+        return response.data_entrega;
+      },
+      error => {
+        this.snackbar.open('Erro ao abrir atividade.', 'Fechar', { duration: 3000 });
+      }
+    );
+
   }
 
   onSubmit() {
@@ -276,6 +293,11 @@ export class ProfessorCursoDetalhesComponent {
   }
   abrir_list_alunos(id_disciplina:number){
 
+  }
+
+  set_data_entrega_agora(){
+    console.log("setou data entrega agora")
+    this.form.value.data_entrega = new Date();
   }
 
 }

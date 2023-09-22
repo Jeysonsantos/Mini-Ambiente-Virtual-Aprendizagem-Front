@@ -79,4 +79,9 @@ export class ProfCursosService {
     const url = `${this.apiUrl}/disciplina/aluno/${id_aluno}`;
     return this.http.get<DisciplinaAluno[]>(url);
   }
+
+  getAtividadeByPostagemId(id_postagem: number): Observable<Atividade> {
+    const url = `${this.apiUrl}/disciplina/postagens/${id_postagem}/atividade`;
+    return this.http.get<Atividade>(url);
+  }
 }

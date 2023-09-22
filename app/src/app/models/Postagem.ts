@@ -8,9 +8,11 @@ export interface Postagem {
   autor: string;
   conteudo: string; // Conteúdo de texto
   data: Date;
+  data_entrega: Date;
   tipo: 'informativo' | 'atividade';
   atividade : Atividade;
   disciplina: Disciplina
   anexos : Anexo[];
+
 }
 

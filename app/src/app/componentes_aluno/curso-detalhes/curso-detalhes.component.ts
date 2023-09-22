@@ -131,7 +131,7 @@ export class CursoDetalhesComponent {
       data: new Date(),
       data_agendamento: [''],
       disciplina: this.disciplina,
-      data_entrega: new FormControl(''),
+      data_entrega: new FormControl('',Validators.required),
     });
     this.expandInput = false;
     this.selectedFileNames = [];
@@ -152,7 +152,6 @@ export class CursoDetalhesComponent {
     this.novaPostagem = '';
     this.arquivosSelecionados = null;
   }
-
   anexarArquivo() {
     const inputFile = document.querySelector('input[type="file"]') as HTMLInputElement;
     inputFile?.click(); // Clique no input de arquivo oculto
