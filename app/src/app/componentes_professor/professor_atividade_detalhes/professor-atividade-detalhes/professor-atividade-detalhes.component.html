@@ -1,1 +1,22 @@
-<p>professor-atividade-detalhes works!</p>
+<div class="container">
+
+    <div class="forum-background">
+      <h1>
+          {{disciplina?.periodo}} - {{disciplina?.nome}} - {{disciplina?.codigo}}
+          <div>
+          <button class="add-student-button" (click)="abrir_editar_atividade_aluno()">
+                Editar Atividade
+          </button>
+      </div>
+      </h1>
+  </div>
+  
+  
+  <div class="table_menor">
+    <h2>
+      <a (click)="home()">Pagina inicial</a>-><a (click)="redirecionarDisciplina(disciplina!.id_disciplina)">{{ disciplina?.nome }}</a>->atividade
+    </h2>
+  </div>
+  
+
+</div>

@@ -1,0 +1,91 @@
+.container {
+    justify-content: left;
+    align-items: center;
+    margin: 0 50px;
+    margin-top: 30px;
+    margin-left: 200px;
+    -webkit-text-size-adjust: 100%;
+    max-width: 800px; /* Defina a largura máxima desejada */
+  }
+  
+
+  .table_menor{
+    margin: 0;
+    -webkit-text-size-adjust: 100%;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    padding: 5px;
+    border: none;
+    border-radius: 0;
+    border-left: 4px solid #7a180f;
+    height: 100%;
+    width: 50%;
+
+  }
+
+  .table_menor a{
+    -webkit-text-size-adjust: 100%;
+    font-family: inherit;
+    font-weight: 200;
+    text-rendering: optimizelegibility;
+    font-size: 15px;
+    line-height: 1;
+    color: #ad2316;
+    background-repeat: no-repeat;
+    padding-left: 21px;
+    background-position: left .1em;
+    text-decoration: none;   
+}
+.table_menor h2{
+  font-size: 15px;
+}
+.table_menor a:hover{
+    color: #ad2316;
+    text-decoration: underline;
+    cursor: pointer;
+
+}
+
+.table{
+  margin: 0;
+  -webkit-text-size-adjust: 100%;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  list-style: none;
+  white-space: normal;
+  text-shadow: none;
+  font-size: inherit;
+  line-height: 20px;
+  color: inherit;
+  font-weight: 400;
+  line-height: inherit;
+  padding: 5px;
+  border-left: 2px solid #FC0000;
+  margin-bottom: 30px;
+  border: 0.0625rem solid #dadce0;
+  border-radius: 0.5rem;
+}
+
+.table p{
+  cursor: pointer;
+}
+.forum-background {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333;
+  }
+  
+  .forum-background h1 {
+    -webkit-text-size-adjust: 100%;
+    margin: 10px 0;
+    font-family: inherit;
+    font-weight: 700;
+    color: inherit;
+    text-rendering: optimizelegibility;
+    line-height: 40px;
+    font-size: 32px;
+    text-align: left;
+    text-transform: uppercase;
+  }

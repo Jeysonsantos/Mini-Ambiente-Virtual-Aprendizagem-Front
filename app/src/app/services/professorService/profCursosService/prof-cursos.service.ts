@@ -84,4 +84,10 @@ export class ProfCursosService {
     const url = `${this.apiUrl}/disciplina/postagens/${id_postagem}/atividade`;
     return this.http.get<Atividade>(url);
   }
+
+  getAtividadeById(id_atividade: number): Observable<Atividade> {
+    const url = `${this.apiUrl}/disciplina/postagens/atividade/${id_atividade}`;
+    return this.http.get<Atividade>(url);
+  }
+  
 }

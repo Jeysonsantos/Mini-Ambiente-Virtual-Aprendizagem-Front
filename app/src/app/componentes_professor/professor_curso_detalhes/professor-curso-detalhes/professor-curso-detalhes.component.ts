@@ -133,7 +133,7 @@ export class ProfessorCursoDetalhesComponent {
       data: new Date(),
       data_agendamento: [''],
       disciplina: this.disciplina,
-      data_entrega: new FormControl('',Validators.required),
+      data_entrega: new FormControl(''),
     });
     this.expandInput = false;
     this.selectedFileNames = [];
