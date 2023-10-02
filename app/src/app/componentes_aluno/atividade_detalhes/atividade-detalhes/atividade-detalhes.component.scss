@@ -71,8 +71,8 @@
   cursor: pointer;
 }
 button {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #105bfdab;
+  color: #ffffff;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -293,3 +293,26 @@ button {
     transform: translate(-50%, -50%) scale(1);
   }
 }
+
+/* Estilo para o botão de anexar arquivo */
+button.anexar-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  /* Estilo para o botão de postar */
+  button[type="submit"] {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  

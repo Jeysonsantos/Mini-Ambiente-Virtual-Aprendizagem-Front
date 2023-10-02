@@ -40,6 +40,13 @@
     font-size: 16px;
     resize: vertical;
   }
+  .form-group label[for="titulo"] {
+    /* Estilo para a etiqueta (label) do campo "Título" */
+    font-weight: bold; /* Deixa o texto em negrito */
+    color: #333; /* Cor do texto */
+    display: block; /* Faz com que a etiqueta ocupe toda a largura do contêiner */
+  }
+  
   
   button {
     background-color: #007bff;

@@ -28,6 +28,10 @@
     <!-- Conteúdo expandido com formulário -->
     <form [formGroup]="form" (ngSubmit)="criarPostagem()" #postagemForm="ngForm">
       <div class="form-group">
+        <label for="titulo">Título</label>
+        <input type="text" class="form-control" formControlName="titulo" id="titulo" placeholder="Título">
+      </div>
+      <div class="form-group">
         <label for="conteudo">Escreva algo</label>
         <textarea class="form-control escreva" formControlName="conteudo" id="conteudo"
           placeholder="Escreva algo"></textarea>
@@ -151,8 +155,8 @@
         <span class="autor">
           <mat-icon class="icon-book">book</mat-icon>
           {{ postagem.autor }} postou uma nova atividade:
-          {{ postagem.conteudo.slice(0, 25) }}
-          {{ postagem.conteudo.length > 25 ? '...' : '' }}
+          {{ postagem.titulo.slice(0, 25) }}
+          {{ postagem.titulo.length > 25 ? '...' : '' }}
         </span>
         <span class="data">Entregar até {{ postagem.data_entrega | date: 'dd/MM/yyyy HH:mm' }}</span>
       </div>

@@ -46,6 +46,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
 import { ProfessorAtividadeDetalhesComponent } from './componentes_professor/professor_atividade_detalhes/professor-atividade-detalhes/professor-atividade-detalhes.component';
 import { ProfessorCursoAddAlunosDialogComponent } from './componentes_professor/professor_curso_detalhes/professor_curso_add_alunos_dialog/professor-curso-add-alunos-dialog/professor-curso-add-alunos-dialog.component';
 import { AlunoMenuComponent } from './componentes_aluno/aluno_menu/aluno-menu/aluno-menu.component';
+import { AtividadeDetalhesComponent } from './componentes_aluno/atividade_detalhes/atividade-detalhes/atividade-detalhes.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { AlunoMenuComponent } from './componentes_aluno/aluno_menu/aluno-menu/al
     ProfessorAtividadeDetalhesComponent,
     ProfessorCursoAddAlunosDialogComponent,
     AlunoMenuComponent,
+    AtividadeDetalhesComponent,
     
   ],
   imports: [

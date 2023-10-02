@@ -89,5 +89,12 @@ export class ProfCursosService {
     const url = `${this.apiUrl}/disciplina/postagens/atividade/${id_atividade}`;
     return this.http.get<Atividade>(url);
   }
+
+  enviarResposta(id_atividade: number, file: File): Observable<any> {
+    const url = `${this.apiUrl}/disciplina/postagens/atividade/${id_atividade}/upload`;
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post(url, formData);
+  }
   
 }

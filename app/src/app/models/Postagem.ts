@@ -5,6 +5,7 @@ import { Disciplina } from "./Disciplina";
 
 export interface Postagem {
   id_postagem: number;
+  titulo: string;
   autor: string;
   conteudo: string; // Conteúdo de texto
   data: Date;

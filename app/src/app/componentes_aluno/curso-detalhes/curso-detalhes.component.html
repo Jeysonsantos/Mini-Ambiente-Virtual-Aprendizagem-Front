@@ -20,6 +20,10 @@
       <!-- Conteúdo expandido com formulário -->
       <form [formGroup]="form" (ngSubmit)="criarPostagem()" #postagemForm="ngForm">
         <div class="form-group">
+          <label for="titulo">Título</label>
+          <input type="text" class="form-control" formControlName="titulo" id="titulo" placeholder="Título">
+        </div>
+        <div class="form-group">
           <label for="conteudo">Escreva algo</label>
           <textarea class="form-control escreva" formControlName="conteudo" id="conteudo"
             placeholder="Escreva algo"></textarea>
@@ -93,8 +97,8 @@
       </div>
   
   
-      <div class="table_atividade" *ngIf="postagem.tipo === 'atividade'">
-        <div class="postagem-info" (click)="abrir_atividade(postagem.atividade.id_atividade,postagem.disciplina.id_disciplina)">
+      <div class="table_atividade" *ngIf="postagem.tipo === 'atividade'" (click)="abrir_atividade(postagem.id_postagem,postagem.disciplina.id_disciplina)">
+        <div class="postagem-info">
           <span class="autor">
             <mat-icon class="icon-book">book</mat-icon>
             {{ postagem.autor }} postou uma nova atividade:

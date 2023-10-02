@@ -42,6 +42,7 @@ export class CursoDetalhesComponent {
     this.form = this.formBuilder.group({
       id_postagem: new FormControl(''),
       autor: new FormControl(''),
+      titulo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(100),]),
       conteudo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(5000),]),
       tipo: new FormControl('informativo', Validators.required),
       postar: new FormControl('agora',Validators.required),
@@ -125,6 +126,7 @@ export class CursoDetalhesComponent {
     this.form = this.formBuilder.group({
       id_postagem: new FormControl(''),
       autor: new FormControl(''),
+      titulo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(100),]),
       conteudo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(5000),]),
       tipo: new FormControl('informativo', Validators.required),
       postar: new FormControl('agora',Validators.required),
@@ -236,10 +238,17 @@ export class CursoDetalhesComponent {
     this.Router.navigate(['/aluno']);
   }
 
-  abrir_atividade(id_atividade: number,id_disciplina: number) {
-    console.log(id_atividade);
-    console.log(id_disciplina)
-    this.Router.navigate(['/aluno/curso/'+ id_disciplina + '/atividade/' + id_atividade]); // Ainda nao existe a rota nem o componente
+  abrir_atividade(id_postagem: number,id_disciplina: number) {
+    this.ProfCursosService.getAtividadeByPostagemId(id_postagem).subscribe(
+      
+      response => {
+        console.log(response)
+        this.Router.navigate(['/aluno/curso/'+ id_disciplina + '/atividade/' + response.id_atividade]);
+      },
+      error => {
+        this.snackbar.open('Erro ao abrir atividade.', 'Fechar', { duration: 3000 });
+      }
+    );
   }
 
 }

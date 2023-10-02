@@ -15,6 +15,7 @@ import { CursoDetalhesComponent } from './componentes_aluno/curso-detalhes/curso
 import { ProfGuard } from './auth/Profguard';
 import { LoginGuard } from './auth/LoginAuth';
 import { AlunoGuard } from './auth/Alunoguard';
+import { AtividadeDetalhesComponent } from './componentes_aluno/atividade_detalhes/atividade-detalhes/atividade-detalhes.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard]},
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'admin/professores', component: AdminProfessoresComponent, canActivate: [AdminGuard] },
   { path: 'aluno', component: AlunoComponent, canActivate: [AlunoGuard]},
   { path: 'aluno/curso/:id_disciplina', component: CursoDetalhesComponent, canActivate: [AlunoGuard] },
+  { path: 'aluno/curso/:id_disciplina/atividade/:id_atividade', component: AtividadeDetalhesComponent, canActivate: [AlunoGuard]},
   { path: 'professor', component: ProfessorComponent, canActivate: [ProfGuard]},
   { path: 'professor/curso/:id_disciplina', component: ProfessorCursoDetalhesComponent, canActivate: [ProfGuard] },
   { path: 'professor/curso/:id_disciplina/atividade/:id_atividade', component: ProfessorAtividadeDetalhesComponent, canActivate: [ProfGuard] }

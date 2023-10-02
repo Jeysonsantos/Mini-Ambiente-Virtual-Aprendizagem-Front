@@ -4,9 +4,6 @@
       <h1>
           {{disciplina?.periodo}} - {{disciplina?.nome}} - {{disciplina?.codigo}}
           <div>
-          <button class="add-student-button" (click)="abrir_editar_atividade_aluno()">
-                Editar Atividade
-          </button>
       </div>
       </h1>
   </div>
@@ -44,8 +41,12 @@
 <div class="status"><h1>Status de Envio</h1></div>
 <table class="detalhes-atividade">
   <tr>
-    <th>Alunos que enviaram</th>
-    <td>{{num_enviados()}}</td>
+    <th>Status de envio</th>
+    <td>{{status_envio()}}</td>
+  </tr>
+  <tr>
+    <th>Status da atividade</th>
+    <td>{{nota_atividade()}}</td>
   </tr>
   <tr>
     <th>Data de entrega</th>
@@ -57,10 +58,35 @@
   </tr>
 
 </table>
-
+<form #fileForm="ngForm" *ngIf="atividade_no_prazo()">
+    <!-- Elemento de ícone para anexar arquivo -->
+    <button type="button" class="anexar-button" (click)="anexarArquivo()">
+      <span>
+        <svg focusable="false" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z">
+          </path>
+        </svg>
+      </span>
+    </button>
   
+    <!-- Input de arquivo oculto com suporte a múltipla seleção -->
+    <input type="file" style="display: none" (change)="onFileSelected($event)" accept=".pdf, .jpg, .jpeg, .png" multiple>
   
-
+    <!-- Lista de nomes de arquivos selecionados -->
+    <div *ngIf="selectedFileNames.length > 0">
+      <ul>
+        <li *ngFor="let fileName of selectedFileNames">
+          <span>
+            <i class="fa fa-file"> :</i>
+             {{ fileName }}
+          </span>
+          <button class="excluir-button" (click)="excluirArquivo(fileName)">X</button>
+        </li>
+      </ul>
+    </div>
+    <button type="submit" (click)="uploadFile()">Postar</button>
+  </form>
 </div>
 
 

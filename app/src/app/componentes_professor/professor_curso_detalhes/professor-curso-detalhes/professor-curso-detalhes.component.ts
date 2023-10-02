@@ -39,6 +39,7 @@ export class ProfessorCursoDetalhesComponent {
     this.form = this.formBuilder.group({
       id_postagem: new FormControl(''),
       autor: new FormControl(''),
+      titulo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(100),]),
       conteudo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(5000),]),
       tipo: new FormControl('informativo', Validators.required),
       postar: new FormControl('agora',Validators.required),
@@ -91,6 +92,7 @@ export class ProfessorCursoDetalhesComponent {
             const atividade:Atividade = {
               id_atividade: 0,
               descricao_atividade: response.conteudo,
+              titulo_atividade: response.titulo,
               data_postagem: response.data,
               data_entrega: response.data_entrega,
               id_disciplina: this.disciplina.id_disciplina,
@@ -127,6 +129,7 @@ export class ProfessorCursoDetalhesComponent {
     this.form = this.formBuilder.group({
       id_postagem: new FormControl(''),
       autor: new FormControl(''),
+      titulo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(100),]),
       conteudo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(5000),]),
       tipo: new FormControl('informativo', Validators.required),
       postar: new FormControl('agora',Validators.required),
@@ -292,7 +295,7 @@ export class ProfessorCursoDetalhesComponent {
 
   }
   abrir_list_alunos(id_disciplina:number){
-
+    this.snackbar.open('Funcionalidade em desenvolvimento, contate o desenvolvedor.', 'Fechar', { duration: 3000 });
   }
 
   set_data_entrega_agora(){
