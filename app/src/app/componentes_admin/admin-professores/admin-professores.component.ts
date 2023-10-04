@@ -113,7 +113,15 @@ export class AdminProfessoresComponent {
             this.ngOnInit();
           },
           (error) => {
-            
+            if(error.status == 400){
+              this.snackBar.open('Professor com Vínculo.', 'Fechar', { duration: 3000 });
+            }else if(error.status == 500){
+              this.snackBar.open('Erro ao excluir professor.', 'Fechar', { duration: 3000 });
+            }else if(error.status == 404){
+              this.snackBar.open('Professor não encontrado.', 'Fechar', { duration: 3000 });
+            }else if(error.status == 0){
+              this.snackBar.open('Erro ao conectar com o banco de dados.', 'Fechar', { duration: 3000 });
+            }
             this.snackBar.open('Erro ao excluir professor.', 'Fechar', { duration: 3000 });
           }
         );

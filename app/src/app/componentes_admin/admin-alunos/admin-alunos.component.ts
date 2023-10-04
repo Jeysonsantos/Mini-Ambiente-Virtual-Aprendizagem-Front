@@ -111,7 +111,13 @@ export class AdminAlunosComponent {
             this.ngOnInit();
           },
           (error) => {
-            this.snackBar.open('Erro ao excluir aluno.', 'Fechar', { duration: 3000 });
+            if(error.status == 400){
+              this.snackBar.open('Aluno com vínculo ativo não pode ser excluído.', 'Fechar', { duration: 3000 });
+            }else if(error.status == 500){
+              this.snackBar.open('Erro ao excluir aluno.', 'Fechar', { duration: 3000 });
+            }else if(error.status == 404){
+              this.snackBar.open('Aluno não encontrado.', 'Fechar', { duration: 3000 });
+            }
           }
         );
       }

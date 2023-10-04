@@ -111,7 +111,15 @@ export class AdminCursosComponent {
             this.ngOnInit();
           },
           (error) => {
-            this.snackBar.open('Erro ao excluir disciplina.', 'Fechar', { duration: 3000 });
+            if(error.status == 400){
+              this.snackBar.open('Disciplina com Vínculo, Contate o Desenvolvedor', 'Fechar', { duration: 3000 });
+            }else if(error.status == 500){
+              this.snackBar.open('Erro ao excluir disciplina.', 'Fechar', { duration: 3000 });
+            }else if(error.status == 0){
+              this.snackBar.open('Erro ao conectar com o banco de dados.', 'Fechar', { duration: 3000 });
+            }else if(error.status == 404){
+              this.snackBar.open('Disciplina não encontrada.', 'Fechar', { duration: 3000 });
+            }
           }
         );
       }

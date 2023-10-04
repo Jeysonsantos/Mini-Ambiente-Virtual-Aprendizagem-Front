@@ -119,8 +119,8 @@
     </form>
   </div>
 
-
   <div *ngFor="let postagem of postagens">
+    <div [ngClass]="{ 'cinza': postagem_agendada(postagem) }">
     <div class="postagem" *ngIf="postagem.tipo === 'informativo'">
       <div class="postagem-header">
         <mat-icon class="icon_perfil">account_circle</mat-icon>
@@ -148,6 +148,7 @@
       </div>
       <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
     </div>
+    
 
 
     <div (click)="abrir_atividade(postagem.id_postagem,postagem.disciplina.id_disciplina)" class="table_atividade" *ngIf="postagem.tipo === 'atividade'">
@@ -163,4 +164,5 @@
       <span class="data">{{ postagem.data | date: 'dd/MM/yyyy HH:mm' }}</span>
     </div>
   </div>
+</div>
 </div>

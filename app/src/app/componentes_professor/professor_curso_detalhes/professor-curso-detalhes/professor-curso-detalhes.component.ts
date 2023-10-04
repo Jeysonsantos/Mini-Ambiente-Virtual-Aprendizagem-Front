@@ -11,6 +11,7 @@ import { ProfessorCursoAddAlunosDialogComponent } from '../professor_curso_add_a
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+
 @Component({
   selector: 'app-professor-curso-detalhes',
   templateUrl: './professor-curso-detalhes.component.html',
@@ -58,7 +59,6 @@ export class ProfessorCursoDetalhesComponent {
         this.disciplina = disciplina;
         this.carregarPostagens(id_disciplina);
         this.carregarAnexos(id_disciplina);
-        
       }
       );
     });
@@ -73,6 +73,16 @@ export class ProfessorCursoDetalhesComponent {
       });
      
     });
+  }
+  postagem_agendada(postagem: Postagem): boolean{
+    const dataAtual = new Date();
+    const dataPostagem = new Date(postagem.data);
+    if (dataPostagem > dataAtual) {
+      return true;
+    }else{
+      return false;
+    }
+
   }
 
   criarPostagem() {
@@ -264,23 +274,6 @@ export class ProfessorCursoDetalhesComponent {
       }
     );
 
-  }
-
-  onSubmit() {
-    const formData = this.form.value;
-
-    if (formData.data_agendamento) {
-      // Agendar a publicação usando formData.data_agendamento
-      console.log('Publicação agendada para', formData.data_agendamento);
-    } else {
-      // Publicar imediatamente
-      console.log('Publicação imediata');
-    }
-
-    // Enviar os outros dados do formulário para o servidor
-    console.log('Conteúdo:', formData.conteudo);
-    console.log('Tipo:', formData.tipo);
-    console.log('Data de Entrega:', formData.data_entrega);
   }
 
   toggleAgendamento() {
