@@ -7,10 +7,21 @@ interface AutenticarUsuario {
   tipoUsuario: string;
   nome: string;
 }
+interface SelecionarFeatures{
+  agendamentoAtivo: boolean;
+  postagemAnexosAtiva: boolean;
+  criarSecretariaAtiva: boolean;
+  criarMonitorAtiva: boolean;
+}
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  agendamentoAtivo: boolean = true;
+  postagemAnexosAtiva: boolean = true;
+  criarSecretariaAtiva: boolean = false;
+  criarMonitorAtiva: boolean = false;
+
   constructor(private httpClient: HttpClient, private userDataService: UserDataServiceService) {
   }
 
@@ -23,9 +34,11 @@ export class AuthService {
 
       if (data) {
         this.userDataService.setUserData(true, data.tipoUsuario, data.idUsuario, data.nome);
+        this.userDataService.setFeatures(this.agendamentoAtivo,this.postagemAnexosAtiva,this.criarSecretariaAtiva,this.criarMonitorAtiva);
         return true;
       } else {
         this.userDataService.setUserData(false, '', 0, '');
+        this.userDataService.setFeatures(true,true,true,true)
         return false;
       }
     } catch (error) {
@@ -36,5 +49,6 @@ export class AuthService {
 
   logout(): void {
     this.userDataService.setUserData(false, '', 0, '');
+    this.userDataService.setFeatures(true,true,true,true)
   }
 }

@@ -1,0 +1,17 @@
+<div class="feature-selector">
+    <h3>Selecionar Recursos</h3>
+    <label>
+      <input type="checkbox" [(ngModel)]="agendamentoAtivo"> Agendamento de Postagens pelo Professor
+    </label>
+    <label>
+      <input type="checkbox" [(ngModel)]="postagemAnexosAtiva"> Postagem de Anexos pelo Aluno
+    </label>
+    <label>
+        <input type="checkbox" [(ngModel)]="criarSecretariaAtiva"> Criar Secretária pelo Admin
+    </label>
+    <label>
+        <input type="checkbox" [(ngModel)]="criarMonitorAtiva"> Criar Monitor pelo Admin
+    </label>
+    <button mat-raised-button color="primary" (click)="confirmarRecursos()">Confirmar</button>
+  </div>
+  

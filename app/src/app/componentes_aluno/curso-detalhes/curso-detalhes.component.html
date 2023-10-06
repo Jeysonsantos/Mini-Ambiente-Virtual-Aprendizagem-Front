@@ -31,7 +31,7 @@
 
         <form #fileForm="ngForm">
           <!-- Elemento de ícone para anexar arquivo -->
-          <button class="butao_link" type="button" (click)="anexarArquivo()">
+          <button class="butao_link" type="button" (click)="anexarArquivo()" *ngIf="Features.postagemAnexosAtiva">
             <span>
               <svg focusable="false" width="24" height="24" viewBox="0 0 24 24">
                 <path

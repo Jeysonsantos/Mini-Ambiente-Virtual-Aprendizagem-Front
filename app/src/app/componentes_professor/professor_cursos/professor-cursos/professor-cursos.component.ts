@@ -1,3 +1,4 @@
+import { Features } from './../../../models/features';
 import { Component } from '@angular/core';
 import { Disciplina } from 'src/app/models/Disciplina';
 import { Professor } from 'src/app/models/Professor';
@@ -13,9 +14,11 @@ export class ProfessorCursosComponent {
   cursos: Disciplina[] = [];
   professor: Professor | undefined;
   id_usuario: number = 0;
+  Features: Features = {} as Features;
 
   constructor(private profCursosService:ProfCursosService,private userDataService: UserDataServiceService) {
     this.id_usuario = this.userDataService.idUsuario;
+    this.Features = this.userDataService.Features;
   }
 
   ngOnInit(): void {

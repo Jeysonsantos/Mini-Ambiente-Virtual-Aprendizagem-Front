@@ -1,3 +1,4 @@
+import { Features } from './../../../models/features';
 import { Anexo } from './../../../models/Anexo';
 import { ProfCursosService } from 'src/app/services/professorService/profCursosService/prof-cursos.service';
 import { Component, EventEmitter, Output } from '@angular/core';
@@ -10,6 +11,7 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 import { ProfessorCursoAddAlunosDialogComponent } from '../professor_curso_add_alunos_dialog/professor-curso-add-alunos-dialog/professor-curso-add-alunos-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserDataServiceService } from 'src/app/services/adminService/userDataService/user-data-service.service';
 
 
 @Component({
@@ -30,13 +32,14 @@ export class ProfessorCursoDetalhesComponent {
   id_atividade = 0;
   exibirAgendamento: boolean = false;
   id_postagem = 0;
+  Features: Features = {} as Features;
 
   @Output() arquivoExcluido = new EventEmitter<string>();
 
 
   form: FormGroup;
 
-  constructor(private dialog:MatDialog,private route: ActivatedRoute, private ProfCursosService: ProfCursosService, private Router: Router, private formBuilder: FormBuilder,private sanitizer: DomSanitizer,private snackbar:MatSnackBar) {
+  constructor(private dialog:MatDialog,private route: ActivatedRoute, private ProfCursosService: ProfCursosService, private Router: Router, private formBuilder: FormBuilder,private sanitizer: DomSanitizer,private snackbar:MatSnackBar,private userDataService: UserDataServiceService) {
     this.form = this.formBuilder.group({
       id_postagem: new FormControl(''),
       autor: new FormControl(''),
@@ -49,6 +52,7 @@ export class ProfessorCursoDetalhesComponent {
       disciplina: this.disciplina,
       data_entrega: new FormControl('')
     });
+    this.Features = this.userDataService.Features;
   }
 
   ngOnInit(): void {

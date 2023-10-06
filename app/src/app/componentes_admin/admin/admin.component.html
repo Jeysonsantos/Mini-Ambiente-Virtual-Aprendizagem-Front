@@ -18,5 +18,17 @@
     </div>
     <h2 class="card-title">Professores</h2>
   </div>
+  <div class="admin-card admin-professores" (click)="navigateToMonitor()" *ngIf="Features.criarMonitorAtiva" >
+    <div class="card-icon">
+      <mat-icon>people</mat-icon>
+    </div>
+    <h2 class="card-title">Monitor</h2>
+  </div>
+  <div class="admin-card admin-professores" (click)="navigateToSecretaria()" *ngIf="Features.criarSecretariaAtiva">
+    <div class="card-icon">
+      <mat-icon>people</mat-icon>
+    </div>
+    <h2 class="card-title">Secretária</h2>
+  </div>
 </div>
 </div>

@@ -9,6 +9,17 @@
     
 
   }
+  /* Estilizando o botão de fechamento do diálogo */
+.mat-dialog-title .mat-button-wrapper {
+  color: #ad2316; /* Altere a cor de acordo com o seu esquema de cores */
+}
+
+/* Personalizando o estilo do diálogo */
+.mat-dialog-container {
+  background-color: #ffffff; /* Cor de fundo do diálogo */
+  padding: 20px; /* Espaçamento interno */
+}
+
   
   .titulo {
     font-size: 24px;

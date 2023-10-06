@@ -1,3 +1,4 @@
+import { Features } from './../../models/features';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -32,13 +33,14 @@ export class CursoDetalhesComponent {
   exibirAgendamento: boolean = false;
   id_postagem = 0;
   aluno: Aluno | undefined;
+  Features: Features = {} as Features;
 
   @Output() arquivoExcluido = new EventEmitter<string>();
 
 
   form: FormGroup;
 
-  constructor(private route: ActivatedRoute, private ProfCursosService: ProfCursosService, private Router: Router, private formBuilder: FormBuilder,private sanitizer: DomSanitizer,private userDataServiceService: UserDataServiceService,private AlunoService:AlunoService,private snackbar:MatSnackBar) {
+  constructor(private route: ActivatedRoute, private ProfCursosService: ProfCursosService, private Router: Router, private formBuilder: FormBuilder,private sanitizer: DomSanitizer,private userDataServiceService: UserDataServiceService,private AlunoService:AlunoService,private snackbar:MatSnackBar,private userDataService: UserDataServiceService ) {
     this.form = this.formBuilder.group({
       id_postagem: new FormControl(''),
       autor: new FormControl(''),
@@ -51,6 +53,7 @@ export class CursoDetalhesComponent {
       disciplina: this.disciplina,
       data_entrega: new FormControl(''),
     });
+    this.Features = this.userDataServiceService.Features;
   }
 
   ngOnInit(): void {

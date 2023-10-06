@@ -1,8 +1,11 @@
+import { FeatureSelectorComponent } from './../feature-selector/feature-selector.component';
 import { UserDataServiceService } from './../services/adminService/userDataService/user-data-service.service';
 import { Component } from '@angular/core';
 import { AuthService } from '../auth/auth-service.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { Features } from '../models/features';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +16,13 @@ export class LoginComponent {
   username: string = '264.310.987-22';
   password: string = '26422';
   invalidLogin: boolean = false;
+  features : Features = {} as Features;
 
-  constructor(public authService: AuthService, private router: Router, private snackBar: MatSnackBar,private userDataService:UserDataServiceService) {
+  constructor(private dialog: MatDialog,public authService: AuthService, private router: Router, private snackBar: MatSnackBar,private userDataService:UserDataServiceService) {
+    this.features.agendamentoAtivo = this.authService.agendamentoAtivo;
+    this.features.postagemAnexosAtiva = this.authService.postagemAnexosAtiva;
+    this.features.criarSecretariaAtiva = this.authService.criarSecretariaAtiva;
+    this.features.criarMonitorAtiva = this.authService.criarMonitorAtiva;
   }
 
   async login(): Promise<void> {
@@ -51,5 +59,24 @@ export class LoginComponent {
 
   removerPontoeTracoeEspacovazio(texto: string): string {
     return texto.replace(/\.|-|\s/g, '');
+  }
+  openFeatureSelectorDialog(): void {
+    const dialogRef = this.dialog.open(FeatureSelectorComponent, {
+      width: '500px', // Defina a largura desejada para o diálogo
+      data: {
+        mode: false,
+        features: this.features
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.authService.agendamentoAtivo = result.agendamentoAtivo;
+        this.authService.postagemAnexosAtiva = result.postagemAnexosAtiva;
+        this.authService.criarMonitorAtiva = result.criarMonitorAtiva;
+        this.authService.criarSecretariaAtiva = result.criarSecretariaAtiva;
+        this.features = result;
+      }
+    });
   }
 }

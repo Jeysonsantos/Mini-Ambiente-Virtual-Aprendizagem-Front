@@ -59,7 +59,7 @@
       <div class="form-group">
         <mat-radio-group formControlName="postar">
           <p>Postar : <mat-radio-button value="agora">Agora</mat-radio-button>
-            <mat-radio-button value="agendado">Agendado</mat-radio-button></p>
+            <mat-radio-button value="agendado" *ngIf="Features.agendamentoAtivo">Agendado</mat-radio-button></p>
         </mat-radio-group>
       </div>
 
